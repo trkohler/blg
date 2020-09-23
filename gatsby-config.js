@@ -3,19 +3,19 @@ module.exports = {
     // Used for the title template on pages other than the index site
     siteTitle: `Трой Кёхлер`,
     // Default title of the page
-    siteTitleAlt: `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog`,
+    siteTitleAlt: `Блог про человека`,
     // Can be used for e.g. JSONLD
-    siteHeadline: `Minimal Blog - Gatsby Theme from @lekoarts`,
+    siteHeadline: `Блог про человека`,
     // Will be used to generate absolute URLs for og:image etc.
-    siteUrl: `https://minimal-blog.lekoarts.de`,
+    siteUrl: `https://trkohler.com`,
     // Used for SEO
-    siteDescription: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and line highlighting.`,
+    siteDescription: `Лайфстайл-блог программиста, продуктового менеджера и бывшего профессионального пловца.`,
     // Will be set on the <html /> tag
     siteLanguage: `ru`,
     // Used for og:image and must be placed inside the `static` folder
-    siteImage: `/banner.png`,
+    siteImage: `/banner.jpg`,
     // Twitter Handle
-    author: `@lekoarts_de`,
+    author: `@boba_troy`,
     // Links displayed in the header on the right side
     externalLinks: [{
         name: `Твиттер`,
