@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
     // Used for the title template on pages other than the index site
-    siteTitle: `Трой Кёхлер`,
+    siteTitle: `Про человеков`,
     // Default title of the page
-    siteTitleAlt: `Блог про человека`,
+    siteTitleAlt: `Про человеков`,
     // Can be used for e.g. JSONLD
-    siteHeadline: `Блог про человека`,
+    siteHeadline: `Про человеков`,
     // Will be used to generate absolute URLs for og:image etc.
     siteUrl: `https://trkohler.com`,
     // Used for SEO
