@@ -13,7 +13,7 @@ module.exports = {
     // Will be set on the <html /> tag
     siteLanguage: `ru`,
     // Used for og:image and must be placed inside the `static` folder
-    siteImage: `/banner.jpg`,
+    siteImage: `/banner.png`,
     // Twitter Handle
     author: `@lekoarts_de`,
     // Links displayed in the header on the right side
