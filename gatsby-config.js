@@ -33,27 +33,34 @@ module.exports = {
     }, ],
   },
   plugins: [{
-    resolve: `@lekoarts/gatsby-theme-minimal-blog`,
-    options: {
-      showLineNumbers: false,
-      navigation: [{
-          title: `Записи`,
-          slug: `/blog`,
-        },
-        {
-          title: `Про меня`,
-          slug: `/about-me`,
-        },
-      ],
-      externalLinks: [{
-          name: `Твиттер`,
-          url: `https://twitter.com/lekoarts_de`,
-        },
-        // {
-        //   name: `Instagram`,
-        //   url: `https://www.instagram.com/lekoarts.de/`,
-        // },
-      ],
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-178736251-1",
+      },
     },
-  }, ],
+    {
+      resolve: `@lekoarts/gatsby-theme-minimal-blog`,
+      options: {
+        showLineNumbers: false,
+        navigation: [{
+            title: `Записи`,
+            slug: `/blog`,
+          },
+          {
+            title: `Про меня`,
+            slug: `/about-me`,
+          },
+        ],
+        externalLinks: [{
+            name: `Твиттер`,
+            url: `https://twitter.com/lekoarts_de`,
+          },
+          // {
+          //   name: `Instagram`,
+          //   url: `https://www.instagram.com/lekoarts.de/`,
+          // },
+        ],
+      },
+    },
+  ],
 };
