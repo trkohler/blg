@@ -1,3 +1,4 @@
-User-agent: *
+User-Agent: *
+Disallow: 
 
-sitemap: https://minimal-blog.lekoarts.de/sitemap.xml
+sitemap: https://trkohler.com//sitemap.xml
