@@ -35,12 +35,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-sitemap`,
     {
-      resolve: 'gatsby-plugin-mailchimp',
-      options: {
-        endpoint: 'https://trkohler.us2.list-manage.com/subscribe/post?u=222c799715f553d4cd0f59ee2&amp;id=0a7a45cbae',
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: "UA-178736251-1",
