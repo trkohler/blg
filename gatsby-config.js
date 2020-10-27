@@ -18,9 +18,9 @@ module.exports = {
     author: `@boba_troy`,
     // Links displayed in the header on the right side
     externalLinks: [{
-        name: `Твиттер`,
-        url: `https://twitter.com/lekoarts_de`,
-      },
+      name: `Твиттер`,
+      url: `https://twitter.com/lekoarts_de`,
+    },
       // {
       //   name: `Instagram`,
       //   url: `https://www.instagram.com/lekoarts.de/`,
@@ -30,10 +30,16 @@ module.exports = {
     navigation: [{
       title: `Записи`,
       slug: `/blog`,
-    }, ],
+    },],
   },
   plugins: [
     `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: 'https://trkohler.us2.list-manage.com/subscribe/post?u=222c799715f553d4cd0f59ee2&amp;id=0a7a45cbae',
+      },
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -45,18 +51,18 @@ module.exports = {
       options: {
         showLineNumbers: false,
         navigation: [{
-            title: `Записи`,
-            slug: `/blog`,
-          },
-          {
-            title: `Про меня`,
-            slug: `/about-me`,
-          },
+          title: `Записи`,
+          slug: `/blog`,
+        },
+        {
+          title: `Про меня`,
+          slug: `/about-me`,
+        },
         ],
         externalLinks: [{
-            name: `Твиттер`,
-            url: `https://twitter.com/lekoarts_de`,
-          },
+          name: `Твиттер`,
+          url: `https://twitter.com/lekoarts_de`,
+        },
           // {
           //   name: `Instagram`,
           //   url: `https://www.instagram.com/lekoarts.de/`,
