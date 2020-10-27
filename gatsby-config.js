@@ -17,10 +17,11 @@ module.exports = {
     // Twitter Handle
     author: `@boba_troy`,
     // Links displayed in the header on the right side
-    externalLinks: [{
-      name: `Твиттер`,
-      url: `https://twitter.com/lekoarts_de`,
-    },
+    externalLinks: [
+      //   {
+      //   name: `Твиттер`,
+      //   url: `https://twitter.com/lekoarts_de`,
+      // },
       // {
       //   name: `Instagram`,
       //   url: `https://www.instagram.com/lekoarts.de/`,
@@ -53,10 +54,11 @@ module.exports = {
           slug: `/about-me`,
         },
         ],
-        externalLinks: [{
-          name: `Твиттер`,
-          url: `https://twitter.com/lekoarts_de`,
-        },
+        externalLinks: [
+          //   {
+          //   name: `Твиттер`,
+          //   url: `https://twitter.com/lekoarts_de`,
+          // },
           // {
           //   name: `Instagram`,
           //   url: `https://www.instagram.com/lekoarts.de/`,
