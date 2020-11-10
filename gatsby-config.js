@@ -34,6 +34,15 @@ module.exports = {
     },],
   },
   plugins: [
+    `gatsby-plugin-emotion`,
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: { path: 'src/data' },
+    },
+    {
+      resolve: 'gatsby-transformer-yaml',
+      options: { typeName: 'Tag', path: 'src/data/convertkit-tags' },
+    },
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-analytics`,
