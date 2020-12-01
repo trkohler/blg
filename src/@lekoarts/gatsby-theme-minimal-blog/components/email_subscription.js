@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import tw, { styled, css } from 'twin.macro'
+import tw, { styled } from 'twin.macro'
 
 const SubscriptionContainer = styled.div([
   // tailwind only style

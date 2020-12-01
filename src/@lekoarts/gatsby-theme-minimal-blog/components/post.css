@@ -1,0 +1,11 @@
+ul {
+    list-style: inside;
+  }
+
+li {
+    padding: 0.7rem 0;
+}
+
+p {
+    padding: 0.7rem 0;
+}
