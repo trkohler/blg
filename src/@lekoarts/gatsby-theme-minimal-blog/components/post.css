@@ -9,3 +9,7 @@ li {
 p {
     padding: 0.7rem 0;
 }
+
+.gatsby-highlight {
+    margin: 1.5rem 0;
+}
