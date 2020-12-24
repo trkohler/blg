@@ -6,6 +6,7 @@ tags:
   - Программистское
   - FastAPI
   - Python
+slug: fast-api-introduction-to-framework
 ---
 
 import { SubscriptionForm } from "../../../src/@lekoarts/gatsby-theme-minimal-blog/components/email_subscription";
@@ -56,7 +57,7 @@ uvicorn main:app --reload
 
 С помощью **Postman** или **curl** мы можем проверить работает ли наш эндпоинт.
 
-[](./pic1.png)
+![](./pic1.jpg)
 
 Убиваем наш процесс, нажимая `Ctrl + C` . Пора двигаться дальше.
 
@@ -74,9 +75,9 @@ async def return_number(number: int): # type annotation syntax
 
 Тестируем.
 
-[](./pic12.png)
+![](./pic2.jpg)
 
-[](./pic3.png)
+![](./pic3.jpg)
 
 Отлично. Если мы вводим параметр другого типа (_string_) наше приложение автоматически отрабатывает _response_ и в довольно доступной форме поясняет клиенту (в данном случае **Postman**) в чем он был не прав.
 
