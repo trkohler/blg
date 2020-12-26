@@ -1,5 +1,5 @@
 ul {
-    list-style: inside;
+    list-style: circle inside;
   }
 
 li {
@@ -12,4 +12,8 @@ p {
 
 .gatsby-highlight {
     margin: 1.5rem 0;
+}
+
+li p {
+    display: inline;
 }
