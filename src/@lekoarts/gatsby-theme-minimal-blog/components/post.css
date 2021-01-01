@@ -17,3 +17,7 @@ p {
 li p {
     display: inline;
 }
+
+ol {
+    list-style: decimal-leading-zero inside;
+}
