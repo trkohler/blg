@@ -36,6 +36,13 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-emotion`,
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+      options: {
+        siteUrl: `https://trkohler.com`,
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: { path: 'src/data' },
