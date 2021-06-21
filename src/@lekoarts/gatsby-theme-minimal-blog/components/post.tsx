@@ -4,7 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
 import ItemTags from "@lekoarts/gatsby-theme-minimal-blog/src/components/item-tags"
-import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo"
+import SEO from "./seo"
 import "./post.css"
 
 type PostProps = {
@@ -39,13 +39,24 @@ const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`)
 const Post = ({ data: { post } }: PostProps) => (
   <Layout>
     <SEO
-      title={post.title}
-      description={post.description ? post.description : post.excerpt}
-      image={post.banner ? post.banner.childImageSharp.resize.src : undefined}
-      pathname={post.slug}
-      canonicalUrl={post.canonicalUrl}
+      postData={{
+        frontmatter: {
+          date: post.date,
+          title: post.title,
+          description: post.description,
+          tags: post.tags,
+          image: post.banner?.childImageSharp.resize.src,
+        },
+        excerpt: post.excerpt,
+        title: post.title,
+        description: post.description,
+        slug: post.slug,
+        date: post.date
+      }}
+      postImage={post.banner?.childImageSharp.resize.src}
+      isBlogPost={true}
     />
-    <Heading variant="styles.h1">{post.title}</Heading>
+    <Heading as='h1' variant="styles.h2">{post.title}</Heading>
     <p sx={{ color: `secondary`, mt: 3, a: { color: `secondary` }, fontSize: [1, 1, 2] }}>
       <time>{post.date}</time>
       {post.tags && (

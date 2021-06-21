@@ -87,7 +87,7 @@ const SubscriptionForm = ({ tags, topic }) => {
           aria-label="Your email"
           name="email_address"
           placeholder="Email ╰(°ㅂ°)╯"
-          css={[tw`appearance-none w-full px-5 py-3 border border-gray-300 text-base leading-6 rounded-md text-gray-900 bg-white placeholder-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:max-w-xs`]}
+          css={[tw`appearance-none w-full px-5 py-3 border border-gray-300 text-base leading-6 rounded-md text-gray-900 bg-white placeholder-gray-500 focus:outline-none focus:shadow-lg focus:border-blue-300 transition duration-150 ease-in-out sm:max-w-xs`]}
           required
         />
         {tags.map((tagName) => (
@@ -104,7 +104,7 @@ const SubscriptionForm = ({ tags, topic }) => {
         <div css={[tw`mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0`]}>
         <button
           type="submit"
-          css={[tw`w-full flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out`]}
+          css={[tw`w-full flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-lg transition duration-150 ease-in-out`]}
         >
           Подписаться 
         </button>

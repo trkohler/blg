@@ -14,6 +14,7 @@ module.exports = {
     siteLanguage: `ru`,
     // Used for og:image and must be placed inside the `static` folder
     siteImage: `/banner.jpg`,
+    siteLogo: `/favicon-32x32.png`,
     // Twitter Handle
     author: `@boba_troy`,
     // Links displayed in the header on the right side
