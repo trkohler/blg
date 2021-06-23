@@ -50,7 +50,7 @@ const getSchemaOrgJSONLD = ({
     ? [
         ...schemaOrgJSONLD,
         {
-          '@context': 'https://trkohler.com',
+          '@context': 'http://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
             {
@@ -65,7 +65,7 @@ const getSchemaOrgJSONLD = ({
           ],
         },
         {
-          '@context': 'https://trkohler.com',
+          '@context': 'http://schema.org',
           '@type': 'BlogPosting',
           url,
           name: title,
