@@ -6,7 +6,7 @@ import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
 import Listing from "@lekoarts/gatsby-theme-minimal-blog/src/components/listing"
 import useMinimalBlogConfig from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-minimal-blog-config"
 import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replaceSlashes"
-import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo"
+import SEO from "./seo"
 
 type PostsProps = {
     posts: {
@@ -29,12 +29,17 @@ const Blog = ({ posts }: PostsProps) => {
 
     return (
         <Layout>
-            <SEO title="Blog" />
+            <SEO
+            pageData={{
+                title: "Читать все посты"
+            }}
+            isBlogPost={false}
+            />
             <Flex sx={{ alignItems: `center`, justifyContent: `space-between`, flexFlow: `wrap` }}>
-                <Heading variant="styles.h2">Блог</Heading>
+                <Heading as='h1' variant="styles.h2">Блог</Heading>
                 <TLink as={Link} sx={{ variant: `links.secondary` }} to={replaceSlashes(`/${basePath}/${tagsPath}`)}>
                     Посмотреть все тэги
-        </TLink>
+            </TLink>
             </Flex>
             <Listing posts={posts} sx={{ mt: [4, 5] }} />
         </Layout>
