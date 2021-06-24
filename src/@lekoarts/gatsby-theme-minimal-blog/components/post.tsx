@@ -39,7 +39,7 @@ const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`)
 const Post = ({ data: { post } }: PostProps) => (
   <Layout>
     <SEO
-      postData={{
+      pageData={{
         frontmatter: {
           date: post.date,
           title: post.title,

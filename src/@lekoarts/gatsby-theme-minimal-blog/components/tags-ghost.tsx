@@ -28,9 +28,10 @@ const Tags = ({ data }: TagsProps) => {
 
     return (
         <Layout>
-            <SEO 
+            <SEO
+            pageData={{}}
             isBlogPost={false}
-            postData={{}}
+            noindex={true}
             />
             <Heading as='h1' variant="styles.h3">Тэги</Heading>
             <Box mt={[4, 5]}>

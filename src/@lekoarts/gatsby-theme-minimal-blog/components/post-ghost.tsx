@@ -40,7 +40,7 @@ export default function Post({ data }: GhostPostProps) {
     return (
     <Layout>
     <SEO
-      postData={{
+      pageData={{
         frontmatter: {
           date: post.updated_at,
           title: post.title,
@@ -55,6 +55,7 @@ export default function Post({ data }: GhostPostProps) {
       }}
       postImage={post.feature_image}
       isBlogPost={true}
+      noindex={true}
     />
     <Heading as='h1' variant="styles.h2">{post.title}</Heading>
     <p sx={{ color: `secondary`, mt: 3, a: { color: `secondary` }, fontSize: [1, 1, 2] }}>

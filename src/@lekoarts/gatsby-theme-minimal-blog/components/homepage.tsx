@@ -11,6 +11,7 @@ import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replac
 import Hero from "../texts/hero"
 // @ts-ignore
 import Bottom from "../texts/bottom"
+import SEO from "./seo"
 
 type PostsProps = {
     posts: {
@@ -33,6 +34,12 @@ const Homepage = ({ posts }: PostsProps) => {
 
     return (
         <Layout>
+            <SEO
+            isBlogPost={false}
+            pageData={{
+                title: "Знакомство"
+            }}
+            />
             <section sx={{ mb: [5, 6, 7], p: { fontSize: [1, 2, 3], mt: 2 } }}>
                 <Hero />
             </section>
