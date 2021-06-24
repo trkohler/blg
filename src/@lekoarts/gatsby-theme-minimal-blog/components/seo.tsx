@@ -164,14 +164,14 @@ const getSchemaOrgJSONLD = ({
 type SEOProps = {
   isBlogPost: boolean
   postData: {
-    frontmatter: any
+    frontmatter?: any
     excerpt?: any
     title?: string
     description?: string
     slug?: string
     date?: string
   }
-  postImage: string,
+  postImage?: string,
 } 
 
 const SEO = ({ postData, postImage, isBlogPost }: SEOProps) => {

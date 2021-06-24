@@ -38,6 +38,13 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-source-ghost`,
+      options: {
+        apiUrl: `https://trkohler-blog.herokuapp.com`,
+        contentApiKey: `5ec0fbe5589a79c565c84c61d0`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
         siteUrl: `https://trkohler.com`,
