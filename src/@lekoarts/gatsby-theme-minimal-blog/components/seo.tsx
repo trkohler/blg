@@ -1,16 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import { withPrefix } from "gatsby"
 import useSiteMetadata from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-site-metadata"
 
-// type SEOProps = {
-//   title?: string
-//   description?: string
-//   pathname?: string
-//   image?: string
-//   children?: React.ReactNode
-//   canonicalUrl?: string
-// }
 
 
 type SchemaOrgJSONLDProps = {
@@ -97,84 +88,30 @@ const getSchemaOrgJSONLD = ({
 };
 
 
-// const SEO = ({
-//   title = ``,
-//   description = ``,
-//   pathname = ``,
-//   image = ``,
-//   children = null,
-//   canonicalUrl = ``,
-// }: SEOProps) => {
-//   const site = useSiteMetadata()
-
-//   const {
-//     siteTitle,
-//     siteTitleAlt: defaultTitle,
-//     siteUrl,
-//     siteDescription: defaultDescription,
-//     siteLanguage,
-//     siteImage: defaultImage,
-//     author,
-//   } = site
-
-//   const seo = {
-//     title: title || defaultTitle,
-//     description: description || defaultDescription,
-//     url: `${siteUrl}${pathname || ``}`,
-//     image: `${siteUrl}${image || defaultImage}`,
-//   }
-//   return (
-//     <Helmet title={title} defaultTitle={defaultTitle} titleTemplate={`%s | ${siteTitle}`}>
-//       <html lang={siteLanguage} />
-//       <meta name="description" content={seo.description} />
-//       <meta name="image" content={seo.image} />
-//       <meta property="og:title" content={seo.title} />
-//       <meta property="og:url" content={seo.url} />
-//       <meta property="og:description" content={seo.description} />
-//       <meta property="og:image" content={seo.image} />
-//       <meta property="og:type" content="website" />
-//       <meta property="og:image:alt" content={seo.description} />
-//       <meta name="twitter:card" content="summary_large_image" />
-//       <meta name="twitter:title" content={seo.title} />
-//       <meta name="twitter:url" content={seo.url} />
-//       <meta name="twitter:description" content={seo.description} />
-//       <meta name="twitter:image" content={seo.image} />
-//       <meta name="twitter:image:alt" content={seo.description} />
-//       <meta name="twitter:creator" content={author} />
-//       <link rel="icon" type="image/png" sizes="32x32" href={withPrefix(`/favicon-32x32.png`)} />
-//       <link rel="icon" type="image/png" sizes="16x16" href={withPrefix(`/favicon-16x16.png`)} />
-//       <link rel="apple-touch-icon" sizes="180x180" href={withPrefix(`/apple-touch-icon.png`)} />
-//       {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
-//       <script 
-//       data-name="BMC-Widget" 
-//       src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" 
-//       data-id="trkohler" data-description="Поддержи безумие и отвагу." 
-//       data-message="Если мои труды оказались полезны, поддержи меня кофеином! :)" 
-//       data-color="#5F7FFF" 
-//       data-position="" 
-//       data-x_margin="18" 
-//       data-y_margin="18" 
-//       defer>
-//       </script>
-//       {children}
-//     </Helmet>
-//   )
-// }
-
 type SEOProps = {
   isBlogPost: boolean
-  postData: {
-    frontmatter: any
+  pageData: {
+    frontmatter?: any
     excerpt?: any
     title?: string
     description?: string
     slug?: string
     date?: string
   }
-  postImage: string,
+  postImage?: string,
+  noindex?: boolean,
+  children?: React.ReactNode
 } 
 
-const SEO = ({ postData, postImage, isBlogPost }: SEOProps) => {
+const SEO = (
+  { 
+    pageData, 
+    postImage, 
+    isBlogPost, 
+    noindex,
+    children = null 
+  }: SEOProps
+) => {
   const site = useSiteMetadata()
   const {
         siteTitle,
@@ -183,11 +120,10 @@ const SEO = ({ postData, postImage, isBlogPost }: SEOProps) => {
         siteImage,
         author
   } = site
-  const postMeta = postData || null;
-
-  const title = postMeta?.title || siteTitle;
+  const postMeta = pageData || null;
+  const title = postMeta?.title;
   const description =
-    postMeta?.description || postData?.excerpt || siteDescription;
+    postMeta?.description || pageData?.excerpt || siteDescription;
   const image = `${siteUrl}${postImage || siteImage}`;
   const slug = postMeta?.slug;
   const url = postMeta?.slug
@@ -205,10 +141,15 @@ const SEO = ({ postData, postImage, isBlogPost }: SEOProps) => {
   });
   
   return (
-    <Helmet>
+    <Helmet 
+      title={title} 
+      titleTemplate={`%s | ${siteTitle}`} 
+      defer={false}
+    >
       {/* General tags */}
       <meta name="description" content={description} />
       <meta name="image" content={image} />
+      {noindex ? <meta name={`robots`} content={`noindex, nofollow`} /> : null}
 
       {/* Schema.org tags */}
       <script type="application/ld+json">
@@ -228,6 +169,7 @@ const SEO = ({ postData, postImage, isBlogPost }: SEOProps) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      {children}
     </Helmet>
   );
 };

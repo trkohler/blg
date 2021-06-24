@@ -4,14 +4,12 @@ import { Link } from "gatsby"
 import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
 import Title from "@lekoarts/gatsby-theme-minimal-blog/src/components/title"
 import Listing from "@lekoarts/gatsby-theme-minimal-blog/src/components/listing"
-import List from "@lekoarts/gatsby-theme-minimal-blog/src/components/list"
 import useMinimalBlogConfig from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-minimal-blog-config"
 import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replaceSlashes"
-import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo"
 // @ts-ignore
 import Hero from "../texts/hero"
 // @ts-ignore
-import Bottom from "../texts/bottom"
+import SEO from "./seo"
 
 type PostsProps = {
     posts: {
@@ -35,7 +33,10 @@ const Homepage = ({ posts }: PostsProps) => {
     return (
         <Layout>
             <SEO
-            canonicalUrl={replaceSlashes(`/${basePath}/`)}
+            isBlogPost={false}
+            pageData={{
+                title: "Знакомство"
+            }}
             />
             <section sx={{ mb: [5, 6, 7], p: { fontSize: [1, 2, 3], mt: 2 } }}>
                 <Hero />
