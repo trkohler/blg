@@ -19,6 +19,7 @@
     "@emotion/core": "^11.0.0",
     "@emotion/styled": "^11.3.0",
     "@lekoarts/gatsby-theme-minimal-blog": "^3.0.1",
+    "@tryghost/helpers": "^1.1.48",
     "gatsby": "^3.8.0",
     "gatsby-plugin-emotion": "^6.8.0",
     "gatsby-plugin-google-analytics": "^3.8.0",

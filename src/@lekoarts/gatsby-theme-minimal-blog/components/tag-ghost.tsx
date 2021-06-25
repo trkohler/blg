@@ -6,20 +6,33 @@ import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
 import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replaceSlashes"
 import Listing from "@lekoarts/gatsby-theme-minimal-blog/src/components/listing"
 import SEO from "./seo"
+import { readingTime as readingTimeHelper } from '@tryghost/helpers'
+import { capitalize } from "../../../utils/utils"
 
-type TagProps = {
-  posts: {
-    slug: string
-    title: string
-    date: string
-    excerpt: string
-    description: string
-    timeToRead?: number
-    tags: {
+type TagGhostProps = {
+  data: {
+    tag: {
       name: string
       slug: string
-    }[]
-  }[]
+    }
+    posts: {
+      nodes: {
+        featuredImage: string
+        html: string
+        title: string
+        slug: string
+        date: string
+        excerpt: string
+        internal: {
+          description: string
+        }
+        tags: {
+          name: string
+          slug: string
+        }[]
+      }[]
+    }
+  }
   pageContext: {
     isCreatedByStatefulCreatePages: boolean
     slug: string
@@ -28,33 +41,45 @@ type TagProps = {
   }
 }
 
-const Tag = ({ posts, pageContext }: TagProps) => {
-  const { tagsPath, basePath } = useMinimalBlogConfig()
+const TagGhost = ({ data: {tag, posts}, pageContext }: TagGhostProps) => {
+  const { basePath } = useMinimalBlogConfig()
+  let normalizedPosts = []
+  for (let i = 0; i < posts.nodes.length; i++) {
+    normalizedPosts.push({
+      title: posts.nodes[i].title,
+      description: posts.nodes[i].internal.description ? posts.nodes[i].internal.description : "default description",
+      slug: posts.nodes[i].slug,
+      date: posts.nodes[i].date,
+      excerpt: posts.nodes[i].excerpt,
+      tags: posts.nodes[i].tags,
+      timeToRead: readingTimeHelper({html: posts.nodes[i].html, feature_image: [posts.nodes[i].featuredImage]})
+    })
+  }
 
   return (
     <Layout>
       <SEO
       pageData={{
-        title: pageContext.name
+        title: tag.name
       }}
       isBlogPost={false}
       noindex={true}
       />
       <Flex sx={{ alignItems: `center`, justifyContent: `space-between`, flexFlow: `wrap` }}>
-        <Heading as="h1" variant="styles.h1" sx={{ marginY: 2 }}>
-          {pageContext.name}
+        <Heading as="h1" variant="styles.h2" sx={{ marginY: 2 }}>
+          {capitalize(tag.name)}
         </Heading>
         <TLink
           as={Link}
           sx={{ variant: `links.secondary`, marginY: 2 }}
-          to={replaceSlashes(`/${basePath}/${tagsPath}`)}
+          to={replaceSlashes(`/${basePath}/tags-ghost/`)}
         >
           View all tags
         </TLink>
       </Flex>
-      <Listing posts={posts} sx={{ mt: [4, 5] }} />
+      <Listing posts={normalizedPosts} sx={{ mt: [4, 5] }} />
     </Layout>
   )
 }
 
-export default Tag
+export default TagGhost

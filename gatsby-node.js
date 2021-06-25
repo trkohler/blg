@@ -18,6 +18,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
 
   const postTemplate = path.resolve(`./src/templates/post-query.tsx`)
   const tagsTemplate = require.resolve(`./src/templates/tags-query.tsx`)
+  const tagTemplate = path.resolve(`./src/templates/tag-query.tsx`)
 
   createPage({
     path: `/${basePath}/tags-ghost/`.replace(/\/\/+/g, `/`),
@@ -46,10 +47,40 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   // Create pages for each Ghost post
   const items = result.data.allGhostPost.edges
   items.forEach(({ node }) => {
-    node.url = `/${node.slug}/`
+    node.url = `/${node.slug}/`.replace(/\/\/+/g, `/`)
     actions.createPage({
       path: node.url,
       component: postTemplate,
+      context: {
+        slug: node.slug,
+      },
+    })
+  })
+
+  const tagsGraphql = await graphql(`
+  {
+    allGhostTag {
+      edges {
+        node {
+          slug
+        }
+      }
+    }
+  }
+   `)
+  if (tagsGraphql.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
+  }
+  if (!tagsGraphql.data.allGhostTag) {
+    return
+  }
+  const tags = tagsGraphql.data.allGhostTag.edges
+  tags.forEach(({node}) => {
+    node.url = `/ghost-tag/${node.slug}/`.replace(/\/\/+/g, `/`)
+    actions.createPage({
+      path: node.url,
+      component: tagTemplate,
       context: {
         slug: node.slug,
       },

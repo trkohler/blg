@@ -1,15 +1,31 @@
 import { graphql } from "gatsby";
+import TagGhost from "../@lekoarts/gatsby-theme-minimal-blog/components/tag-ghost";
 
-export const query = graphql`
+export default TagGhost
+
+export const tagQuery = graphql`
    query ($slug: String!) {
-    ghostTag(slug: {eq: $slug}) {
+    tag:ghostTag(slug: {eq: $slug}) {
+    name
+    slug
+  }
+  posts:allGhostPost(filter: {tags: {elemMatch: {slug: {eq: $slug}}}}) {
+    nodes {
+    html
+      feature_image
+      slug
+      title
+      date:created_at(locale: "en-US", formatString: "dddd, d MMMM, yyyy")
+      excerpt
+      internal {
+        description
+      }
+      tags {
+        slug
         name
-        postCount
-        accent_color
+      }
     }
-    ghostPost(tags: {elemMatch: {slug: {eq: $slug}}}) {
-        title
-    }
+  }
 }
 
 `

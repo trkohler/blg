@@ -2221,6 +2221,13 @@
   dependencies:
     axios "^0.21.1"
 
+"@tryghost/helpers@^1.1.48":
+  version "1.1.48"
+  resolved "https://registry.yarnpkg.com/@tryghost/helpers/-/helpers-1.1.48.tgz#58e9443af54d3bd92209c289e3be9c886c1a344f"
+  integrity sha512-6tYaAFdb+UwbPXwwpgLdgJcV+PHXacxigqVIMC8NKn77ABC5zpaUJfcBntjhdBdEDjZf/re2+83/8f5I/R26wg==
+  dependencies:
+    lodash-es "^4.17.11"
+
 "@trysound/sax@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.1.1.tgz#3348564048e7a2d7398c935d466c0414ebb6a669"
@@ -9132,6 +9139,11 @@ lockfile@^1.0:
   integrity sha512-cvbTwETRfsFh4nHsL1eGWapU1XFi5Ot9E85sWAwia7Y7EgB7vfqcZhTKZ+l7hCGxSPoushMv5GKhT5PdLv03WA==
   dependencies:
     signal-exit "^3.0.2"
+
+lodash-es@^4.17.11:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"

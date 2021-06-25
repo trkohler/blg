@@ -6,12 +6,16 @@ export default PostComponent
 export const postQuery = graphql`
   query($slug: String!) {
     ghostPost(slug: { eq: $slug }) {
-    created_at
+    created_at(locale: "en-US", formatString: "dddd, d MMMM, yyyy")
     feature_image
     excerpt
     slug
     title
     html
+    tags {
+      name
+      slug
+    }
 }
 }
 `

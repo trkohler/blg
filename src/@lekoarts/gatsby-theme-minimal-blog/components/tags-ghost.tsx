@@ -40,7 +40,7 @@ const Tags = ({ data }: TagsProps) => {
                         <TLink
                             as={Link}
                             sx={{ variant: `links.listItem`, mr: 2 }}
-                            to={replaceSlashes(`/${basePath}/${tagsPath}/${kebabCase(listItem.slug)}`)}
+                            to={replaceSlashes(`/${basePath}/ghost-tag//${listItem.slug}`)}
                         >
                             {listItem.name} <span sx={{ color: `secondary` }}>({listItem.postCount})</span>
                         </TLink>

@@ -33,6 +33,7 @@ module.exports = {
       title: `Записи`,
       slug: `/blog`,
     },],
+    showCopyButton: true,
   },
   plugins: [
     `gatsby-plugin-emotion`,
