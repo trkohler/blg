@@ -31,6 +31,7 @@
     "gatsby-plugin-sitemap": "^4.4.0",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.22",
     "gatsby-source-ghost": "^4.2.4",
+    "gatsby-transformer-rehype": "^2.0.0",
     "gatsby-transformer-yaml": "^3.8.0",
     "lodash.kebabcase": "^4.1.1",
     "react": "^17.0.2",

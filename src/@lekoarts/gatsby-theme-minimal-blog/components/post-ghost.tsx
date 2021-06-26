@@ -19,6 +19,12 @@ type GhostPostProps = {
               name: string
               tail?: string
             }[]
+            childHtmlRehype: {
+              tableOfContents: {
+                id: string
+                heading: string
+              }[]
+            }
         }
     }
 }
@@ -28,6 +34,7 @@ const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`)
 
 export default function Post({ data }: GhostPostProps) {
     const post = data.ghostPost
+    const tableOfContent = data.ghostPost.childHtmlRehype.tableOfContents
     const readingTime = readingTimeHelper({html: post.html, feature_image: [post.feature_image]})
     let tags = post.tags
     tags.forEach(tag => {
