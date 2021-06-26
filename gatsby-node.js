@@ -16,73 +16,90 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
 
   const { basePath, blogPath, tagsPath, formatString, postsPrefix } = withDefaults(themeOptions)
 
-  const postTemplate = path.resolve(`./src/templates/post-query.tsx`)
-  const tagsTemplate = require.resolve(`./src/templates/tags-query.tsx`)
-  const tagTemplate = path.resolve(`./src/templates/tag-query.tsx`)
+  const ghostPostTemplate = path.resolve(`./src/templates/ghost-post-query.tsx`)
+  const ghostTagsTemplate = require.resolve(`./src/templates/ghost-tags-query.tsx`)
+  const ghostTagTemplate = path.resolve(`./src/templates/ghost-tag-query.tsx`)
+  const postTemplate = require.resolve(`./src/templates/post-query.tsx`)
 
   createPage({
     path: `/${basePath}/tags-ghost/`.replace(/\/\/+/g, `/`),
-    component: tagsTemplate,
+    component: ghostTagsTemplate,
   })
   // Query Ghost data
   const result = await graphql(`
-    {
-      allGhostPost(sort: { order: ASC, fields: published_at }) {
-        edges {
-          node {
-            slug
-          }
-        }
-      }
-    }
-  `)
-  // Handle errors
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
-  }
-  if (!result.data.allGhostPost) {
-    return
-  }
-  // Create pages for each Ghost post
-  const items = result.data.allGhostPost.edges
-  items.forEach(({ node }) => {
-    node.url = `/${node.slug}/`.replace(/\/\/+/g, `/`)
-    actions.createPage({
-      path: node.url,
-      component: postTemplate,
-      context: {
-        slug: node.slug,
-      },
-    })
-  })
-
-  const tagsGraphql = await graphql(`
   {
-    allGhostTag {
+    ghostPosts: allGhostPost(sort: {order: ASC, fields: published_at}) {
       edges {
         node {
           slug
         }
       }
     }
+    ghostTags: allGhostTag {
+      edges {
+        node {
+          slug
+        }
+      }
+    }
+    allPost(sort: {fields: date, order: DESC}) {
+      nodes {
+        slug
+      }
+    }
+    allPage {
+      nodes {
+        slug
+      }
+    }
+    tags: allPost(sort: {fields: tags___name, order: DESC}) {
+      group(field: tags___name) {
+        fieldValue
+      }
+    }
   }
-   `)
-  if (tagsGraphql.errors) {
+  `)
+  // Handle errors
+  if (result.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
-  if (!tagsGraphql.data.allGhostTag) {
-    return
-  }
-  const tags = tagsGraphql.data.allGhostTag.edges
-  tags.forEach(({node}) => {
+  
+  // Create pages for each Ghost post
+  const ghostPosts = result.data.ghostPosts.edges
+  ghostPosts.forEach(({ node }) => {
+    node.url = `/${node.slug}/`.replace(/\/\/+/g, `/`)
+    actions.createPage({
+      path: node.url,
+      component: ghostPostTemplate,
+      context: {
+        slug: node.slug,
+      },
+    })
+  })
+
+  
+  const ghostTags = result.data.ghostTags.edges
+  ghostTags.forEach(({node}) => {
     node.url = `/ghost-tag/${node.slug}/`.replace(/\/\/+/g, `/`)
     actions.createPage({
       path: node.url,
-      component: tagTemplate,
+      component: ghostTagTemplate,
       context: {
         slug: node.slug,
+      },
+    })
+  })
+
+  const posts = result.data.allPost.nodes
+
+  posts.forEach((post) => {
+    createPage({
+      path: `/${postsPrefix}${post.slug}`.replace(/\/\/+/g, `/`),
+      component: postTemplate,
+      context: {
+        slug: post.slug,
+        formatString,
       },
     })
   })
