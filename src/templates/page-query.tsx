@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
-import PostComponent from "../@lekoarts/gatsby-theme-minimal-blog/components/post"
+import PageComponent from "../@lekoarts/gatsby-theme-minimal-blog/components/page"
 
-export default PostComponent
+export default PageComponent
 
 export const query = graphql`
   query ($slug: String!) {

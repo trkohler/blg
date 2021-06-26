@@ -20,6 +20,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   const ghostTagsTemplate = require.resolve(`./src/templates/ghost-tags-query.tsx`)
   const ghostTagTemplate = path.resolve(`./src/templates/ghost-tag-query.tsx`)
   const postTemplate = require.resolve(`./src/templates/post-query.tsx`)
+  const pageTemplate = require.resolve(`./src/templates/page-query.tsx`)
 
   createPage({
     path: `/${basePath}/tags-ghost/`.replace(/\/\/+/g, `/`),
@@ -103,4 +104,18 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
       },
     })
   })
+
+  const pages = result.data.allPage.nodes
+
+  if (pages.length > 0) {
+    pages.forEach((page) => {
+      createPage({
+        path: `/${basePath}/${page.slug}`.replace(/\/\/+/g, `/`),
+        component: pageTemplate,
+        context: {
+          slug: page.slug,
+        },
+      })
+    })
+  }
 }
