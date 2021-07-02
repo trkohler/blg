@@ -25,13 +25,14 @@ type PostsProps = {
 }
 
 const Blog = ({ posts }: PostsProps) => {
-    const { tagsPath, basePath } = useMinimalBlogConfig()
+    const { tagsPath, basePath, blogPath } = useMinimalBlogConfig()
 
     return (
         <Layout>
             <SEO
             pageData={{
-                title: "Читать все посты"
+                title: "Читать все посты",
+                tail: blogPath,
             }}
             isBlogPost={false}
             />
