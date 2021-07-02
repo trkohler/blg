@@ -56,8 +56,8 @@ module.exports = {
     {
       resolve: `gatsby-source-ghost`,
       options: {
-        apiUrl: `https://trkohler-blog.herokuapp.com`,
-        contentApiKey: `5ec0fbe5589a79c565c84c61d0`,
+        apiUrl: `https://troy-kohler.ghost.io`,
+        contentApiKey: `e917ccbaf9ce66b6fd73a7799a`,
       },
     },
     {
