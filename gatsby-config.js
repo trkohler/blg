@@ -9,7 +9,8 @@ module.exports = {
     // Will be used to generate absolute URLs for og:image etc.
     siteUrl: `https://trkohler.com`,
     // Used for SEO
-    siteDescription: `Блог про самообразование, программирование, литературу и инвестиции.`,
+    siteDescription: `Если хочешь что-то понять, запиши это. Именно по такому принципу и работает мой блог.
+    Пропагандирую литературу и образование, и пишу о работе в IT.`,
     // Will be set on the <html /> tag
     siteLanguage: `ru`,
     // Used for og:image and must be placed inside the `static` folder

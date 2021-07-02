@@ -38,7 +38,8 @@ const Tag = ({ posts, pageContext }: TagProps) => {
       isBlogPost={false}
       pageData={{
           title: `Tag: ${pageContext.name}`,
-          description: `Смотрите все посты на тему: "${pageContext.name}"`,
+          description: `Ищите что почитать на тему: "${pageContext.name}? \
+          Я много об этом пишу и специально сделал коллекцию своих постов на эту тему."`,
           tail: `/tags/${pageContext.slug}`
       }}
         />
