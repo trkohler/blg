@@ -50,7 +50,7 @@ const Post = ({ data: { post } }: PostProps) => (
         excerpt: post.excerpt,
         title: post.title,
         description: post.description,
-        slug: post.slug,
+        tail: post.slug,
         date: post.date
       }}
       postImage={post.banner?.childImageSharp.resize.src}

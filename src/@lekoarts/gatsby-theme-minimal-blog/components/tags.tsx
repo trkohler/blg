@@ -23,7 +23,8 @@ const Tags = ({ list }: PostsProps) => {
             <SEO
             isBlogPost={false}
             pageData={{
-                title: "Тэги"
+                title: "Тэги",
+                tail: tagsPath,
             }}
              />
             <Heading as='h1' variant="styles.h2">Тэги</Heading>

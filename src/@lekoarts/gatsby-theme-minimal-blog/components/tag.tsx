@@ -38,7 +38,8 @@ const Tag = ({ posts, pageContext }: TagProps) => {
       isBlogPost={false}
       pageData={{
           title: `Tag: ${pageContext.name}`,
-          description: `Смотрите все посты на тему: "${pageContext.name}"`
+          description: `Смотрите все посты на тему: "${pageContext.name}"`,
+          tail: `/tags/${pageContext.slug}`
       }}
         />
       <Flex sx={{ alignItems: `center`, justifyContent: `space-between`, flexFlow: `wrap` }}>

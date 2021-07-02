@@ -95,7 +95,7 @@ type SEOProps = {
     excerpt?: any
     title?: string
     description?: string
-    slug?: string
+    tail?: string
     date?: string
   }
   postImage?: string,
@@ -120,16 +120,16 @@ const SEO = (
         siteImage,
         author
   } = site
-  const postMeta = pageData || null;
-  const title = postMeta?.title;
+  const pageMeta = pageData || null;
+  const title = pageMeta?.title;
   const description =
-    postMeta?.description || pageData?.excerpt || siteDescription;
+    pageMeta?.description || pageMeta?.excerpt || siteDescription;
   const image = `${siteUrl}${postImage || siteImage}`;
-  const slug = postMeta?.slug;
-  const url = postMeta?.slug
-    ? `${siteUrl}${postMeta?.slug}`
+  const tail = pageMeta?.tail;
+  const url = tail
+    ? `${siteUrl}${tail}`.replace(/\/\/+/g, `/`)
     : siteUrl;
-  const datePublished = isBlogPost ? postMeta?.date : null;
+  const datePublished = isBlogPost ? pageMeta?.date : null;
 
   const schemaOrgJSONLD = getSchemaOrgJSONLD({
     isBlogPost,

@@ -21,7 +21,8 @@ const Page = ({ data: { page } }: PageProps) => (
     <SEO
     isBlogPost={false}
     pageData={{
-        title: page.title
+        title: page.title,
+        tail: page.slug,
     }}
     />
     <Heading as="h1" variant="styles.h1">
