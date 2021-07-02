@@ -122,8 +122,11 @@ const SEO = (
   } = site
   const pageMeta = pageData || null;
   const title = pageMeta?.title;
-  const description =
+  let description =
     pageMeta?.description || pageMeta?.excerpt || siteDescription;
+  if (description.lenght() > 160) {
+    description = description.replace(/(.{159})..+/, "$1&hellip;");
+  }
   const image = `${siteUrl}${postImage || siteImage}`;
   const tail = pageMeta?.tail;
   const url = tail
