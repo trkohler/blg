@@ -149,6 +149,7 @@ const SEO = (
       {/* General tags */}
       <meta name="description" content={description} />
       <meta name="image" content={image} />
+      <html lang={site.siteLanguage}/>
       {noindex ? <meta name={`robots`} content={`noindex, nofollow`} /> : null}
 
       {/* Schema.org tags */}
