@@ -26,7 +26,6 @@ const BlogListItem = ({ post, showTags = true }: BlogListItemProps) => {
     const { basePath } = useMinimalBlogConfig()
     return (
     <Box mb={4}>
-      {console.log(post.slug)}
         <TLink
           as={Link}
           sx={{ fontSize: [1, 2, 3], color: `text` }}

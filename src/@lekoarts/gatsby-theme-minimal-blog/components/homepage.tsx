@@ -3,32 +3,38 @@ import { jsx } from "theme-ui"
 import { Link } from "gatsby"
 import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
 import Title from "@lekoarts/gatsby-theme-minimal-blog/src/components/title"
-import Listing from "@lekoarts/gatsby-theme-minimal-blog/src/components/listing"
 import useMinimalBlogConfig from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-minimal-blog-config"
 import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replaceSlashes"
 // @ts-ignore
 import Hero from "../texts/hero"
 // @ts-ignore
 import SEO from "./seo"
+import Listing from "./listing"
+import List from "@lekoarts/gatsby-theme-minimal-blog/src/components/list"
+import Bottom from "../texts/bottom"
 
 type PostsProps = {
-    posts: {
-        slug: string
-        title: string
-        date: string
-        excerpt: string
-        description: string
-        timeToRead?: number
-        tags?: {
-            name: string
-            slug: string
-        }[]
-    }[]
-    [key: string]: any
+    data: {
+        posts: {
+            nodes: {
+                slug: string
+                title: string
+                excerpt: string
+                timeToRead: number
+                description: string
+                tags: {
+                    name: string
+                    slug: string
+                }[]
+                date: string
+            }[]
+        }
+    }
 }
 
-const Homepage = ({ posts }: PostsProps) => {
+const Homepage = ({ data: { posts }}: PostsProps) => {
     const { basePath, blogPath } = useMinimalBlogConfig()
+    const normalizedPosts = posts.nodes
 
     return (
         <Layout>
@@ -44,10 +50,7 @@ const Homepage = ({ posts }: PostsProps) => {
             <Title text="Последние посты">
                 <Link to={replaceSlashes(`/${basePath}/${blogPath}`)}>Читать все</Link>
             </Title>
-            <Listing posts={posts} showTags={false} />
-            {/* <List>
-                <Bottom />
-            </List> */}
+            <Listing posts={normalizedPosts} showTags={false} />
         </Layout>
     )
 }

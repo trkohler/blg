@@ -21,6 +21,12 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   const ghostTagTemplate = path.resolve(`./src/templates/ghost-tag-query.tsx`)
   const postTemplate = require.resolve(`./src/templates/post-query.tsx`)
   const pageTemplate = require.resolve(`./src/templates/page-query.tsx`)
+  const homePageTemplate = path.resolve(`./src/templates/homepage-query.tsx`)
+
+  createPage({
+    path: basePath,
+    component: homePageTemplate,
+  })
 
   createPage({
     path: `/${basePath}/tags-ghost/`.replace(/\/\/+/g, `/`),
