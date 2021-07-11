@@ -1,11 +1,11 @@
 import { graphql } from "gatsby"
-import HomepageComponent from "../@lekoarts/gatsby-theme-minimal-blog/components/homepage"
+import BlogComponent from "../@lekoarts/gatsby-theme-minimal-blog/components/blog"
 
-export default HomepageComponent
+export default BlogComponent
 
 export const query = graphql`
   query ($formatString: String!) {
-      posts:allGhostPost(sort: {fields: created_at, order: DESC}, limit: 3) {
+    posts:allGhostPost(sort: {fields: created_at, order: DESC}) {
       nodes {
         slug
         title

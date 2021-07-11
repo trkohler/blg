@@ -9,23 +9,31 @@ import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replac
 import SEO from "./seo"
 
 type PostsProps = {
-    posts: {
-        slug: string
-        title: string
-        date: string
-        excerpt: string
-        description: string
-        timeToRead?: number
-        tags?: {
-            name: string
-            slug: string
-        }[]
-    }[]
-    [key: string]: any
+    data: {
+        posts: {
+            nodes: {
+                slug: string
+                title: string
+                date: string
+                excerpt: string
+                description: string
+                timeToRead?: number
+                tags?: {
+                    name: string
+                    slug: string
+                }[]
+            }[]
+        }
+    }
 }
 
-const Blog = ({ posts }: PostsProps) => {
+const Blog = ({data: { posts }}: PostsProps) => {
     const { tagsPath, basePath, blogPath } = useMinimalBlogConfig()
+    let normalizedPosts = posts.nodes;
+    normalizedPosts.map(post => {
+        let tags_allowed = post.tags.filter(tag => !tag.name.includes("#"))
+        post.tags = tags_allowed 
+    })
 
     return (
         <Layout>
@@ -38,11 +46,11 @@ const Blog = ({ posts }: PostsProps) => {
             />
             <Flex sx={{ alignItems: `center`, justifyContent: `space-between`, flexFlow: `wrap` }}>
                 <Heading as='h1' variant="styles.h2">Блог</Heading>
-                <TLink as={Link} sx={{ variant: `links.secondary` }} to={replaceSlashes(`/${basePath}/${tagsPath}`)}>
+                <TLink as={Link} sx={{ variant: `links.secondary` }} to={replaceSlashes(`/${basePath}/tags-ghost/`)}>
                     Посмотреть все тэги
             </TLink>
             </Flex>
-            <Listing posts={posts} sx={{ mt: [4, 5] }} />
+            <Listing posts={normalizedPosts} sx={{ mt: [4, 5] }} />
         </Layout>
     )
 }

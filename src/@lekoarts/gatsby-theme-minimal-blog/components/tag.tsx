@@ -42,6 +42,7 @@ const Tag = ({ posts, pageContext }: TagProps) => {
           Я много об этом пишу и специально сделал коллекцию своих постов на эту тему."`,
           tail: `/tags/${pageContext.slug}`
       }}
+      noindex={true}
         />
       <Flex sx={{ alignItems: `center`, justifyContent: `space-between`, flexFlow: `wrap` }}>
         <Heading as="h1" variant="styles.h1" sx={{ marginY: 2 }}>

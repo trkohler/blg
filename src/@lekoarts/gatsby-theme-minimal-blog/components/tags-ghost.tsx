@@ -31,7 +31,6 @@ const Tags = ({ data }: TagsProps) => {
             <SEO
             pageData={{}}
             isBlogPost={false}
-            noindex={true}
             />
             <Heading as='h1' variant="styles.h3">Тэги</Heading>
             <Box mt={[4, 5]}>

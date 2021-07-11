@@ -55,6 +55,7 @@ const Post = ({ data: { post } }: PostProps) => (
       }}
       postImage={post.banner?.childImageSharp.resize.src}
       isBlogPost={true}
+      noindex={true}
     />
     <Heading as='h1' variant="styles.h2">{post.title}</Heading>
     <p sx={{ color: `secondary`, mt: 3, a: { color: `secondary` }, fontSize: [1, 1, 2] }}>

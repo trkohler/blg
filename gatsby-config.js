@@ -13,6 +13,7 @@ module.exports = {
     Пропагандирую литературу и образование, и пишу о работе в IT.`,
     // Will be set on the <html /> tag
     siteLanguage: `ru`,
+    formatString: `dddd, d MMMM, yyyy`,
     // Used for og:image and must be placed inside the `static` folder
     siteImage: `/banner.jpg`,
     siteLogo: `/favicon-32x32.png`,

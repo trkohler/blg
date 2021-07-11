@@ -4,9 +4,9 @@ import PostComponent from "../@lekoarts/gatsby-theme-minimal-blog/components/pos
 export default PostComponent
 
 export const postQuery = graphql`
-  query($slug: String!) {
+  query($slug: String!, $formatString: String!) {
     ghostPost(slug: { eq: $slug }) {
-    created_at(locale: "en-US", formatString: "dddd, d MMMM, yyyy")
+    created_at(locale: "en-US", formatString: $formatString)
     feature_image
     excerpt
     slug

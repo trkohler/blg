@@ -21,11 +21,23 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   const ghostTagTemplate = path.resolve(`./src/templates/ghost-tag-query.tsx`)
   const postTemplate = require.resolve(`./src/templates/post-query.tsx`)
   const pageTemplate = require.resolve(`./src/templates/page-query.tsx`)
+  const blogTemplate = require.resolve(`./src/templates/blog-query.tsx`)
   const homePageTemplate = path.resolve(`./src/templates/homepage-query.tsx`)
 
   createPage({
     path: basePath,
     component: homePageTemplate,
+    context: {
+      formatString,
+    },
+  })
+
+  createPage({
+    path: `/${basePath}/${blogPath}`.replace(/\/\/+/g, `/`),
+    component: blogTemplate,
+    context: {
+      formatString,
+    },
   })
 
   createPage({
@@ -42,7 +54,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
         }
       }
     }
-    ghostTags: allGhostTag {
+    ghostTags: allGhostTag(filter: {visibility: {ne: "internal"}}) {
       edges {
         node {
           slug
@@ -81,6 +93,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
       component: ghostPostTemplate,
       context: {
         slug: node.slug,
+        formatString: formatString,
       },
     })
   })
@@ -94,6 +107,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
       component: ghostTagTemplate,
       context: {
         slug: node.slug,
+        formatString: formatString,
       },
     })
   })

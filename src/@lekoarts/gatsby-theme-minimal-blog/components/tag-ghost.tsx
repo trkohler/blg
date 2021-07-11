@@ -55,6 +55,10 @@ const TagGhost = ({ data: {tag, posts}, pageContext }: TagGhostProps) => {
       timeToRead: readingTimeHelper({html: posts.nodes[i].html, feature_image: [posts.nodes[i].featuredImage]})
     })
   }
+  normalizedPosts.map(post => {
+    let tags_allowed = post.tags.filter(tag => !tag.name.includes("#"))
+    post.tags = tags_allowed 
+})
 
   return (
     <Layout>
@@ -63,7 +67,6 @@ const TagGhost = ({ data: {tag, posts}, pageContext }: TagGhostProps) => {
         title: tag.name
       }}
       isBlogPost={false}
-      noindex={true}
       />
       <Flex sx={{ alignItems: `center`, justifyContent: `space-between`, flexFlow: `wrap` }}>
         <Heading as="h1" variant="styles.h2" sx={{ marginY: 2 }}>
@@ -77,7 +80,7 @@ const TagGhost = ({ data: {tag, posts}, pageContext }: TagGhostProps) => {
           View all tags
         </TLink>
       </Flex>
-      <Listing posts={normalizedPosts} sx={{ mt: [4, 5] }} />
+      <Listing posts={normalizedPosts} showTags={false} sx={{ mt: [4, 5] }} />
     </Layout>
   )
 }

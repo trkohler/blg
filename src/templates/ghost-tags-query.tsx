@@ -5,7 +5,7 @@ export default TagsComponent
 
 export const query = graphql`
    query {
-     allGhostTag {
+     allGhostTag(filter: {visibility: {ne: "internal"}}) {
         nodes {
             name
             slug

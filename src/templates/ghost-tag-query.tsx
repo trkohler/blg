@@ -4,7 +4,7 @@ import TagGhost from "../@lekoarts/gatsby-theme-minimal-blog/components/tag-ghos
 export default TagGhost
 
 export const tagQuery = graphql`
-   query ($slug: String!) {
+   query ($slug: String!, $formatString: String!) {
     tag:ghostTag(slug: {eq: $slug}) {
     name
     slug
@@ -15,7 +15,7 @@ export const tagQuery = graphql`
       feature_image
       slug
       title
-      date:created_at(locale: "en-US", formatString: "dddd, d MMMM, yyyy")
+      date:created_at(locale: "en-US", formatString: $formatString)
       excerpt
       internal {
         description

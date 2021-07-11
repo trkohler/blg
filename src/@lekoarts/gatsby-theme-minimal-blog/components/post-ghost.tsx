@@ -34,12 +34,12 @@ const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`)
 
 export default function Post({ data }: GhostPostProps) {
     const post = data.ghostPost
-    const tableOfContent = data.ghostPost.childHtmlRehype.tableOfContents
     const readingTime = readingTimeHelper({html: post.html, feature_image: [post.feature_image]})
     let tags = post.tags
     tags.forEach(tag => {
       tag.tail = `/ghost-tag/${tag.slug}`
     })
+    tags = tags.filter(tag => !tag.name.includes("#"))
     return (
     <Layout>
     <SEO
@@ -58,15 +58,14 @@ export default function Post({ data }: GhostPostProps) {
       }}
       postImage={post.feature_image}
       isBlogPost={true}
-      noindex={true}
     />
     <Heading as='h1' variant="styles.h2">{post.title}</Heading>
     <p sx={{ color: `secondary`, mt: 3, a: { color: `secondary` }, fontSize: [1, 1, 2] }}>
       <time>{post.created_at}</time>
-      {post.tags && (
+      {tags && (
         <React.Fragment>
           {` — `}
-          <ItemTags tags={post.tags} />
+          <ItemTags tags={tags} />
         </React.Fragment>
       )}
       {readingTime && ` — `}

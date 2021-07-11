@@ -10,8 +10,6 @@ import Hero from "../texts/hero"
 // @ts-ignore
 import SEO from "./seo"
 import Listing from "./listing"
-import List from "@lekoarts/gatsby-theme-minimal-blog/src/components/list"
-import Bottom from "../texts/bottom"
 
 type PostsProps = {
     data: {
