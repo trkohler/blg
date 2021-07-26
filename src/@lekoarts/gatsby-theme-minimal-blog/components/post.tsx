@@ -2,7 +2,7 @@
 import { jsx, Heading } from "theme-ui"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
-import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
+import Layout from "./layout"
 import ItemTags from "@lekoarts/gatsby-theme-minimal-blog/src/components/item-tags"
 import SEO from "./seo"
 import "./post.css"

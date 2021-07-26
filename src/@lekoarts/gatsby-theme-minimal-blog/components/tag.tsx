@@ -2,10 +2,10 @@
 
 import useMinimalBlogConfig from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-minimal-blog-config"
 import { Link } from "gatsby"
-import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
+import Layout from "./layout"
 import { jsx, Heading, Link as TLink, Flex } from "theme-ui"
 import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replaceSlashes"
-import Listing from "@lekoarts/gatsby-theme-minimal-blog/src/components/listing"
+import Listing from "./listing"
 import SEO from "./seo"
 
 type TagProps = {

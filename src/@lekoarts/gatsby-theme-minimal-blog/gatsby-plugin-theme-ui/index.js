@@ -2,10 +2,13 @@ import { merge } from "theme-ui"
 import { transparentize } from "@theme-ui/color"
 import { tailwind } from "@theme-ui/presets"
 
-const theme = merge(tailwind, {
+let theme = merge(tailwind, {
   initialColorModeName: `light`,
-  useCustomProperties: true,
+  config: {
+    useCustomProperties: true,
+  },
   colors: {
+    ...tailwind.colors,
     primary: tailwind.colors.purple[7],
     secondary: `#5f6c80`,
     toggleIcon: tailwind.colors.gray[8],
@@ -26,110 +29,6 @@ const theme = merge(tailwind, {
   },
   fonts: {
     body: `"IBM Plex Sans", -apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,
-  },
-  styles: {
-    root: {
-      color: `text`,
-      backgroundColor: `background`,
-      margin: 0,
-      padding: 0,
-      boxSizing: `border-box`,
-      textRendering: `optimizeLegibility`,
-      WebkitFontSmoothing: `antialiased`,
-      MozOsxFontSmoothing: `grayscale`,
-    },
-    p: {
-      fontSize: [1, 1, 2],
-      letterSpacing: `-0.003em`,
-      lineHeight: `body`,
-      "--baseline-multiplier": 0.179,
-      "--x-height-multiplier": 0.35,
-      wordBreak: `break-word`,
-    },
-    ul: {
-      li: {
-        fontSize: [1, 1, 2],
-        letterSpacing: `-0.003em`,
-        lineHeight: `body`,
-        "--baseline-multiplier": 0.179,
-        "--x-height-multiplier": 0.35,
-      },
-    },
-    ol: {
-      li: {
-        fontSize: [1, 1, 2],
-        letterSpacing: `-0.003em`,
-        lineHeight: `body`,
-        "--baseline-multiplier": 0.179,
-        "--x-height-multiplier": 0.35,
-      },
-    },
-    h1: {
-      variant: `text.heading`,
-      fontSize: [5, 6, 7],
-      mt: 4,
-    },
-    h2: {
-      variant: `text.heading`,
-      fontSize: [4, 5, 6],
-      mt: 4,
-    },
-    h3: {
-      variant: `text.heading`,
-      fontSize: [3, 4, 5],
-      mt: 4,
-    },
-    h4: {
-      variant: `text.heading`,
-      fontSize: [2, 3, 4],
-      mt: 3,
-    },
-    h5: {
-      variant: `text.heading`,
-      fontSize: [1, 2, 3],
-      mt: 3,
-    },
-    h6: {
-      variant: `text.heading`,
-      fontSize: 1,
-      mb: 2,
-    },
-    blockquote: {
-      borderLeftColor: `primary`,
-      borderLeftStyle: `solid`,
-      borderLeftWidth: `6px`,
-      mx: 0,
-      pl: 4,
-      p: {
-        fontStyle: `italic`,
-      },
-    },
-    table: {
-      width: `100%`,
-      my: 4,
-      borderCollapse: `separate`,
-      borderSpacing: 0,
-      [[`th`, `td`]]: {
-        textAlign: `left`,
-        py: `4px`,
-        pr: `4px`,
-        pl: 0,
-        borderColor: `muted`,
-        borderBottomStyle: `solid`,
-      },
-    },
-    th: {
-      verticalAlign: `bottom`,
-      borderBottomWidth: `2px`,
-      color: `heading`,
-    },
-    td: {
-      verticalAlign: `top`,
-      borderBottomWidth: `1px`,
-    },
-    hr: {
-      mx: 0,
-    },
   },
   layout: {
     container: {
@@ -197,6 +96,109 @@ const theme = merge(tailwind, {
     listItem: {
       fontSize: [1, 2, 3],
       color: `text`,
+    },
+  },
+  post: {
+    ghostPost: {
+      img: {
+        m: `auto`,
+        height: `auto`,
+        maxWidth: `full`,
+        // maxHeight: `100vh`,
+        pb: 4,
+      },
+      p: {
+        fontSize: [1, 1, 2],
+        letterSpacing: `-0.003em`,
+        lineHeight: `body`,
+        "--baseline-multiplier": 0.179,
+        "--x-height-multiplier": 0.35,
+        wordBreak: `break-word`,
+      },
+      ul: {
+        li: {
+          fontSize: [1, 1, 2],
+          letterSpacing: `-0.003em`,
+          lineHeight: `body`,
+          "--baseline-multiplier": 0.179,
+          "--x-height-multiplier": 0.35,
+        },
+      },
+      ol: {
+        li: {
+          fontSize: [1, 1, 2],
+          letterSpacing: `-0.003em`,
+          lineHeight: `body`,
+          "--baseline-multiplier": 0.179,
+          "--x-height-multiplier": 0.35,
+        },
+      },
+      h1: {
+        variant: `text.heading`,
+        fontSize: [5, 6, 6, 7],
+        my: 4,
+      },
+      h2: {
+        variant: `text.heading`,
+        fontSize: [4, 5, 5, 6],
+        my: 4,
+      },
+      h3: {
+        variant: `text.heading`,
+        fontSize: [3, 4, 4, 5],
+        my: 4,
+      },
+      h4: {
+        variant: `text.heading`,
+        fontSize: [2, 3, 3, 4],
+        my: 3,
+      },
+      h5: {
+        variant: `text.heading`,
+        fontSize: [1, 2, 2, 3],
+        my: 3,
+      },
+      h6: {
+        variant: `text.heading`,
+        fontSize: 1,
+        mb: 2,
+      },
+      blockquote: {
+        borderLeftStyle: `solid`,
+        borderLeftWidth: `6px`,
+        borderColor: tailwind.colors.red[3],
+        mx: 0,
+        mt: 4,
+        pl: 4,
+        mb: 2,
+        variant: `post.ghostPost.p`
+      },
+      table: {
+        width: `100%`,
+        my: 4,
+        borderCollapse: `separate`,
+        borderSpacing: 0,
+        [[`th`, `td`]]: {
+          textAlign: `left`,
+          py: `4px`,
+          pr: `4px`,
+          pl: 0,
+          borderColor: `muted`,
+          borderBottomStyle: `solid`,
+        },
+      },
+      th: {
+        verticalAlign: `bottom`,
+        borderBottomWidth: `2px`,
+        color: `heading`,
+      },
+      td: {
+        verticalAlign: `top`,
+        borderBottomWidth: `1px`,
+      },
+      hr: {
+        mx: 0,
+      },
     },
   },
 })

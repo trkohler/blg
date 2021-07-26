@@ -1,9 +1,12 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import React from "react"
-import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
+import Layout from "./layout"
 import { readingTime as readingTimeHelper } from '@tryghost/helpers'
 import { Heading } from "theme-ui"
 import SEO from "./seo"
 import ItemTags from "./item-tags"
+import {SubscriptionForm} from "./email_subscription"
 
 type GhostPostProps = {
     data: {
@@ -59,8 +62,10 @@ export default function Post({ data }: GhostPostProps) {
       postImage={post.feature_image}
       isBlogPost={true}
     />
-    <Heading as='h1' variant="styles.h2">{post.title}</Heading>
-    <p sx={{ color: `secondary`, mt: 3, a: { color: `secondary` }, fontSize: [1, 1, 2] }}>
+    <Heading as='h1' variant="post.ghostPost.h2">{post.title}</Heading>
+    <p 
+     sx={{ color: `secondary`, mt: 3, a: { color: `secondary` }, fontSize: [1, 1, 2] }}
+    >
       <time>{post.created_at}</time>
       {tags && (
         <React.Fragment>
@@ -75,11 +80,14 @@ export default function Post({ data }: GhostPostProps) {
       sx={{
         my: 5,
         ".gatsby-resp-image-wrapper": { my: [4, 4, 5], boxShadow: shadow.join(`, `) },
-        variant: `layout.content`,
+        variant: `post.ghostPost`,
       }}
-    >
-      <section dangerouslySetInnerHTML={{ __html: post.html }} />
-    </section>
+      dangerouslySetInnerHTML={{ __html: post.html }}
+      />
+      <SubscriptionForm 
+      tags={["reading books", ]}
+      topic="читать" 
+      />
   </Layout>
   )
 }

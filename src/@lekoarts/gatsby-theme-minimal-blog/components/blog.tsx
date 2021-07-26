@@ -2,11 +2,11 @@
 import { jsx, Heading, Link as TLink } from "theme-ui"
 import { Link } from "gatsby"
 import { Flex } from "@theme-ui/components"
-import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
-import Listing from "@lekoarts/gatsby-theme-minimal-blog/src/components/listing"
 import useMinimalBlogConfig from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-minimal-blog-config"
 import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replaceSlashes"
 import SEO from "./seo"
+import Layout from "./layout"
+import Listing from "./listing"
 
 type PostsProps = {
     data: {

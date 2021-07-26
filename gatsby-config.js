@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     // Used for the title template on pages other than the index site
@@ -58,8 +60,8 @@ module.exports = {
     {
       resolve: `gatsby-source-ghost`,
       options: {
-        apiUrl: `https://troy-kohler.ghost.io`,
-        contentApiKey: `e917ccbaf9ce66b6fd73a7799a`,
+        apiUrl: process.env.API_URL,
+        contentApiKey: process.env.CONTENT_API_KEY,
       },
     },
     {
