@@ -110,7 +110,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   const pages = result.data.allPage.edges
 
   if (pages.length > 0) {
-    pages.forEach(({ page }) => {
+    pages.forEach(( page ) => {
       createPage({
         path: `/${basePath}/${page.slug}`.replace(/\/\/+/g, `/`),
         component: pageTemplate,
