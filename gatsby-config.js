@@ -62,6 +62,7 @@ module.exports = {
       options: {
         apiUrl: process.env.API_URL,
         contentApiKey: process.env.CONTENT_API_KEY,
+        version: `v3`
       },
     },
     {

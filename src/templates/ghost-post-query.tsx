@@ -16,9 +16,6 @@ export const postQuery = graphql`
       name
       slug
     }
-    childHtmlRehype {
-      tableOfContents
-    }
 }
 }
 `

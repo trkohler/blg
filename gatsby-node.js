@@ -10,6 +10,10 @@ exports.sourceNodes = ({ actions }) => {
   `);
 }
 
+exports.onCreateNode = ({ node }) => {
+  console.log(`Node created of type "${node.internal.type}"`)
+}
+
 
 exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   const { createPage } = actions
@@ -19,7 +23,6 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   const ghostPostTemplate = path.resolve(`./src/templates/ghost-post-query.tsx`)
   const ghostTagsTemplate = require.resolve(`./src/templates/ghost-tags-query.tsx`)
   const ghostTagTemplate = path.resolve(`./src/templates/ghost-tag-query.tsx`)
-  const postTemplate = require.resolve(`./src/templates/post-query.tsx`)
   const pageTemplate = require.resolve(`./src/templates/page-query.tsx`)
   const blogTemplate = require.resolve(`./src/templates/blog-query.tsx`)
   const homePageTemplate = path.resolve(`./src/templates/homepage-query.tsx`)
@@ -61,19 +64,11 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
         }
       }
     }
-    allPost(sort: {fields: date, order: DESC}) {
-      nodes {
-        slug
-      }
-    }
     allPage {
-      nodes {
-        slug
-      }
-    }
-    tags: allPost(sort: {fields: tags___name, order: DESC}) {
-      group(field: tags___name) {
-        fieldValue
+      edges {
+        node {
+          slug
+        }
       }
     }
   }
@@ -88,7 +83,7 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   const ghostPosts = result.data.ghostPosts.edges
   ghostPosts.forEach(({ node }) => {
     node.url = `/${node.slug}/`.replace(/\/\/+/g, `/`)
-    actions.createPage({
+    createPage({
       path: node.url,
       component: ghostPostTemplate,
       context: {
@@ -100,9 +95,9 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
 
   
   const ghostTags = result.data.ghostTags.edges
-  ghostTags.forEach(({node}) => {
+  ghostTags.forEach(({ node }) => {
     node.url = `/ghost-tag/${node.slug}/`.replace(/\/\/+/g, `/`)
-    actions.createPage({
+    createPage({
       path: node.url,
       component: ghostTagTemplate,
       context: {
@@ -112,23 +107,10 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
     })
   })
 
-  const posts = result.data.allPost.nodes
-
-  posts.forEach((post) => {
-    createPage({
-      path: `/${postsPrefix}${post.slug}`.replace(/\/\/+/g, `/`),
-      component: postTemplate,
-      context: {
-        slug: post.slug,
-        formatString,
-      },
-    })
-  })
-
-  const pages = result.data.allPage.nodes
+  const pages = result.data.allPage.edges
 
   if (pages.length > 0) {
-    pages.forEach((page) => {
+    pages.forEach(({ page }) => {
       createPage({
         path: `/${basePath}/${page.slug}`.replace(/\/\/+/g, `/`),
         component: pageTemplate,
