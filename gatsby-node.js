@@ -1,5 +1,34 @@
 const path = require(`path`)
-const withDefaults = require(`@lekoarts/gatsby-theme-minimal-blog-core/utils/default-options`)
+const withDefaults = require(`./src/utils/utils`)
+
+exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
+  const { createTypes } = actions
+
+  createTypes(`
+    type MinimalBlogConfig implements Node {
+      basePath: String
+      blogPath: String
+      postsPath: String
+      pagesPath: String
+      tagsPath: String
+      siteLanguage: String
+      externalLinks: [ExternalLink]
+      navigation: [NavigationEntry]
+      showLineNumbers: Boolean
+      showCopyButton: Boolean
+    }
+
+    type ExternalLink {
+      name: String!
+      url: String!
+    }
+
+    type NavigationEntry {
+      title: String!
+      slug: String!
+    }
+  `)
+}
 
 exports.sourceNodes = ({ actions }) => {
     actions.createTypes(`
@@ -64,11 +93,10 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
         }
       }
     }
-    allPage {
-      edges {
-        node {
-          slug
-        }
+    allGhostPage(filter: {tags: {elemMatch: {name: {eq: "#ru"}}}}) {
+      nodes {
+        slug
+        title
       }
     }
   }
@@ -107,10 +135,10 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
     })
   })
 
-  const pages = result.data.allPage.edges
+  const nodes = result.data.allGhostPage.nodes
 
-  if (pages.length > 0) {
-    pages.forEach(({ node }) => {
+  if (nodes.length > 0) {
+    nodes.forEach(( node ) => {
       createPage({
         path: `/${basePath}/${node.slug}`.replace(/\/\/+/g, `/`),
         component: pageTemplate,

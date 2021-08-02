@@ -114,6 +114,12 @@ let theme = merge(tailwind, {
         "--baseline-multiplier": 0.179,
         "--x-height-multiplier": 0.35,
         wordBreak: `break-word`,
+        py: 2
+      },
+      "iframe": {
+        my: 5,
+        height: `80vh !important`,
+        minWidth: "100%"
       },
       ul: {
         li: {

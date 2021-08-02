@@ -21,22 +21,6 @@ module.exports = {
     siteLogo: `/favicon-32x32.png`,
     // Twitter Handle
     author: `@boba_troy`,
-    // Links displayed in the header on the right side
-    externalLinks: [
-      //   {
-      //   name: `Твиттер`,
-      //   url: `https://twitter.com/lekoarts_de`,
-      // },
-      // {
-      //   name: `Instagram`,
-      //   url: `https://www.instagram.com/lekoarts.de/`,
-      // },
-    ],
-    // Navigation links
-    navigation: [{
-      title: `Записи`,
-      slug: `/blog`,
-    },],
     showCopyButton: true,
   },
   plugins: [
@@ -120,19 +104,10 @@ module.exports = {
         },
         {
           title: `Про меня`,
-          slug: `/about-me`,
-        },
-        ],
-        externalLinks: [
-          //   {
-          //   name: `Твиттер`,
-          //   url: `https://twitter.com/lekoarts_de`,
-          // },
-          // {
-          //   name: `Instagram`,
-          //   url: `https://www.instagram.com/lekoarts.de/`,
-          // },
-        ],
+          slug: `/pro-mienia`
+        }
+      ],
+        externalLinks: [],
       },
     },
   ],

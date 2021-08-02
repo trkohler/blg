@@ -5,11 +5,11 @@ export default PageComponent
 
 export const query = graphql`
   query ($slug: String!) {
-    page(slug: { eq: $slug }) {
-      title
+    page:ghostPage(slug: {eq: $slug}) {
+      html
       slug
+      title
       excerpt
-      body
-    }
   }
+}
 `
