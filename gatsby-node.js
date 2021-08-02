@@ -79,7 +79,10 @@ exports.createPages = async ({ actions, graphql, reporter }, themeOptions) => {
   // Query Ghost data
   const result = await graphql(`
   {
-    ghostPosts: allGhostPost(sort: {order: ASC, fields: published_at}) {
+    ghostPosts: allGhostPost(
+      sort: {order: ASC, fields: published_at},
+      filter: {tags: {elemMatch: {name: {eq: "#ru"}}}}
+    ) {
       edges {
         node {
           slug

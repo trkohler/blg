@@ -5,7 +5,10 @@ export default BlogComponent
 
 export const query = graphql`
   query ($formatString: String!) {
-    posts:allGhostPost(sort: {fields: created_at, order: DESC}) {
+    posts:allGhostPost(
+      sort: {fields: created_at, order: DESC},
+      filter: {tags: {elemMatch: {name: {eq: "#ru"}}}}
+      ) {
       nodes {
         slug
         title
