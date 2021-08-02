@@ -7,7 +7,7 @@ import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replac
 import Listing from "./listing"
 import SEO from "./seo"
 import { readingTime as readingTimeHelper } from '@tryghost/helpers'
-import { capitalize } from "../../../utils/utils"
+import {capitalize} from "../../../utils/myFunctions"
 
 type TagGhostProps = {
   data: {

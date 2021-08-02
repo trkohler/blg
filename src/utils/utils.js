@@ -12,7 +12,6 @@ module.exports = (themeOptions) => {
     const formatString = themeOptions.formatString || `DD.MM.YYYY`
     const mdx = typeof themeOptions.mdx === `undefined` ? true : themeOptions.mdx
     const sharp = typeof themeOptions.sharp === `undefined` ? true : themeOptions.sharp
-    const capitalize = ((arg) => arg && arg[0].toUpperCase() + arg.slice(1))
   
     return {
       basePath,
@@ -28,6 +27,5 @@ module.exports = (themeOptions) => {
       formatString,
       mdx,
       sharp,
-      capitalize,
     }
   }
