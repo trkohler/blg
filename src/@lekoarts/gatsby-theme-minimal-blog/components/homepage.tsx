@@ -10,7 +10,6 @@ import Hero from "../texts/hero"
 // @ts-ignore
 import SEO from "./seo"
 import Listing from "./listing"
-import { SubscriptionForm } from "./email_subscription"
 
 type PostsProps = {
     data: {
