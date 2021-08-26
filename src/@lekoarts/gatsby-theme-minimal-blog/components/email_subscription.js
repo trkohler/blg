@@ -112,10 +112,9 @@ const SubscriptionForm = ({ tags }) => {
           type="submit"
           css={[tw`w-full flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-full focus:outline-none focus:shadow-lg transition duration-150 ease-in-out`]}
           sx={{
-            backgroundColor: "orange50",
-            color: "orange400",
+            backgroundColor: "toggleIcon",
+            color: 'gray100',
             "&:hover": {
-              backgroundColor: "orange50",
               opacity: "0.7",
             },
           }}
@@ -124,8 +123,8 @@ const SubscriptionForm = ({ tags }) => {
         </button>
         </div>
       </form>
-      {status === 'SUCCESS' && <div css={[tw`pt-5 text-gray-600`]}><p>Успех! Следующий шаг — подтвердить свою подписку </p></div>}
-      {status === 'ERROR' && <div css={[tw`pt-5 text-gray-600`]}><p>Что-то пошло не так. Может, попробуешь еще раз?</p></div>}
+      {status === 'SUCCESS' && <div css={[tw`pt-5`]} sx={{color: 'text'}}><p>Успех! Следующий шаг — подтвердить свою подписку </p></div>}
+      {status === 'ERROR' && <div css={[tw`pt-5`]} sx={{color: 'text'}}><p>Что-то пошло не так. Может, попробуешь еще раз?</p></div>}
       </SubscriptionSubcontainer>
       </SubscriptionContainer>
   );

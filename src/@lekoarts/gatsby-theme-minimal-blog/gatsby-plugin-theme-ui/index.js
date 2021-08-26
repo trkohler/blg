@@ -1,6 +1,6 @@
-import { merge } from 'theme-ui'
-import { transparentize } from '@theme-ui/color'
-import { tailwind } from '@theme-ui/presets'
+import { merge } from "theme-ui"
+import { transparentize } from "@theme-ui/color"
+import { tailwind } from "@theme-ui/presets"
 
 let theme = merge(tailwind, {
   initialColorModeName: `light`,
@@ -59,10 +59,10 @@ let theme = merge(tailwind, {
     fontFamily: `body`,
     letterSpacing: `0.025rem`,
     transition: `default`,
-    '&[disabled]': {
+    "&[disabled]": {
       cursor: `not-allowed`,
     },
-    ':not([disabled]):hover': {
+    ":not([disabled]):hover": {
       bg: `primary`,
       color: `white`,
     },
@@ -91,11 +91,11 @@ let theme = merge(tailwind, {
     secondary: {
       color: `secondary`,
       textDecoration: `none`,
-      ':hover': {
+      ":hover": {
         color: `heading`,
         textDecoration: `underline`,
       },
-      ':focus': {
+      ":focus": {
         color: `heading`,
       },
     },
@@ -117,23 +117,23 @@ let theme = merge(tailwind, {
         fontSize: [1, 1, 2],
         letterSpacing: `-0.003em`,
         lineHeight: `body`,
-        '--baseline-multiplier': 0.179,
-        '--x-height-multiplier': 0.35,
+        "--baseline-multiplier": 0.179,
+        "--x-height-multiplier": 0.35,
         wordBreak: `break-word`,
-        py: 2,
+        py: 2
       },
-      iframe: {
+      "iframe": {
         my: 5,
         height: `80vh !important`,
-        minWidth: '100%',
+        minWidth: "100%"
       },
       ul: {
         li: {
           fontSize: [1, 1, 2],
           letterSpacing: `-0.003em`,
           lineHeight: `body`,
-          '--baseline-multiplier': 0.179,
-          '--x-height-multiplier': 0.35,
+          "--baseline-multiplier": 0.179,
+          "--x-height-multiplier": 0.35,
         },
       },
       ol: {
@@ -141,8 +141,8 @@ let theme = merge(tailwind, {
           fontSize: [1, 1, 2],
           letterSpacing: `-0.003em`,
           lineHeight: `body`,
-          '--baseline-multiplier': 0.179,
-          '--x-height-multiplier': 0.35,
+          "--baseline-multiplier": 0.179,
+          "--x-height-multiplier": 0.35,
         },
       },
       h1: {
@@ -183,7 +183,7 @@ let theme = merge(tailwind, {
         mt: 4,
         pl: 4,
         mb: 2,
-        variant: `post.ghostPost.p`,
+        variant: `post.ghostPost.p`
       },
       table: {
         width: `100%`,
