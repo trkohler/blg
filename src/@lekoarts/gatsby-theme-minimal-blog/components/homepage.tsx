@@ -50,7 +50,6 @@ const Homepage = ({ data: { posts }}: PostsProps) => {
                 <Link to={replaceSlashes(`/${basePath}/${blogPath}`)}>Читать все</Link>
             </Title>
             <Listing posts={normalizedPosts} showTags={false} />
-            <SubscriptionForm tags={["reading books", ]} />
         </Layout>
     )
 }
