@@ -14,6 +14,7 @@ let theme = merge(tailwind, {
     toggleIcon: tailwind.colors.gray[8],
     heading: tailwind.colors.black,
     divide: tailwind.colors.gray[4],
+    gray100: tailwind.colors.gray[2],
     modes: {
       dark: {
         text: tailwind.colors.gray[4],
@@ -24,6 +25,7 @@ let theme = merge(tailwind, {
         heading: tailwind.colors.white,
         divide: tailwind.colors.gray[8],
         muted: tailwind.colors.gray[8],
+        gray100: tailwind.colors.gray[8]
       },
     },
   },
