@@ -84,10 +84,7 @@ export default function Post({ data }: GhostPostProps) {
       }}
       dangerouslySetInnerHTML={{ __html: post.html }}
       />
-      <SubscriptionForm 
-      tags={["reading books", ]}
-      topic="читать" 
-      />
+      <SubscriptionForm tags={["reading books", ]} />
   </Layout>
   )
 }
