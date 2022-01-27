@@ -12,6 +12,9 @@ export const postQuery = graphql`
     slug
     title
     html
+    childHtmlRehype {
+      html
+    }
     tags {
       name
       slug

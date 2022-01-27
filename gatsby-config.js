@@ -36,6 +36,9 @@ module.exports = {
           // https://purgecss.com/configuration.html#options
           // safelist: ['safelist'], // Don't remove this selector
         },
+        ignore: [
+          'prism-okaidia.min.css',
+        ],
       },
     },
     `gatsby-plugin-preact`,
@@ -70,7 +73,11 @@ module.exports = {
         // Verbose mode (optional, default: false)
         verbose: false,
         // Plugins configs (optional but most likely you need one)
-        plugins: [],
+        plugins: [
+          {
+            resolve: `gatsby-rehype-prismjs`,
+          },
+        ],
       },
     },
     {

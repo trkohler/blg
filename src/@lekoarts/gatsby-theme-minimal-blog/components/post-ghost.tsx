@@ -26,7 +26,8 @@ type GhostPostProps = {
               tableOfContents: {
                 id: string
                 heading: string
-              }[]
+              }[],
+              html: string
             }
         }
     }
@@ -82,7 +83,7 @@ export default function Post({ data }: GhostPostProps) {
         ".gatsby-resp-image-wrapper": { my: [4, 4, 5], boxShadow: shadow.join(`, `) },
         variant: `post.ghostPost`,
       }}
-      dangerouslySetInnerHTML={{ __html: post.html }}
+      dangerouslySetInnerHTML={{ __html: post.childHtmlRehype.html }}
       />
       <SubscriptionForm tags={["reading books", ]} />
   </Layout>
