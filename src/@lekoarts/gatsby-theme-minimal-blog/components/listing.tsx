@@ -19,12 +19,15 @@ type ListingProps = {
   showTags?: boolean
 }
 
-const Listing = ({ posts, className = ``, showTags = true }: ListingProps) => (
-  <section sx={{ mb: [5, 6, 7] }} className={className}>
-    {posts.map((post) => (
-      <BlogListItem key={post.slug} post={post} showTags={showTags} />
-    ))}
-  </section>
-)
+const Listing = ({ posts, className = ``, showTags = true }: ListingProps) => {
+  const classes = `${className} section-with-three-posts`;
+  return (
+    <section sx={{ mb: [5, 6, 7] }} className={classes}>
+      {posts.map((post) => (
+        <BlogListItem key={post.slug} post={post} showTags={showTags} />
+      ))}
+    </section>
+  )
+}
 
 export default Listing

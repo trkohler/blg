@@ -42,7 +42,7 @@ const Layout = ({ children, className = `` }: LayoutProps) => (
     />
     <Seo />
     <SkipNavLink>Skip to content</SkipNavLink>
-    <Container>
+    <Container className="main">
       <Header />
       <Box id="skip-nav" className={className}>
         {children}
