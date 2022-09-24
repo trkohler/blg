@@ -1,0 +1,206 @@
+import { Actions, Reporter } from 'gatsby';
+import { resolve } from 'path';
+import { langToEnding, LanguageUnion } from './src/translations/langStrings';
+
+type BasePath = {
+  path: string;
+  type: string;
+  templated: boolean;
+};
+
+type Container = {
+  nodes: PageNode[] | PostNode[] | TagNode[];
+};
+
+type PostNode = {
+  slug: string;
+  tags: TagNode[];
+};
+
+type TagNode = {
+  slug: string;
+  visibility: string;
+  description: string;
+};
+
+type PageNode = {
+  slug: string;
+  tags: TagNode[];
+};
+
+const getLangSlug = (baseLang: string, slug: string) => {
+  return slug ? slug : baseLang;
+};
+
+export const createPages = async ({
+  actions,
+  graphql,
+  reporter,
+}: {
+  actions: Actions;
+  graphql: Function;
+  reporter: Reporter;
+}): Promise<void> => {
+  const { createPage } = actions;
+
+  const templatesMap = new Map([
+    [`post`, `src/queries/post.tsx`],
+    [`tag`, `src/queries/tag.tsx`],
+    [`page`, `src/queries/page.tsx`],
+    [`main_page`, `src/queries/main_page.tsx`],
+    [`posts`, `src/queries/posts.tsx`],
+    [`tags`, `src/queries/tags.tsx`],
+  ]);
+
+  const result = await graphql(`
+    {
+      site {
+        siteMetadata {
+          baseLanguage
+          description
+          siteUrl
+          title
+          otherLanguages
+        }
+      }
+      tags: allGhostTag {
+        nodes {
+          slug
+          visibility
+          description
+        }
+      }
+      posts: allGhostPost {
+        nodes {
+          slug
+          tags {
+            visibility
+            slug
+            description
+          }
+        }
+      }
+      pages: allGhostPage {
+        nodes {
+          slug
+          tags {
+            visibility
+            slug
+            description
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`);
+    return;
+  }
+
+  let {
+    site: {
+      siteMetadata: {
+        baseLanguage,
+        otherLanguages,
+        allPostsPathTemplate,
+        allTagsPathTemplate,
+      },
+    },
+    tags,
+    posts,
+    pages,
+  } = result.data;
+
+  const correctTags = tags.nodes.filter(
+    (tag: TagNode) => tag.visibility === 'public'
+  );
+  const languagesMap = new Map();
+
+  const basePathes = [
+    { path: `/`, type: `main_page`, templated: false },
+    { path: `/all-posts-in-`, type: `posts`, templated: true },
+    { path: `/all-tags-in-`, type: `tags`, templated: true },
+  ];
+
+  basePathes.forEach((basePath: BasePath): void => {
+    const template = templatesMap.get(basePath.type);
+    otherLanguages.forEach((lang: LanguageUnion): void => {
+      const constructedPath = basePath.templated
+        ? `${basePath}${langToEnding[lang]}/`
+        : `${basePath.path}${lang}/`;
+      const preparedGlob = `*${lang}*`;
+
+      const context = {
+        langSlug: lang,
+        preparedGlob,
+      };
+      createPage({
+        path: constructedPath,
+        component: resolve(template as string),
+        context,
+      });
+    });
+
+    console.log(`${basePath.path}${langToEnding[baseLanguage as LanguageUnion]}/`)
+
+    createPage({
+      path: basePath.templated
+        ? `${basePath.path}${langToEnding[baseLanguage as LanguageUnion]}/`
+        : `${basePath.path}`,
+      component: resolve(template as string),
+      context: {
+        langSlug: baseLanguage,
+        preparedGlob: `*${baseLanguage}*`,
+      },
+    });
+  });
+
+  posts.nodes.forEach((post: PostNode) => {
+    const { slug, tags } = post;
+    const internalTag = tags.find((tag) => tag.visibility === 'internal');
+    if (internalTag) {
+      const langSlug = getLangSlug(baseLanguage, internalTag.slug);
+      languagesMap.set(slug, [langSlug, 'post']);
+    }
+  });
+
+  pages.nodes.forEach((page: PageNode) => {
+    const { slug, tags } = page;
+    const internalTag = tags.find((tag) => tag.visibility === 'internal');
+    if (internalTag) {
+      const langSlug = getLangSlug(baseLanguage, internalTag.slug);
+      languagesMap.set(slug, [langSlug, 'page']);
+    }
+  });
+
+  correctTags.forEach((tag: TagNode) => {
+    const { slug, description } = tag;
+    const langSlug = description.split('#')[1];
+    languagesMap.set(slug, [langSlug, 'tag']);
+  });
+
+  languagesMap.forEach(([langSlug, type], slug) => {
+    const template = templatesMap.get(type);
+
+    if (!template) {
+      reporter.panicOnBuild(`Template not found for ${type}`);
+    }
+
+    const path =
+      langSlug == baseLanguage ? `/${slug}/` : `/${langSlug}/${slug}/`;
+
+    const preparedGlob = `*${langSlug}*`;
+
+    const context = {
+      langSlug,
+      slug,
+      preparedGlob,
+    };
+    createPage({
+      path,
+      component: resolve(template as string),
+      context,
+    });
+  });
+};

@@ -16,6 +16,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@chakra-ui/gatsby-plugin": "^3.0.1",
+    "@chakra-ui/react": "^2.2.3",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mapbox/rehype-prism": "^0.8.0",
+    "@react-icons/all-files": "^4.1.0",
+    "@types/prismjs": "^1.26.0",
+    "framer-motion": "^6.5.0",
     "gatsby": "^4.18.1",
     "gatsby-plugin-image": "^2.18.1",
     "gatsby-plugin-manifest": "^4.18.1",
@@ -23,14 +31,24 @@
     "gatsby-plugin-sharp": "^4.18.1",
     "gatsby-plugin-sitemap": "^5.18.1",
     "gatsby-source-contentful": "^7.16.1",
+    "gatsby-source-ghost": "^5.0.0",
+    "hast-util-to-string": "^2.0.0",
+    "hast-util-to-text": "^3.1.1",
+    "hastscript": "^7.0.2",
+    "prismjs": "^1.28.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.4.0",
+    "rehype": "^12.0.1",
+    "rehype-insert": "marekweb/rehype-insert",
+    "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.45",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/refractor": "^3.0.2",
     "typescript": "^4.7.4"
   }
 }
