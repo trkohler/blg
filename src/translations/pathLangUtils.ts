@@ -13,3 +13,15 @@ export const getLanguage = (pathname: string): LanguageUnion => {
   }
   return site.baseLanguage;
 };
+
+export const getPathWithoutLang = (pathname?: string): string => {
+  if (!pathname) {
+    return '';
+  }
+
+  const withoutLang = pathname
+    .split(`/`)
+    .filter((part) => part !== `` && !langMap.get(part));
+
+  return withoutLang.length > 0 ? withoutLang.join('/') : '';
+};

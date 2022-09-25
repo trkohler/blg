@@ -18,9 +18,8 @@ import { visit_highlight_code } from '../rehype-visitors/highlight-code';
 import NewsletterBoxCondenced from '../components/NewsletterBoxCondenced';
 import RelatedPosts from '../components/RelatedPosts';
 import { BsDot } from 'react-icons/bs';
-import { useSiteMetadata } from '../hooks/use-site-medatadata';
-import { getLangPathes, langStrings } from '../translations/langStrings';
-import { getLanguage } from '../translations/defineLangRuntime';
+import { langStrings } from '../translations/langStrings';
+import { getLanguage } from '../translations/pathLangUtils';
 
 type PostPageProps = {
   data: {
@@ -69,10 +68,7 @@ const Post = ({
   data: { post, relatedPosts, navigationPages },
   location: { pathname },
 }: PostPageProps) => {
-  
-  const site = useSiteMetadata();
   const language = getLanguage(pathname);
-  const langPathes = getLangPathes(site.siteLanguage);
 
   const content = unified()
     .use(rehypeParse, {
@@ -89,7 +85,11 @@ const Post = ({
   const linkToTheLastTag = `/${lastTag.slug}/`;
   const correctTagsWithoutLast = correctTags.slice(0, -1);
   return (
-    <Layout language={language} navigationPages={navigationPages}>
+    <Layout
+      language={language}
+      navigationPages={navigationPages}
+      location={pathname}
+    >
       <VStack spacing={12} py={28}>
         <Box textAlign="center">
           <Heading size={'xl'}>{post.title}</Heading>

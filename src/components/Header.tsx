@@ -17,11 +17,13 @@ type HeaderProps = {
       title: string;
     }[];
   };
+  location?: string;
 };
 
 export const Header = ({
   language,
   navigationPages,
+  location,
   ...props
 }: HeaderProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -39,7 +41,7 @@ export const Header = ({
           navigationPages={navigationPages}
         />
 
-        <LanguageSelector />
+        <LanguageSelector location={location} />
         <ThemeModeToggler />
       </NavBarContainer>
     </header>

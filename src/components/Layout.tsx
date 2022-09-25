@@ -13,17 +13,19 @@ type LayoutProps = {
       title: string;
     }[];
   };
+  location?: string;
 };
 
 export const Layout = ({
   children,
   language,
   navigationPages,
+  location,
 }: LayoutProps) => {
   return (
     <React.Fragment>
       <Container maxW="container.xl" p={0}>
-        <Header language={language} navigationPages={navigationPages} />
+        <Header language={language} navigationPages={navigationPages} location={location} />
         <div>{children}</div>
         <Footer language={language} navigationPages={navigationPages} />
       </Container>

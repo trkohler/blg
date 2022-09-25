@@ -2,9 +2,8 @@ import { Box, Heading, HStack, VStack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Layout } from '../components/Layout';
 import { Link } from '../components/Link';
-import { useSiteMetadata } from '../hooks/use-site-medatadata';
-import { getLanguage } from '../translations/defineLangRuntime';
-import { getLangPathes, langStrings } from '../translations/langStrings';
+import { getLanguage } from '../translations/pathLangUtils';
+import { langStrings } from '../translations/langStrings';
 
 type TagsPageProps = {
   data: {
@@ -40,12 +39,14 @@ export const Tags = ({
   },
   location: { pathname },
 }: TagsPageProps) => {
-  const site = useSiteMetadata();
   const language = getLanguage(pathname);
-  const langPathes = getLangPathes(site.siteLanguage);
 
   return (
-    <Layout navigationPages={navigationPages} language={language}>
+    <Layout
+      navigationPages={navigationPages}
+      language={language}
+      location={pathname}
+    >
       <VStack>
         <Box>
           <Heading as={'h1'}>

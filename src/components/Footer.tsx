@@ -22,7 +22,7 @@ const Footer = ({ language, navigationPages, ...props }: FooterProps) => {
   const lastPage = navigationPages.nodes[navigationPages.nodes.length - 1];
   const remainingPages = navigationPages.nodes.slice(0, -1);
   const sitemetada = useSiteMetadata();
-  const { allPostsPathTemplate, allTagsPathTemplate, baseLanguage } =
+  const { postsPath, tagsPath, baseLanguage } =
     sitemetada;
   return (
     <div>
@@ -38,10 +38,10 @@ const Footer = ({ language, navigationPages, ...props }: FooterProps) => {
           <Logo />
           <Stack direction={'row'} spacing={6}>
             <Link to={'#'}>{langStrings.home_link_header[language]}</Link>
-            <Link to={constructPath(allPostsPathTemplate, language)}>
+            <Link to={constructPath(postsPath, language)}>
               {langStrings.all_posts_link[language]}
             </Link>
-            <Link to={constructPath(allTagsPathTemplate, language)}>
+            <Link to={constructPath(tagsPath, language)}>
               {langStrings.all_tags_link[language]}
             </Link>
             {remainingPages.map((page) => (

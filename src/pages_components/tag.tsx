@@ -3,9 +3,8 @@ import React from 'react';
 import { Layout } from '../components/Layout';
 import { Link } from '../components/Link';
 import { GoPrimitiveDot } from 'react-icons/go';
-import { useSiteMetadata } from '../hooks/use-site-medatadata';
-import { getLanguage } from '../translations/defineLangRuntime';
-import { getLangPathes, langStrings } from '../translations/langStrings';
+import { getLanguage } from '../translations/pathLangUtils';
+import { langStrings } from '../translations/langStrings';
 
 type RelatedTag = {
   name: string;
@@ -17,7 +16,7 @@ type Tag = {
   slug: string;
   description: string;
   postCount: number;
-}
+};
 
 type Post = {
   title: string;
@@ -25,7 +24,7 @@ type Post = {
   uuid: string;
   slug: string;
   excerpt: string;
-}
+};
 
 type TagPageProps = {
   data: {
@@ -45,7 +44,7 @@ type TagPageProps = {
   };
   location: {
     pathname: string;
-  }
+  };
 };
 
 export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
@@ -58,13 +57,14 @@ export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
   const linkToTheLastRelatedTag = `/${lastRelatedTag.slug}/`;
   const relatedTagsWithoutLast = relatedTagsWithoutCurrent.slice(0, -1);
 
-  const site = useSiteMetadata();
   const language = getLanguage(pathname);
-  const langPathes = getLangPathes(site.siteLanguage);
-
 
   return (
-    <Layout navigationPages={navigationPages} language={language}>
+    <Layout
+      navigationPages={navigationPages}
+      language={language}
+      location={pathname}
+    >
       <VStack minH={'60vh'} spacing={'12'} paddingBottom={'24'}>
         <Box>
           <Heading as={'h1'} size={'2xl'}>
@@ -77,9 +77,7 @@ export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
           alignItems={'center'}
           color={'gray.400'}
         >
-          <Text>
-            {langStrings.tag_generated_description[language]}
-          </Text>
+          <Text>{langStrings.tag_generated_description[language]}</Text>
         </Box>
         <Box w={'70%'} paddingRight={'24'}>
           {posts.nodes.map((post) => {

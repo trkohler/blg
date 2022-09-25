@@ -1,5 +1,7 @@
+import { useSiteMetadata } from "../hooks/use-site-medatadata";
 import { langToEnding, LanguageUnion } from "./langStrings";
 
 export const constructPath = (path: string, lang: LanguageUnion) => {
-    return `${path}${langToEnding[lang]}/`;
+    const site = useSiteMetadata();
+    return lang === site.baseLanguage ? `/${path}/` : `/${langToEnding[lang]}/${path}/`;
 }

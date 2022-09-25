@@ -10,8 +10,8 @@ export const useSiteMetadata = () => {
           description
           baseLanguage
           otherLanguages
-          allPostsPathTemplate
-          allTagsPathTemplate
+          postsPath
+          tagsPath
         }
       }
     }

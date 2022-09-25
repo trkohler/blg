@@ -20,8 +20,8 @@ function MenuLinks({ isOpen, language, navigationPages }: MenuLinksProps) {
   const lastPage = navigationPages.nodes[navigationPages.nodes.length - 1];
   const remainingPages = navigationPages.nodes.slice(0, -1);
   const sitemetada = useSiteMetadata();
-  const {allPostsPathTemplate, allTagsPathTemplate} = sitemetada;
-  
+  const { postsPath, tagsPath } = sitemetada;
+
   return (
     <Box
       display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
@@ -37,10 +37,16 @@ function MenuLinks({ isOpen, language, navigationPages }: MenuLinksProps) {
         <MenuItem to="/" isLast={false}>
           {langStrings.home_link_header[language]}
         </MenuItem>
-        <MenuItem to={constructPath(allPostsPathTemplate, language)} isLast={false}>
+        <MenuItem
+          to={constructPath(postsPath, language)}
+          isLast={false}
+        >
           {langStrings.all_posts_link[language]}
         </MenuItem>
-        <MenuItem to={constructPath(allTagsPathTemplate, language)} isLast={false}>
+        <MenuItem
+          to={constructPath(tagsPath, language)}
+          isLast={false}
+        >
           {langStrings.all_tags_link[language]}
         </MenuItem>
         {remainingPages.map((page) => (

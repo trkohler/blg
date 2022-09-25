@@ -5,7 +5,6 @@ import { langToEnding, LanguageUnion } from './src/translations/langStrings';
 type BasePath = {
   path: string;
   type: string;
-  templated: boolean;
 };
 
 type Container = {
@@ -103,8 +102,6 @@ export const createPages = async ({
       siteMetadata: {
         baseLanguage,
         otherLanguages,
-        allPostsPathTemplate,
-        allTagsPathTemplate,
       },
     },
     tags,
@@ -118,17 +115,15 @@ export const createPages = async ({
   const languagesMap = new Map();
 
   const basePathes = [
-    { path: `/`, type: `main_page`, templated: false },
-    { path: `/all-posts-in-`, type: `posts`, templated: true },
-    { path: `/all-tags-in-`, type: `tags`, templated: true },
+    { path: ``, type: `main_page` },
+    { path: `posts`, type: `posts` },
+    { path: `tags`, type: `tags` },
   ];
 
   basePathes.forEach((basePath: BasePath): void => {
     const template = templatesMap.get(basePath.type);
     otherLanguages.forEach((lang: LanguageUnion): void => {
-      const constructedPath = basePath.templated
-        ? `${basePath}${langToEnding[lang]}/`
-        : `${basePath.path}${lang}/`;
+      const constructedPath = basePath.path ? `/${lang}/${basePath.path}/` : `/${lang}/`;
       const preparedGlob = `*${lang}*`;
 
       const context = {
@@ -142,12 +137,9 @@ export const createPages = async ({
       });
     });
 
-    console.log(`${basePath.path}${langToEnding[baseLanguage as LanguageUnion]}/`)
 
     createPage({
-      path: basePath.templated
-        ? `${basePath.path}${langToEnding[baseLanguage as LanguageUnion]}/`
-        : `${basePath.path}`,
+      path: basePath.path ? `/${basePath.path}/` : `/`,
       component: resolve(template as string),
       context: {
         langSlug: baseLanguage,
@@ -161,26 +153,26 @@ export const createPages = async ({
     const internalTag = tags.find((tag) => tag.visibility === 'internal');
     if (internalTag) {
       const langSlug = getLangSlug(baseLanguage, internalTag.slug);
-      languagesMap.set(slug, [langSlug, 'post']);
+      languagesMap.set(slug, [langSlug, 'post', 'posts']);
     }
   });
 
-  pages.nodes.forEach((page: PageNode) => {
-    const { slug, tags } = page;
-    const internalTag = tags.find((tag) => tag.visibility === 'internal');
-    if (internalTag) {
-      const langSlug = getLangSlug(baseLanguage, internalTag.slug);
-      languagesMap.set(slug, [langSlug, 'page']);
-    }
-  });
+  // pages.nodes.forEach((page: PageNode) => {
+  //   const { slug, tags } = page;
+  //   const internalTag = tags.find((tag) => tag.visibility === 'internal');
+  //   if (internalTag) {
+  //     const langSlug = getLangSlug(baseLanguage, internalTag.slug);
+  //     languagesMap.set(slug, [langSlug, 'page']);
+  //   }
+  // });
 
   correctTags.forEach((tag: TagNode) => {
     const { slug, description } = tag;
     const langSlug = description.split('#')[1];
-    languagesMap.set(slug, [langSlug, 'tag']);
+    languagesMap.set(slug, [langSlug, 'tag', 'tags']);
   });
 
-  languagesMap.forEach(([langSlug, type], slug) => {
+  languagesMap.forEach(([langSlug, type, pathPrefix ], slug) => {
     const template = templatesMap.get(type);
 
     if (!template) {
@@ -188,7 +180,7 @@ export const createPages = async ({
     }
 
     const path =
-      langSlug == baseLanguage ? `/${slug}/` : `/${langSlug}/${slug}/`;
+      langSlug == baseLanguage ? `/${pathPrefix}/${slug}/` : `/${langSlug}/${pathPrefix}/${slug}/`;
 
     const preparedGlob = `*${langSlug}*`;
 

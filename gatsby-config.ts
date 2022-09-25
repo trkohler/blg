@@ -6,8 +6,8 @@ const config: GatsbyConfig = {
     siteUrl: `https://www.yourdomain.tld`,
     baseLanguage: `uk`,
     otherLanguages: [`en`, `ru`],
-    allPostsPathTemplate: `/all-posts-in-`,
-    allTagsPathTemplate: `/all-tags-in-`
+    postsPath: `posts`,
+    tagsPath: `tags`
   },
   trailingSlash: `always`,
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.

@@ -5,8 +5,7 @@ import { Layout } from '../components/Layout';
 import { Listing } from '../components/Listing';
 import NewsletterBox from '../components/NewsletterBox';
 import { useSiteMetadata } from '../hooks/use-site-medatadata';
-import { getLanguage } from '../translations/defineLangRuntime';
-import { getLangPathes } from '../translations/langStrings';
+import { getLanguage } from '../translations/pathLangUtils';
 
 type MainPageProps = {
   data: {
@@ -41,10 +40,9 @@ type MainPageProps = {
 export const Blog = ({data: { posts: { nodes }, navigationPages }, location: { pathname }}: MainPageProps) => {
   const site = useSiteMetadata();
   const language = getLanguage(pathname);
-  const langPathes = getLangPathes(site.siteLanguage);
 
   return (
-    <Layout language={language} navigationPages={navigationPages}>
+    <Layout language={language} navigationPages={navigationPages} location={pathname}>
       <VStack spacing={20}>
         <Hero language={language} />
         <NewsletterBox language={language} />

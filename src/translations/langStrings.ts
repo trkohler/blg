@@ -114,6 +114,7 @@ export const getLangPathes = (defaultLanguage: LanguageUnion) => {
     return new Map([
       [`ru`, `/ru/`],
       [`uk`, `/uk/`],
+      [`en`, `/en/`],
       [defaultLanguage, `/`],
     ]);
   };
