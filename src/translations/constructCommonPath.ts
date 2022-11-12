@@ -1,7 +1,23 @@
-import { useSiteMetadata } from "../hooks/use-site-medatadata";
-import { langToEnding, LanguageUnion } from "./langStrings";
+import { useSiteDefaultLang } from '../hooks/use-default-lang';
+import { getLangPathes, LanguageUnion } from './langStrings';
 
-export const constructPath = (path: string, lang: LanguageUnion) => {
-    const site = useSiteMetadata();
-    return lang === site.baseLanguage ? `/${path}/` : `/${langToEnding[lang]}/${path}/`;
-}
+/**
+ * Construct a path with regards to baseLanguage. 
+ * Path which you would provide should be without starting `/`
+ * @param path 
+ * @param lang 
+ * @returns 
+ */
+export const constructPath = (path: string, lang: LanguageUnion): string => {
+  const defaultLang = useSiteDefaultLang();
+  const langPathes = getLangPathes(defaultLang);
+  let constructedPath = lang === defaultLang
+    ? `/${path}`
+    : `${langPathes.get(lang)}${path}`;
+
+    if (!constructedPath.endsWith('/')) {
+        constructedPath += '/';
+    }
+
+    return constructedPath
+};

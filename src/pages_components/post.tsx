@@ -20,6 +20,8 @@ import RelatedPosts from '../components/RelatedPosts';
 import { BsDot } from 'react-icons/bs';
 import { langStrings } from '../translations/langStrings';
 import { getLanguage } from '../translations/pathLangUtils';
+import { constructPath } from '../translations/constructCommonPath';
+import { useSiteMetadata } from '../hooks/use-site-medatadata';
 
 type PostPageProps = {
   data: {
@@ -69,6 +71,8 @@ const Post = ({
   location: { pathname },
 }: PostPageProps) => {
   const language = getLanguage(pathname);
+  const sitemetada = useSiteMetadata();
+  const { tagsPath } = sitemetada;
 
   const content = unified()
     .use(rehypeParse, {
@@ -82,7 +86,6 @@ const Post = ({
 
   const correctTags = post.tags.filter((tag) => tag.visibility !== `internal`);
   const lastTag = correctTags[correctTags.length - 1];
-  const linkToTheLastTag = `/${language}/tags/${lastTag.slug}/`;
   const correctTagsWithoutLast = correctTags.slice(0, -1);
   return (
     <Layout
@@ -100,15 +103,14 @@ const Post = ({
             <Text>{post.reading_time} min read</Text>
             <HStack spacing={'0'} fontWeight={'bold'} color={'gray.800'}>
               {correctTagsWithoutLast.map((tag) => {
-                const linkToTag = `/${language}/tags/${tag.slug}/`;
                 return (
                   <>
-                    <Link to={linkToTag}>{tag.name}</Link>
+                    <Link to={constructPath(`${tagsPath}/${tag.slug}/`, language)}>{tag.name}</Link>
                     <Icon as={BsDot} />
                   </>
                 );
               })}
-              <Link to={linkToTheLastTag}>{lastTag.name}</Link>
+              <Link to={constructPath(`${tagsPath}/${lastTag.slug}/`, language)}>{lastTag.name}</Link>
             </HStack>
           </HStack>
         </Box>

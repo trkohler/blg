@@ -6,6 +6,8 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import React from 'react';
+import { useSiteMetadata } from '../hooks/use-site-medatadata';
+import { constructPath } from '../translations/constructCommonPath';
 import { langStrings, LanguageUnion } from '../translations/langStrings';
 import { Link } from './Link';
 
@@ -23,6 +25,8 @@ type RelatedPostsProps = {
 }
 
 const RelatedPosts = ({ parentTitle, relatedPosts, language }: RelatedPostsProps) => {
+  const sitemetada = useSiteMetadata();
+  const { postsPath } = sitemetada;
   
   const filteredPosts = relatedPosts.nodes.filter(
     (post) => post.title !== parentTitle
@@ -48,7 +52,7 @@ const RelatedPosts = ({ parentTitle, relatedPosts, language }: RelatedPostsProps
           px={'0'}
         >
           {filteredPosts.map((post) => {
-            const linkToPost = `/${language}/posts/${post.slug}/`;
+            const linkToPost = constructPath(`${postsPath}/${post.slug}/`, language);
             return (
             <ListItem>
               <Link to={linkToPost}>{post.title}</Link>
