@@ -8,20 +8,23 @@ import {
   Input,
   VStack,
   Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { langStrings, LanguageUnion } from '../translations/langStrings';
 
 const NewsletterBoxCondenced = ({ language }: { language: LanguageUnion }) => {
+  const bgGray = useColorModeValue('gray.100', 'gray.700');
+  const headingGray = useColorModeValue('gray.700', 'gray.100');
   return (
     <Flex
       justifyContent={'center'}
-      bgColor={'gray.100'}
+      bgColor={bgGray}
       borderRadius={'36'}
       shadow="sm"
     >
       <VStack p={[8, 24]} spacing={[2, 8]} textAlign="center">
-        <Heading as={'h3'} size={['md', 'xl']} color={'gray.700'}>
+        <Heading as={'h3'} size={['md', 'xl']} color={headingGray}>
           {langStrings.newsletter_small_box_heading[language]}
         </Heading>
         <Text>{langStrings.newsletter_small_box_text[language]}</Text>

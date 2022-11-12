@@ -16,4 +16,11 @@
 - <del>fix links on the main page to posts</del>
 - <del>fix links on tag page to related tags</del>
 - <del>fix logo rendering</del>
-- styling for code blocks
+
+RELEASE 1 VERSION 
+
+
+- <del>styling for code blocks</del>
+- add google analytics and set up events
+- (possibly) automate translation creation because i'm lazy
+- check if newsletter subscription actually works 

@@ -1,9 +1,10 @@
 import type { GatsbyConfig } from 'gatsby';
+require('dotenv').config();
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Curated Collection of Ukrainian products`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://trkohler.com/`,
     baseLanguage: `uk`,
     otherLanguages: [`en`, `ru`],
     postsPath: `posts`,

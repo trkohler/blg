@@ -6,6 +6,7 @@ import {
   Text,
   Flex,
   Icon,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { unified } from 'unified';
@@ -90,6 +91,7 @@ const Post = ({
   const correctTags = post.tags.filter((tag) => tag.visibility !== `internal`);
   const lastTag = correctTags[correctTags.length - 1];
   const correctTagsWithoutLast = correctTags.slice(0, -1);
+  const accentGray = useColorModeValue('gray.500', 'gray.400');
   return (
     <Layout
       language={language}
@@ -108,7 +110,7 @@ const Post = ({
         <HStack spacing={'8'} justifyContent={'center'}>
           <Text>{post.published_at}</Text>
           <Text>{post.reading_time} min read</Text>
-          <HStack spacing={'0'} fontWeight={'bold'} color={'gray.800'}>
+          <HStack spacing={'0'} fontWeight={'bold'} color={accentGray}>
             {correctTagsWithoutLast.map((tag) => {
               return (
                 <>
