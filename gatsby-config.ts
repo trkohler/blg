@@ -19,7 +19,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-source-ghost`,
       options: {
           apiUrl: `https://cms.trkohler.com`,
-          contentApiKey: `902f4b97d9d0146046c2462390`,
+          contentApiKey: process.env.GHOST_API_KEY,
       }
    },
     'gatsby-plugin-react-helmet',
