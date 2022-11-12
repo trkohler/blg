@@ -22,6 +22,8 @@ import { langStrings } from '../translations/langStrings';
 import { getLanguage } from '../translations/pathLangUtils';
 import { constructPath } from '../translations/constructCommonPath';
 import { useSiteMetadata } from '../hooks/use-site-medatadata';
+import { visit_mark_headings } from '../rehype-visitors/mark-headings';
+import rehypeReact from 'rehype-react/lib';
 
 type PostPageProps = {
   data: {
@@ -79,6 +81,7 @@ const Post = ({
       fragment: true,
     })
     .use(visit_highlight_code)
+    .use(visit_mark_headings)
     .use(rehypePrism)
     .use(stringify)
     .processSync(post.html)
@@ -126,6 +129,12 @@ const Post = ({
           flexDirection={'column'}
           justifyContent={'center'}
           gap={'4'}
+          sx={{
+            '.cms-heading-h3': {
+              fontSize: '3xl',
+              py: 4
+            }
+          }}
         ></Flex>
         <NewsletterBoxCondenced language={language} />
         <RelatedPosts
