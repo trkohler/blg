@@ -1,4 +1,12 @@
-import { Box, Heading, HStack, VStack, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  HStack,
+  VStack,
+  Text,
+  Grid,
+  GridItem,
+} from '@chakra-ui/react';
 import React from 'react';
 import { Layout } from '../components/Layout';
 import { Link } from '../components/Link';
@@ -57,40 +65,38 @@ export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
       language={language}
       location={pathname}
     >
-      <VStack minH={'60vh'} spacing={'12'} paddingBottom={'24'}>
+      <VStack spacing={'8'} paddingBottom={'24'}>
         <Box>
           <Heading as={'h1'} size={'2xl'}>
             {tag.name}
           </Heading>
         </Box>
-        <Box
-          textAlign={'center'}
-          w={'60%'}
-          alignItems={'center'}
-          color={'gray.400'}
-        >
+        <Box textAlign={'center'} color={'gray.400'}>
           <Text>{langStrings.tag_generated_description[language]}</Text>
         </Box>
-        <Box w={'70%'} paddingRight={'24'}>
+        <Box px={36}>
           {posts.nodes.map((post) => {
             return (
-              <Box paddingBottom={'4'} alignItems={'center'}>
-                <Box>
-                  <HStack fontSize={'3xl'}>
-                    <Text as={'h2'} maxW={'80%'}>
-                      <Link key={post.title} to={constructPath(`${postsPath}/${post.slug}/`, language)}>
-                        {post.title}
-                      </Link>
-                    </Text>
-                    <Text fontSize={'sm'} color={'gray.400'}>
-                      <span>{post.updated_at}</span>
-                    </Text>
-                  </HStack>
-                </Box>
-                <Box maxW={'60%'}>
-                  <Text>{post.excerpt}</Text>
-                </Box>
-              </Box>
+              <Grid templateColumns="1fr 100px" gap={16} paddingBottom={12}>
+                <GridItem>
+                  <Text as={'h2'} fontSize={'2xl'}>
+                    <Link
+                      key={post.title}
+                      to={constructPath(`${postsPath}/${post.slug}/`, language)}
+                    >
+                      {post.title}
+                    </Link>
+                  </Text>
+                  <Text py={4} paddingRight={14}>
+                    {post.excerpt}
+                  </Text>
+                </GridItem>
+                <GridItem textAlign={'center'} paddingTop={4}>
+                  <Text color={'gray.400'} fontSize="sm">
+                    <span>{post.updated_at}</span>
+                  </Text>
+                </GridItem>
+              </Grid>
             );
           })}
         </Box>

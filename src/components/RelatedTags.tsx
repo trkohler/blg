@@ -27,7 +27,7 @@ export const RelatedTags = ({
   const linkToTheLastRelatedTag = `/${lastRelatedTag.slug}/`;
   const relatedTagsWithoutLast = relatedTagsWithoutCurrent.slice(0, -1);
   return (
-    <HStack fontSize={'md'} w={'70%'} color={'gray.400'}>
+    <HStack fontSize={'md'} color={'gray.400'}>
       <Text>{langStrings.more_tags_text[language]}</Text>
       {relatedTagsWithoutLast.map((tag) => {
         const path = `/${tag.slug}/`;
