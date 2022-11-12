@@ -5,6 +5,8 @@ import { Link } from '../components/Link';
 import { getLanguage } from '../translations/pathLangUtils';
 import { langStrings } from '../translations/langStrings';
 import { RelatedTag, RelatedTags } from '../components/RelatedTags';
+import { constructPath } from '../translations/constructCommonPath';
+import { useSiteMetadata } from '../hooks/use-site-medatadata';
 
 type Tag = {
   name: string;
@@ -44,6 +46,8 @@ type TagPageProps = {
 
 export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
   const { tag, posts, relatedTags, navigationPages } = data;
+  const sitemetada = useSiteMetadata();
+  const { postsPath } = sitemetada;
 
   const language = getLanguage(pathname);
 
@@ -74,7 +78,7 @@ export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
                 <Box>
                   <HStack fontSize={'3xl'}>
                     <Text as={'h2'} maxW={'80%'}>
-                      <Link key={post.title} to="/post/">
+                      <Link key={post.title} to={constructPath(`${postsPath}/${post.slug}/`, language)}>
                         {post.title}
                       </Link>
                     </Text>
