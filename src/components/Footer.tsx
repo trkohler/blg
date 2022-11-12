@@ -19,11 +19,15 @@ type FooterProps = {
 };
 
 const Footer = ({ language, navigationPages, ...props }: FooterProps) => {
-  const lastPage = navigationPages.nodes[navigationPages.nodes.length - 1];
-  const remainingPages = navigationPages.nodes.slice(0, -1);
+  let lastPage;
+  let remainingPages;
+  if (navigationPages.nodes) {
+    lastPage = navigationPages.nodes[navigationPages.nodes.length - 1];
+    remainingPages = navigationPages.nodes.slice(0, -1);
+  }
+
   const sitemetada = useSiteMetadata();
-  const { postsPath, tagsPath, baseLanguage } =
-    sitemetada;
+  const { postsPath, tagsPath, baseLanguage } = sitemetada;
   return (
     <div>
       <Box>
@@ -37,19 +41,22 @@ const Footer = ({ language, navigationPages, ...props }: FooterProps) => {
         >
           <Logo />
           <Stack direction={'row'} spacing={6}>
-            <Link to={'#'}>{langStrings.home_link_header[language]}</Link>
+            <Link to={constructPath('', language)}>
+              {langStrings.home_link_header[language]}
+            </Link>
             <Link to={constructPath(postsPath, language)}>
               {langStrings.all_posts_link[language]}
             </Link>
             <Link to={constructPath(tagsPath, language)}>
               {langStrings.all_tags_link[language]}
             </Link>
-            {remainingPages.map((page) => (
-              <Link to={`/${page.slug}/`}>{page.title}</Link>
-            ))}
+            {/* {remainingPages &&
+              remainingPages.map((page) => (
+                <Link to={`/${page.slug}/`}>{page.title}</Link>
+              ))}
             {lastPage && (
               <Link to={`/${lastPage.slug}/`}>{lastPage.title}</Link>
-            )}
+            )} */}
           </Stack>
         </Container>
         <Box borderTopWidth={1} borderStyle={'solid'}>

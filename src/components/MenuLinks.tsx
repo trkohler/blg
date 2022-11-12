@@ -17,8 +17,13 @@ type MenuLinksProps = {
 };
 
 function MenuLinks({ isOpen, language, navigationPages }: MenuLinksProps) {
-  const lastPage = navigationPages.nodes[navigationPages.nodes.length - 1];
-  const remainingPages = navigationPages.nodes.slice(0, -1);
+  let lastPage;
+  let remainingPages;
+  if (navigationPages.nodes) {
+    lastPage = navigationPages.nodes[navigationPages.nodes.length - 1];
+    remainingPages = navigationPages.nodes.slice(0, -1);
+  }
+
   const sitemetada = useSiteMetadata();
   const { postsPath, tagsPath } = sitemetada;
 
@@ -34,22 +39,16 @@ function MenuLinks({ isOpen, language, navigationPages }: MenuLinksProps) {
         direction={['column', 'row', 'row', 'row']}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/" isLast={false}>
+        <MenuItem to={constructPath('', language)} isLast={false}>
           {langStrings.home_link_header[language]}
         </MenuItem>
-        <MenuItem
-          to={constructPath(postsPath, language)}
-          isLast={false}
-        >
+        <MenuItem to={constructPath(postsPath, language)} isLast={false}>
           {langStrings.all_posts_link[language]}
         </MenuItem>
-        <MenuItem
-          to={constructPath(tagsPath, language)}
-          isLast={false}
-        >
+        <MenuItem to={constructPath(tagsPath, language)} isLast={false}>
           {langStrings.all_tags_link[language]}
         </MenuItem>
-        {remainingPages.map((page) => (
+        {/* {remainingPages && remainingPages.map((page) => (
           <MenuItem to={`/${page.slug}/`} isLast={false}>
             {page.title}
           </MenuItem>
@@ -58,7 +57,7 @@ function MenuLinks({ isOpen, language, navigationPages }: MenuLinksProps) {
           <MenuItem to={`/${lastPage.slug}`} isLast={true}>
             {lastPage.title}
           </MenuItem>
-        )}
+        )} */}
       </Stack>
     </Box>
   );

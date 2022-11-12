@@ -29,7 +29,7 @@ type ListingItemProps = {
       accent_color: string;
     }[];
   };
-  language: LanguageUnion
+  language: LanguageUnion;
 };
 
 export const ListingItem = ({ item, language }: ListingItemProps) => {
@@ -52,28 +52,6 @@ export const ListingItem = ({ item, language }: ListingItemProps) => {
           <Text>{item.title}</Text>
         </Link>
       </Box>
-
-      {/* <HStack
-      fontSize={'0.5em'}
-      fontWeight={'bold'} 
-      w={'30%'}
-      justifyContent={'center'}
-      textAlign={'center'}
-      >
-        {tagsExceptLast.map((tag) => (
-          <>
-            <Text color={tag.accent_color ? tag.accent_color : `black`}>
-              <Link to={tag.slug}>{tag.name}</Link>
-            </Text>
-            <Icon as={BsDot} />
-          </>
-        ))}
-        {lastTag &&
-          <Text color={lastTag.accent_color ? lastTag.accent_color : `black`}>
-            <Link to={lastTag.slug}>{lastTag.name}</Link>
-          </Text>
-        }
-      </HStack> */}
     </HStack>
   );
 };
