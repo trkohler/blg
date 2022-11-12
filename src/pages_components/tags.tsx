@@ -47,8 +47,8 @@ export const Tags = ({
       language={language}
       location={pathname}
     >
-      <VStack>
-        <Box>
+      <VStack px={4} minHeight={'md'}>
+        <Box textAlign={'center'}>
           <Heading as={'h1'}>
             {langStrings.all_available_tags_heading[language]}
           </Heading>
@@ -61,6 +61,7 @@ export const Tags = ({
                   <Heading
                     color={tag.accent_color ? tag.accent_color : `gray.600`}
                     as={'h2'}
+                    fontSize={['sm', '2xl']}
                   >
                     <Link key={tag.name} to={tag.slug}>
                       {tag.name}
@@ -68,7 +69,7 @@ export const Tags = ({
                   </Heading>
                   <Text fontSize={'xs'}>{tag.count.posts}</Text>
                 </HStack>
-                <Text>
+                <Text fontSize={['sm', 'md']}>
                   {langStrings.last_time_updated[language]}{' '}
                   <span>{new Date().toDateString()}</span>
                 </Text>

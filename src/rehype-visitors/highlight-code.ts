@@ -13,6 +13,7 @@ export const visit_highlight_code = (options = {}) => {
         ? node.properties.className[0].split('-')[1]
         : 'markdown';
       node.properties.className = [`language-${lang}`];
+      node.properties.className.push(`codeblock-gatsby`)
     }
   }
 };

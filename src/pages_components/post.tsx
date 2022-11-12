@@ -99,7 +99,7 @@ const Post = ({
       <VStack
         spacing={12}
         align={'stretch'}
-        p={28}
+        p={[6, 28]}
       >
         <Box textAlign="center">
           <Heading size={'xl'}>{post.title}</Heading>
@@ -133,9 +133,9 @@ const Post = ({
           </Text>
         </Box>
         <Flex
-        px={16}
+        px={[0, 16]}
           dangerouslySetInnerHTML={{ __html: content }}
-          fontSize={'lg'}
+          fontSize={['xs', 'lg']}
           flexDirection={'column'}
           justifyContent={'center'}
           gap={4}
@@ -144,6 +144,9 @@ const Post = ({
               fontSize: '3xl',
               py: 4,
             },
+            '.codeblock-gatsby': {
+              fontSize: ['sm', 'md', 'xl']
+            }
           }}
         ></Flex>
         <NewsletterBoxCondenced language={language} />

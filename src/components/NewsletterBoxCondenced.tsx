@@ -20,13 +20,11 @@ const NewsletterBoxCondenced = ({ language }: { language: LanguageUnion }) => {
       borderRadius={'36'}
       shadow="sm"
     >
-      <VStack p={'24'} spacing={'8'}>
-        <Heading as={'h3'} size={'xl'} color={'gray.700'}>
+      <VStack p={[8, 24]} spacing={[2, 8]} textAlign="center">
+        <Heading as={'h3'} size={['md', 'xl']} color={'gray.700'}>
           {langStrings.newsletter_small_box_heading[language]}
         </Heading>
-        <Text align={'center'}>
-          {langStrings.newsletter_small_box_text[language]}
-        </Text>
+        <Text>{langStrings.newsletter_small_box_text[language]}</Text>
         <HStack w="100%">
           <FormControl>
             <Input
@@ -36,8 +34,10 @@ const NewsletterBoxCondenced = ({ language }: { language: LanguageUnion }) => {
               bgColor={'white'}
             />
           </FormControl>
-          <Button py={4} type="submit" color={'gray.700'}>
-            {langStrings.newsletter_button[language]}
+          <Button py={4} type="submit" bgColor={'gray.700'} color={'gray.200'} _hover={{
+            bgColor: 'gray.600'
+          }}>
+            <Text p={6}>{langStrings.newsletter_button[language]}</Text>
           </Button>
         </HStack>
       </VStack>
