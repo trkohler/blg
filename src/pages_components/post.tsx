@@ -82,7 +82,7 @@ const Post = ({
 
   const correctTags = post.tags.filter((tag) => tag.visibility !== `internal`);
   const lastTag = correctTags[correctTags.length - 1];
-  const linkToTheLastTag = `/${lastTag.slug}/`;
+  const linkToTheLastTag = `/${language}/tags/${lastTag.slug}/`;
   const correctTagsWithoutLast = correctTags.slice(0, -1);
   return (
     <Layout
@@ -100,7 +100,7 @@ const Post = ({
             <Text>{post.reading_time} min read</Text>
             <HStack spacing={'0'} fontWeight={'bold'} color={'gray.800'}>
               {correctTagsWithoutLast.map((tag) => {
-                const linkToTag = `/${tag.slug}/`;
+                const linkToTag = `/${language}/tags/${tag.slug}/`;
                 return (
                   <>
                     <Link to={linkToTag}>{tag.name}</Link>

@@ -48,7 +48,7 @@ const RelatedPosts = ({ parentTitle, relatedPosts, language }: RelatedPostsProps
           px={'0'}
         >
           {filteredPosts.map((post) => {
-            const linkToPost = `/${post.slug}/`;
+            const linkToPost = `/${language}/posts/${post.slug}/`;
             return (
             <ListItem>
               <Link to={linkToPost}>{post.title}</Link>
