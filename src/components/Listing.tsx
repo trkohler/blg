@@ -62,7 +62,7 @@ export const Listing = ({ items, language }: ListingProps) => {
 
           <VStack spacing={4} py={4}>
             {items.map((item) => (
-              <ListingItem item={item} />
+              <ListingItem item={item} language={language} />
             ))}
           </VStack>
         </Stack>

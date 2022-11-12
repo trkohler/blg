@@ -4,7 +4,6 @@ import Hero from '../components/Hero';
 import { Layout } from '../components/Layout';
 import { Listing } from '../components/Listing';
 import NewsletterBox from '../components/NewsletterBox';
-import { useSiteMetadata } from '../hooks/use-site-medatadata';
 import { getLanguage } from '../translations/pathLangUtils';
 
 type MainPageProps = {
@@ -38,7 +37,6 @@ type MainPageProps = {
 }
 
 export const Blog = ({data: { posts: { nodes }, navigationPages }, location: { pathname }}: MainPageProps) => {
-  const site = useSiteMetadata();
   const language = getLanguage(pathname);
 
   return (
