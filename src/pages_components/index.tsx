@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import { Layout } from '../components/Layout';
 import { Listing } from '../components/Listing';
 import NewsletterBox from '../components/NewsletterBox';
+import { NiceBlockOfNothing } from '../components/NiceBlockOfNothing';
 import { getLanguage } from '../translations/pathLangUtils';
 
 type MainPageProps = {
@@ -43,7 +44,8 @@ export const Blog = ({data: { posts: { nodes }, navigationPages }, location: { p
     <Layout language={language} navigationPages={navigationPages} location={pathname}>
       <VStack spacing={20}>
         <Hero language={language} />
-        <NewsletterBox language={language} />
+        <NiceBlockOfNothing minH={'3xs'} />
+        {/* <NewsletterBox language={language} /> */}
         <Listing items={nodes} language={language} />
       </VStack>
     </Layout>
