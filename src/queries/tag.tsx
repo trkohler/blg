@@ -22,7 +22,7 @@ export const query = graphql`
     }
     relatedTags: allGhostTag(
       filter: { description: { glob: $preparedGlob } }
-      limit: 5
+      limit: 3
     ) {
       nodes {
         name

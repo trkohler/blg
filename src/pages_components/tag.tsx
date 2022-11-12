@@ -1,15 +1,10 @@
-import { Box, Heading, HStack, VStack, Text, Icon } from '@chakra-ui/react';
+import { Box, Heading, HStack, VStack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Layout } from '../components/Layout';
 import { Link } from '../components/Link';
-import { GoPrimitiveDot } from 'react-icons/go';
 import { getLanguage } from '../translations/pathLangUtils';
 import { langStrings } from '../translations/langStrings';
-
-type RelatedTag = {
-  name: string;
-  slug: string;
-};
+import { RelatedTag, RelatedTags } from '../components/RelatedTags';
 
 type Tag = {
   name: string;
@@ -49,13 +44,6 @@ type TagPageProps = {
 
 export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
   const { tag, posts, relatedTags, navigationPages } = data;
-  const relatedTagsWithoutCurrent = relatedTags.nodes.filter(
-    (relatedTag: RelatedTag) => relatedTag.slug !== tag.slug
-  );
-  const lastRelatedTag =
-    relatedTagsWithoutCurrent[relatedTagsWithoutCurrent.length - 1];
-  const linkToTheLastRelatedTag = `/${lastRelatedTag.slug}/`;
-  const relatedTagsWithoutLast = relatedTagsWithoutCurrent.slice(0, -1);
 
   const language = getLanguage(pathname);
 
@@ -102,19 +90,11 @@ export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
             );
           })}
         </Box>
-        <HStack fontSize={'md'} w={'70%'} color={'gray.400'}>
-          <Text>{langStrings.more_tags_text[language]}</Text>
-          {relatedTagsWithoutLast.map((tag) => {
-            const path = `/${tag.slug}/`;
-            return (
-              <>
-                <Link to={path}>{tag.name}</Link>
-                <Icon as={GoPrimitiveDot} />
-              </>
-            );
-          })}
-          <Link to={linkToTheLastRelatedTag}>{lastRelatedTag.name}</Link>
-        </HStack>
+        <RelatedTags
+          currentTag={tag}
+          language={language}
+          relatedTags={relatedTags.nodes}
+        />
       </VStack>
     </Layout>
   );
