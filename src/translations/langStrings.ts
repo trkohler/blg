@@ -108,6 +108,21 @@ export const langStrings = {
         ru: `Теги`,
         uk: `Теги`,
     },
+    page_doesn_exist: {
+        en: `Unfortunately, page doesn't exist`,
+        ru: `К сожалению, страницы не существует`,
+        uk: `Нажаль, ця сторінка відсутня`
+    },
+    page_doesnt_exist_suggestion: {
+        en: `My bad. Try to move back to the main page and search something there. Seems like this page doesn't exist in English!`,
+        ru: `Попробуйте вернуться на главную. Скорее всего, контента, который вы искали, не существует на этом языке`,
+        uk: `Спробуйте повернутись на головну. Скоріш за все, контенту, який ви шукали, на цій мові не існує`
+    },
+    page_doesnt_exist_button: {
+        en: `Return to home`,
+        ru: `Вернуться на главную`,
+        uk: `До головної`
+    }
 }
 
 export const getLangPathes = (defaultLanguage: LanguageUnion) => {
