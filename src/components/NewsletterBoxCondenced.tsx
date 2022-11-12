@@ -15,7 +15,6 @@ import { langStrings, LanguageUnion } from '../translations/langStrings';
 const NewsletterBoxCondenced = ({ language }: { language: LanguageUnion }) => {
   return (
     <Flex
-      w={'70%'}
       justifyContent={'center'}
       bgColor={'gray.100'}
       borderRadius={'36'}

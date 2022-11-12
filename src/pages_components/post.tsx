@@ -96,44 +96,54 @@ const Post = ({
       navigationPages={navigationPages}
       location={pathname}
     >
-      <VStack spacing={12} py={28}>
+      <VStack
+        spacing={12}
+        align={'stretch'}
+        p={28}
+      >
         <Box textAlign="center">
           <Heading size={'xl'}>{post.title}</Heading>
         </Box>
-        <Box>
-          <HStack spacing={'8'}>
-            <Text>{post.published_at}</Text>
-            <Text>{post.reading_time} min read</Text>
-            <HStack spacing={'0'} fontWeight={'bold'} color={'gray.800'}>
-              {correctTagsWithoutLast.map((tag) => {
-                return (
-                  <>
-                    <Link to={constructPath(`${tagsPath}/${tag.slug}/`, language)}>{tag.name}</Link>
-                    <Icon as={BsDot} />
-                  </>
-                );
-              })}
-              <Link to={constructPath(`${tagsPath}/${lastTag.slug}/`, language)}>{lastTag.name}</Link>
-            </HStack>
+
+        <HStack spacing={'8'} justifyContent={'center'}>
+          <Text>{post.published_at}</Text>
+          <Text>{post.reading_time} min read</Text>
+          <HStack spacing={'0'} fontWeight={'bold'} color={'gray.800'}>
+            {correctTagsWithoutLast.map((tag) => {
+              return (
+                <>
+                  <Link
+                    to={constructPath(`${tagsPath}/${tag.slug}/`, language)}
+                  >
+                    {tag.name}
+                  </Link>
+                  <Icon as={BsDot} />
+                </>
+              );
+            })}
+            <Link to={constructPath(`${tagsPath}/${lastTag.slug}/`, language)}>
+              {lastTag.name}
+            </Link>
           </HStack>
-        </Box>
-        <Box color={'gray.400'}>
+        </HStack>
+
+        <Box color={'gray.400'} textAlign='center'>
           <Text>
             {langStrings.last_time_updated[language]} {post.updated_at}
           </Text>
         </Box>
         <Flex
+        px={16}
           dangerouslySetInnerHTML={{ __html: content }}
-          px={48}
-          fontSize={'xl'}
+          fontSize={'lg'}
           flexDirection={'column'}
           justifyContent={'center'}
-          gap={'4'}
+          gap={4}
           sx={{
             '.cms-heading-h3': {
               fontSize: '3xl',
-              py: 4
-            }
+              py: 4,
+            },
           }}
         ></Flex>
         <NewsletterBoxCondenced language={language} />

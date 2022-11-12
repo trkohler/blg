@@ -33,7 +33,6 @@ const RelatedPosts = ({ parentTitle, relatedPosts, language }: RelatedPostsProps
   );
   return (
     <Flex
-      w={'70%'}
       justifyContent={'center'}
       textAlign={'center'}
       fontSize={'xl'}
