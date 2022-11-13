@@ -147,7 +147,7 @@ const Post = ({
               py: 4,
             },
             '.codeblock-gatsby': {
-              fontSize: ['sm', 'md', 'xl']
+              fontSize: 'sm'
             }
           }}
         ></Flex>

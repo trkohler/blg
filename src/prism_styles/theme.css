@@ -5,12 +5,14 @@
  * @author Ayush Saini <@AyushCodes on Twitter>
  */
 
+ @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
  code[class*='language-'],
  pre[class*='language-'] {
      color: #d6e7ff;
      background: #030314;
      text-shadow: none;
-     font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+     font-family: 'JetBrains Mono', monospace;
      font-size: 1em;
      line-height: 1.5;
      letter-spacing: .2px;
