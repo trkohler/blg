@@ -23,10 +23,10 @@ RELEASE 1 VERSION
 - <del>styling for code blocks</del>
 - <del>add beatiful coding font in my snippets (i like Hack...)</del>
 - add copy to clipboard feature [questionable... with the current architecture]
-- add google analytics and set up events
-- (possibly) automate translation creation because i'm lazy
-- check if newsletter subscription actually works 
+- <del>add google analytics and set up events</del>
+- <del>check if newsletter subscription actually works </del>
 
 
 - fix lists rendering && small code parts rendering (example: http://localhost:8000/ru/posts/nachni-proghrammirovat-na-rust-bystro-tsikly-usloviia-kolliektsii-mietody-i-pattern-matching/)
   - check how `iter(list)` is being rendered. it's ugly.
+  - (possibly) automate translation creation because i'm lazy

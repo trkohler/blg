@@ -122,6 +122,16 @@ export const langStrings = {
         en: `Return to home`,
         ru: `Вернуться на главную`,
         uk: `До головної`
+    },
+    subscription_success: {
+        en: `Check you email and verify subscription!`,
+        ru: `Теперь проверь свой емэйл и подтверди свою подписку!`,
+        uk: `Дякую! Зараз потрібно перевірити твій інбокс і підтвердити підписку.`
+    },
+    subscription_error: {
+        en: `There was an unknown error, please try to subscribe later`,
+        ru: `Произошла ошибка, о которой я не знаю. Попробуй позже`,
+        uk: `Виникла помилка, але я не знаю яка сама. Попробуйте пізніше ще раз.`
     }
 }
 
