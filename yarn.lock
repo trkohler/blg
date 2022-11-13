@@ -1576,7 +1576,7 @@
   dependencies:
     "@chakra-ui/utils" "2.0.11"
 
-"@chakra-ui/react@^2.2.3":
+"@chakra-ui/react@^2.3.7":
   version "2.3.7"
   resolved "https://registry.yarnpkg.com/@chakra-ui/react/-/react-2.3.7.tgz#58dfcec0bea9681957491948fd3033b2cb237b27"
   integrity sha512-vnnBDwyvzhQfIgWkqhI8dAX2voVfJOZdTyOsKah0eHc5mvc2oUfoHGRzYNZPSb9bHiKd5roktaDp5tayXv/ECg==
@@ -7129,6 +7129,14 @@ gatsby-parcel-config@^0.9.1:
     "@parcel/transformer-json" "2.6.0"
     "@parcel/transformer-raw" "2.6.0"
     "@parcel/transformer-react-refresh-wrap" "2.6.0"
+
+gatsby-plugin-google-gtag@4.24.0:
+  version "4.24.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-4.24.0.tgz#71ca4d83c91292490e803048d3342f3d60f1aa68"
+  integrity sha512-2GHzg727Xr+48kxS5+3xSc246gdQLlAk4L0vn5+KauJsP1aCGb2XpumlUQj8H81TA/BnroBc1wlW4N+k7J4I5Q==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    minimatch "^3.1.2"
 
 gatsby-plugin-image@^2.18.1:
   version "2.18.1"
