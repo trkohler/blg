@@ -21,6 +21,7 @@
      word-break: normal;
      word-wrap: normal;
      text-align: left;
+     position: relative;
  
      -moz-tab-size: 4;
      -o-tab-size: 4;
@@ -119,3 +120,14 @@
  .token.variable {
      color: #d6e7ff;
  }
+
+ .ghost-copy-code-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    padding: 10px;
+  }
+
+  .ghost-copy-code-button:focus {
+    border: 1px solid #3b6278;
+  }

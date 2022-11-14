@@ -23,8 +23,8 @@ import { langStrings } from '../translations/langStrings';
 import { getLanguage } from '../translations/pathLangUtils';
 import { constructPath } from '../translations/constructCommonPath';
 import { useSiteMetadata } from '../hooks/use-site-medatadata';
-import { visit_mark_headings } from '../rehype-visitors/mark-headings';
-import rehypeReact from 'rehype-react/lib';
+import { visit_and_fix_ghost_html } from '../rehype-visitors/fix-ghost-html';
+import { GhostHtmlPost } from '../components/GhostHtmlPost';
 
 type PostPageProps = {
   data: {
@@ -82,7 +82,7 @@ const Post = ({
       fragment: true,
     })
     .use(visit_highlight_code)
-    .use(visit_mark_headings)
+    .use(visit_and_fix_ghost_html)
     .use(rehypePrism)
     .use(stringify)
     .processSync(post.html)
@@ -134,23 +134,7 @@ const Post = ({
             {langStrings.last_time_updated[language]} {post.updated_at}
           </Text>
         </Box>
-        <Flex
-        px={[0, 16]}
-          dangerouslySetInnerHTML={{ __html: content }}
-          fontSize={['xs', 'lg']}
-          flexDirection={'column'}
-          justifyContent={'center'}
-          gap={4}
-          sx={{
-            '.cms-heading-h3': {
-              fontSize: '3xl',
-              py: 4,
-            },
-            '.codeblock-gatsby': {
-              fontSize: 'sm'
-            }
-          }}
-        ></Flex>
+        <GhostHtmlPost content={content} />
         <NewsletterBoxCondenced language={language} />
         <RelatedPosts
           parentTitle={post.title}
