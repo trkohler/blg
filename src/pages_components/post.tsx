@@ -82,7 +82,7 @@ const Post = ({
       fragment: true,
     })
     .use(visit_highlight_code)
-    .use(visit_and_fix_ghost_html, { title: post.title })
+    .use(visit_and_fix_ghost_html, { title: post.title, language })
     .use(rehypePrism)
     .use(stringify)
     .processSync(post.html)

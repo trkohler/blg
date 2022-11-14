@@ -1,4 +1,5 @@
 import slugify from 'slugify';
+import { LanguageUnion } from './translations/langStrings';
 
 const TRACKING_MAP_POST = {
   utm_source: 'trkohler.com',
@@ -8,7 +9,8 @@ const TRACKING_MAP_POST = {
 
 export function appendPostTrackingUtms(
   originalHref: string,
-  postTitle: string
+  postTitle: string,
+  language: LanguageUnion
 ) {
   let tempHref = originalHref.concat(`?`);
   for (let [tracking_code, tracking_value] of Object.entries(
@@ -16,6 +18,6 @@ export function appendPostTrackingUtms(
   )) {
     tempHref = tempHref.concat(`${tracking_code}=${tracking_value}&`);
   }
-  tempHref = tempHref.concat(`utm_campaign=${slugify(postTitle, {lower: true})}`);
+  tempHref = tempHref.concat(`utm_campaign=${slugify(postTitle, {lower: true})}-${language}`);
   return tempHref;
 }
