@@ -35,3 +35,6 @@ RELEASE 1 VERSION
 - (possibly) automate translation creation because i'm lazy 
 - social links don't work. Also I don't need nonsense stuff like instagram and twitter
 - this is fucking lit (https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation)
+  - used: https://github.com/vercel/satori#documentation
+  - used: https://github.com/yisibl/resvg-js
+- <del>seo basics (but not all)</del>

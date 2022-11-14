@@ -5,6 +5,8 @@ import { Layout } from '../components/Layout';
 import { Listing } from '../components/Listing';
 import NewsletterBox from '../components/NewsletterBox';
 import { NiceBlockOfNothing } from '../components/NiceBlockOfNothing';
+import { OgType, Seo } from '../components/Seo';
+import { langStrings } from '../translations/langStrings';
 import { getLanguage } from '../translations/pathLangUtils';
 
 type MainPageProps = {
@@ -22,32 +24,52 @@ type MainPageProps = {
           slug: string;
           accent_color: string;
           visibility: string;
-        }[]
-      }[]
-    }
+        }[];
+      }[];
+    };
     navigationPages: {
       nodes: {
         slug: string;
         title: string;
-      }[]
-    }
-  }
+      }[];
+    };
+  };
   location: {
     pathname: string;
-  }
-}
+    href: string;
+  };
+};
 
-export const Blog = ({data: { posts: { nodes }, navigationPages }, location: { pathname }}: MainPageProps) => {
+export const Blog = ({
+  data: {
+    posts: { nodes },
+    navigationPages,
+  },
+  location: { pathname, href },
+}: MainPageProps) => {
   const language = getLanguage(pathname);
 
   return (
-    <Layout language={language} navigationPages={navigationPages} location={pathname}>
-      <VStack spacing={20}>
-        <Hero language={language} />
-        <NiceBlockOfNothing minH={'3xs'} />
-        {/* <NewsletterBox language={language} /> */}
-        <Listing items={nodes} language={language} />
-      </VStack>
-    </Layout>
+    <>
+      <Seo
+        title={langStrings.main_title[language]}
+        description={langStrings.main_description[language]}
+        pageLanguage={language}
+        contentType={OgType.Website}
+        canonicalUrl={href}
+      />
+      <Layout
+        language={language}
+        navigationPages={navigationPages}
+        location={pathname}
+      >
+        <VStack spacing={20}>
+          <Hero language={language} />
+          <NiceBlockOfNothing minH={'3xs'} />
+          {/* <NewsletterBox language={language} /> */}
+          <Listing items={nodes} language={language} />
+        </VStack>
+      </Layout>
+    </>
   );
 };

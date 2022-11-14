@@ -15,6 +15,7 @@ import { langStrings } from '../translations/langStrings';
 import { RelatedTag, RelatedTags } from '../components/RelatedTags';
 import { constructPath } from '../translations/constructCommonPath';
 import { useSiteMetadata } from '../hooks/use-site-medatadata';
+import { OgType, Seo } from '../components/Seo';
 
 type Tag = {
   name: string;
@@ -49,10 +50,11 @@ type TagPageProps = {
   };
   location: {
     pathname: string;
+    href: string;
   };
 };
 
-export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
+export const Tag = ({ data, location: { pathname, href } }: TagPageProps) => {
   const { tag, posts, relatedTags, navigationPages } = data;
   const sitemetada = useSiteMetadata();
   const { postsPath } = sitemetada;
@@ -60,53 +62,65 @@ export const Tag = ({ data, location: { pathname } }: TagPageProps) => {
   const language = getLanguage(pathname);
 
   return (
-    <Layout
-      navigationPages={navigationPages}
-      language={language}
-      location={pathname}
-    >
-      <VStack spacing={'8'} paddingBottom={'24'}>
-        <Box>
-          <Heading as={'h1'} size={'2xl'}>
-            {tag.name}
-          </Heading>
-        </Box>
-        <Box textAlign={'center'} color={'gray.400'}>
-          <Text>{langStrings.tag_generated_description[language]}</Text>
-        </Box>
-        <Box px={36}>
-          {posts.nodes.map((post) => {
-            return (
-              <Grid templateColumns="1fr 100px" gap={16} paddingBottom={12}>
-                <GridItem>
-                  <Text as={'h2'} fontSize={'2xl'}>
-                    <Link
-                      key={post.title}
-                      to={constructPath(`${postsPath}/${post.slug}/`, language)}
-                    >
-                      {post.title}
-                    </Link>
-                  </Text>
-                  <Text py={4} paddingRight={14}>
-                    {post.excerpt}
-                  </Text>
-                </GridItem>
-                <GridItem textAlign={'center'} paddingTop={4}>
-                  <Text color={'gray.400'} fontSize="sm">
-                    <span>{post.updated_at}</span>
-                  </Text>
-                </GridItem>
-              </Grid>
-            );
-          })}
-        </Box>
-        <RelatedTags
-          currentTag={tag}
-          language={language}
-          relatedTags={relatedTags.nodes}
-        />
-      </VStack>
-    </Layout>
+    <>
+      <Seo
+        title={data.tag.name}
+        description={data.tag.description}
+        pageLanguage={language}
+        contentType={OgType.Website}
+        canonicalUrl={href}
+      />
+      <Layout
+        navigationPages={navigationPages}
+        language={language}
+        location={pathname}
+      >
+        <VStack spacing={'8'} paddingBottom={'24'}>
+          <Box>
+            <Heading as={'h1'} size={'2xl'}>
+              {tag.name}
+            </Heading>
+          </Box>
+          <Box textAlign={'center'} color={'gray.400'}>
+            <Text>{langStrings.tag_generated_description[language]}</Text>
+          </Box>
+          <Box px={36}>
+            {posts.nodes.map((post) => {
+              return (
+                <Grid templateColumns="1fr 100px" gap={16} paddingBottom={12}>
+                  <GridItem>
+                    <Text as={'h2'} fontSize={'2xl'}>
+                      <Link
+                        key={post.title}
+                        to={constructPath(
+                          `${postsPath}/${post.slug}/`,
+                          language
+                        )}
+                      >
+                        {post.title}
+                      </Link>
+                    </Text>
+                    <Text py={4} paddingRight={14}>
+                      {post.excerpt}
+                    </Text>
+                  </GridItem>
+                  <GridItem textAlign={'center'} paddingTop={4}>
+                    <Text color={'gray.400'} fontSize="sm">
+                      <span>{post.updated_at}</span>
+                    </Text>
+                  </GridItem>
+                </Grid>
+              );
+            })}
+          </Box>
+          <RelatedTags
+            currentTag={tag}
+            language={language}
+            relatedTags={relatedTags.nodes}
+          />
+        </VStack>
+      </Layout>
+    </>
   );
 };
 

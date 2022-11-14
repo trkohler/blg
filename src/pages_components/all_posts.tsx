@@ -1,6 +1,8 @@
 import React from 'react';
 import { Layout } from '../components/Layout';
 import { Listing } from '../components/Listing';
+import { OgType, Seo } from '../components/Seo';
+import { langStrings } from '../translations/langStrings';
 import { getLanguage } from '../translations/pathLangUtils';
 
 const AllPosts = ({
@@ -8,18 +10,27 @@ const AllPosts = ({
     posts: { nodes },
     navigationPages,
   },
-  location: { pathname },
+  location: { pathname, href },
 }) => {
   const language = getLanguage(pathname);
 
   return (
-    <Layout
-      navigationPages={navigationPages}
-      language={language}
-      location={pathname}
-    >
-      <Listing items={nodes} language={language} />
-    </Layout>
+    <>
+      <Seo
+        title={langStrings.listing_title[language]}
+        description={langStrings.listing_description[language]}
+        pageLanguage={language}
+        contentType={OgType.Website}
+        canonicalUrl={href}
+      />
+      <Layout
+        navigationPages={navigationPages}
+        language={language}
+        location={pathname}
+      >
+        <Listing items={nodes} language={language} />
+      </Layout>
+    </>
   );
 };
 

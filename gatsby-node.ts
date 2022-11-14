@@ -1,14 +1,10 @@
 import { Actions, Reporter } from 'gatsby';
 import { resolve } from 'path';
-import { langToEnding, LanguageUnion } from './src/translations/langStrings';
+import { LanguageUnion } from './src/translations/langStrings';
 
 type BasePath = {
   path: string;
   type: string;
-};
-
-type Container = {
-  nodes: PageNode[] | PostNode[] | TagNode[];
 };
 
 type PostNode = {
@@ -52,7 +48,7 @@ export const createPages = async ({
   ]);
 
   const result = await graphql(`
-    {
+    query RenderSiteQuery {
       site {
         siteMetadata {
           baseLanguage
@@ -99,10 +95,7 @@ export const createPages = async ({
 
   let {
     site: {
-      siteMetadata: {
-        baseLanguage,
-        otherLanguages,
-      },
+      siteMetadata: { baseLanguage, otherLanguages },
     },
     tags,
     posts,
@@ -123,7 +116,9 @@ export const createPages = async ({
   basePathes.forEach((basePath: BasePath): void => {
     const template = templatesMap.get(basePath.type);
     otherLanguages.forEach((lang: LanguageUnion): void => {
-      const constructedPath = basePath.path ? `/${lang}/${basePath.path}/` : `/${lang}/`;
+      const constructedPath = basePath.path
+        ? `/${lang}/${basePath.path}/`
+        : `/${lang}/`;
       const preparedGlob = `*${lang}*`;
 
       const context = {
@@ -136,7 +131,6 @@ export const createPages = async ({
         context,
       });
     });
-
 
     createPage({
       path: basePath.path ? `/${basePath.path}/` : `/`,
@@ -172,7 +166,7 @@ export const createPages = async ({
     languagesMap.set(slug, [langSlug, 'tag', 'tags']);
   });
 
-  languagesMap.forEach(([langSlug, type, pathPrefix ], slug) => {
+  languagesMap.forEach(([langSlug, type, pathPrefix], slug) => {
     const template = templatesMap.get(type);
 
     if (!template) {
@@ -180,7 +174,9 @@ export const createPages = async ({
     }
 
     const path =
-      langSlug == baseLanguage ? `/${pathPrefix}/${slug}/` : `/${langSlug}/${pathPrefix}/${slug}/`;
+      langSlug == baseLanguage
+        ? `/${pathPrefix}/${slug}/`
+        : `/${langSlug}/${pathPrefix}/${slug}/`;
 
     const preparedGlob = `*${langSlug}*`;
 

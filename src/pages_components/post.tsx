@@ -25,6 +25,7 @@ import { constructPath } from '../translations/constructCommonPath';
 import { useSiteMetadata } from '../hooks/use-site-medatadata';
 import { visit_and_fix_ghost_html } from '../rehype-visitors/fix-ghost-html';
 import { GhostHtmlPost } from '../components/GhostHtmlPost';
+import { OgType, Seo } from '../components/Seo';
 
 type PostPageProps = {
   data: {
@@ -66,12 +67,13 @@ type PostPageProps = {
   };
   location: {
     pathname: string;
+    href: string;
   };
 };
 
 const Post = ({
   data: { post, relatedPosts, navigationPages },
-  location: { pathname },
+  location: { pathname, href },
 }: PostPageProps) => {
   const language = getLanguage(pathname);
   const sitemetada = useSiteMetadata();
@@ -93,52 +95,63 @@ const Post = ({
   const correctTagsWithoutLast = correctTags.slice(0, -1);
   const accentGray = useColorModeValue('gray.500', 'gray.400');
   return (
-    <Layout
-      language={language}
-      navigationPages={navigationPages}
-      location={pathname}
-    >
-      <VStack spacing={12} align={'stretch'} p={[6, 28]}>
-        <Box textAlign="center">
-          <Heading size={'xl'}>{post.title}</Heading>
-        </Box>
+    <>
+      <Seo
+        title={post.title}
+        description={post.og_description}
+        pageLanguage={language}
+        contentType={OgType.Article}
+        canonicalUrl={href}
+      />
+      <Layout
+        language={language}
+        navigationPages={navigationPages}
+        location={pathname}
+      >
+        <VStack spacing={12} align={'stretch'} p={[6, 28]}>
+          <Box textAlign="center">
+            <Heading size={'xl'}>{post.title}</Heading>
+          </Box>
 
-        <HStack spacing={'8'} justifyContent={'center'}>
-          <Text>{post.published_at}</Text>
-          <Text>{post.reading_time} min read</Text>
-          <HStack spacing={'0'} fontWeight={'bold'} color={accentGray}>
-            {correctTagsWithoutLast.map((tag) => {
-              return (
-                <>
-                  <Link
-                    to={constructPath(`${tagsPath}/${tag.slug}/`, language)}
-                  >
-                    {tag.name}
-                  </Link>
-                  <Icon as={BsDot} />
-                </>
-              );
-            })}
-            <Link to={constructPath(`${tagsPath}/${lastTag.slug}/`, language)}>
-              {lastTag.name}
-            </Link>
+          <HStack spacing={'8'} justifyContent={'center'}>
+            <Text>{post.published_at}</Text>
+            <Text>{post.reading_time} min read</Text>
+            <HStack spacing={'0'} fontWeight={'bold'} color={accentGray}>
+              {correctTagsWithoutLast.map((tag) => {
+                return (
+                  <>
+                    <Link
+                      to={constructPath(`${tagsPath}/${tag.slug}/`, language)}
+                    >
+                      {tag.name}
+                    </Link>
+                    <Icon as={BsDot} />
+                  </>
+                );
+              })}
+              <Link
+                to={constructPath(`${tagsPath}/${lastTag.slug}/`, language)}
+              >
+                {lastTag.name}
+              </Link>
+            </HStack>
           </HStack>
-        </HStack>
 
-        <Box color={'gray.400'} textAlign="center">
-          <Text>
-            {langStrings.last_time_updated[language]} {post.updated_at}
-          </Text>
-        </Box>
-        <GhostHtmlPost content={content} />
-        <NewsletterBoxCondenced language={language} />
-        <RelatedPosts
-          parentTitle={post.title}
-          relatedPosts={relatedPosts}
-          language={language}
-        />
-      </VStack>
-    </Layout>
+          <Box color={'gray.400'} textAlign="center">
+            <Text>
+              {langStrings.last_time_updated[language]} {post.updated_at}
+            </Text>
+          </Box>
+          <GhostHtmlPost content={content} />
+          <NewsletterBoxCondenced language={language} />
+          <RelatedPosts
+            parentTitle={post.title}
+            relatedPosts={relatedPosts}
+            language={language}
+          />
+        </VStack>
+      </Layout>
+    </>
   );
 };
 
