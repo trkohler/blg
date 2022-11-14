@@ -82,7 +82,7 @@ const Post = ({
       fragment: true,
     })
     .use(visit_highlight_code)
-    .use(visit_and_fix_ghost_html)
+    .use(visit_and_fix_ghost_html, { title: post.title })
     .use(rehypePrism)
     .use(stringify)
     .processSync(post.html)
@@ -98,11 +98,7 @@ const Post = ({
       navigationPages={navigationPages}
       location={pathname}
     >
-      <VStack
-        spacing={12}
-        align={'stretch'}
-        p={[6, 28]}
-      >
+      <VStack spacing={12} align={'stretch'} p={[6, 28]}>
         <Box textAlign="center">
           <Heading size={'xl'}>{post.title}</Heading>
         </Box>
@@ -129,7 +125,7 @@ const Post = ({
           </HStack>
         </HStack>
 
-        <Box color={'gray.400'} textAlign='center'>
+        <Box color={'gray.400'} textAlign="center">
           <Text>
             {langStrings.last_time_updated[language]} {post.updated_at}
           </Text>

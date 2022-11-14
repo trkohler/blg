@@ -31,5 +31,7 @@ RELEASE 1 VERSION
   - check how `iter(list)` is being rendered. it's ugly.
   - <del>links are not visible.</del> 
   - <del>h2 is not visible.</del>
-- all external links should have utm markers that traffic belongs to me.
+- <del>all external links should have utm markers that traffic belongs to me.</del>
 - (possibly) automate translation creation because i'm lazy 
+- social links don't work. Also I don't need nonsense stuff like instagram and twitter
+- this is fucking lit (https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation)

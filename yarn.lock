@@ -11879,6 +11879,11 @@ slugify@^1.6.1:
   resolved "https://registry.npmjs.org/slugify/-/slugify-1.6.5.tgz"
   integrity sha512-8mo9bslnBO3tr5PEVFzMPIWwWnipGS0xVbYf65zxDqfNwmzYn1LpiKNrR6DlClusuvo+hDHd1zKpmfAe83NQSQ==
 
+slugify@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.6.5.tgz#c8f5c072bf2135b80703589b39a3d41451fbe8c8"
+  integrity sha512-8mo9bslnBO3tr5PEVFzMPIWwWnipGS0xVbYf65zxDqfNwmzYn1LpiKNrR6DlClusuvo+hDHd1zKpmfAe83NQSQ==
+
 smpltmpl@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/smpltmpl/-/smpltmpl-1.0.2.tgz"
