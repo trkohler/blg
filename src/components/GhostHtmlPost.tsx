@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, useColorModeValue } from '@chakra-ui/react';
 import React, { Component } from 'react';
 
 async function copyCode(block) {
@@ -24,6 +24,8 @@ export class GhostHtmlPost extends Component<{ content: string }, {}> {
     });
   }
   render() {
+    // const linkBaseBlue = useColorModeValue('blue.800', 'blue.400');
+
     return (
       <Flex
         px={[0, 16]}
@@ -46,10 +48,10 @@ export class GhostHtmlPost extends Component<{ content: string }, {}> {
           },
           'a': {
             textDecoration: 'underline',
-            color: 'blue.800'
+            color: 'blue.500'
           },
           'a:hover': {
-            color: 'blue.500'
+            color: 'blue.300'
           }
         }}
       ></Flex>
