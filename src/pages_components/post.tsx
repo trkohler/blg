@@ -129,11 +129,13 @@ const Post = ({
                   </>
                 );
               })}
-              <Link
-                to={constructPath(`${tagsPath}/${lastTag.slug}/`, language)}
-              >
-                {lastTag.name}
-              </Link>
+              {lastTag && (
+                <Link
+                  to={constructPath(`${tagsPath}/${lastTag.slug}/`, language)}
+                >
+                  {lastTag.name}
+                </Link>
+              )}
             </HStack>
           </HStack>
 
