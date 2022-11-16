@@ -38,3 +38,14 @@ RELEASE 1 VERSION
   - used: https://github.com/vercel/satori#documentation
   - used: https://github.com/yisibl/resvg-js
 - <del>seo basics (but not all)</del>
+- make page where it's possible to write me a message
+- events to track...
+  - track event - 'copied code'
+  - track event - 'clicked subscription button'
+  - 'social link clicked'
+- english version release <З
+- <del>fix 404 mistakes across the site for better seo</del>
+  
+
+Not related thoughts:
+  - make something where I would be able to track my referrals

@@ -88,7 +88,46 @@
     "toPath": "/posts/"
   },
   {
-    "fromPath": "/ru/posts/*",
+    "fromPath": "/ru/posts/niebanalnii-spisok-knigh-aziatskikh-avtoriv-shchob-zrobiti-karantin-2021-roku-priiemnishim/",
     "toPath": "/ru/posts/"
   },
+  { "fromPath": "/tags/biegh/", "toPath": "/tags/" },
+  {
+    "fromPath": "/tags/k-siebie-s-liuboviu/",
+    "toPath": "/tags/"
+  },
+  { "fromPath": "/tags/knighi/", "toPath": "/tags/" },
+  {
+    "fromPath": "/tags/lichnyie-finansy/",
+    "toPath": "/tags/"
+  },
+  {
+    "fromPath": "/tags/oblachnyie-rassliedovaniia/",
+    "toPath": "/tags/"
+  },
+  {
+    "fromPath": "/tags/onlain-obrazovaniie/",
+    "toPath": "/tags/"
+  },
+  {
+    "fromPath": "/tags/proghrammirovaniie/",
+    "toPath": "/tags/"
+  },
+  {
+    "fromPath": "/tags/samoobrazovaniie/",
+    "toPath": "/tags/"
+  },
+  {
+    "fromPath": "/tags/siemieinaia-dich/",
+    "toPath": "/tags/"
+  },
+  { "fromPath": "/tags/skolko-stoit/", "toPath": "/tags/" },
+  {
+    "fromPath": "/tags/v-zdorovom-tielie-zdorovyi-dukh/",
+    "toPath": "/tags/"
+  },
+  {
+    "fromPath": "/tags/zhivi-svobodno/",
+    "toPath": "/tags/"
+  }
 ]

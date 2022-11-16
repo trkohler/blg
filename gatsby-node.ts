@@ -1,6 +1,7 @@
 import { Actions, Reporter } from 'gatsby';
 import { resolve } from 'path';
 import { LanguageUnion } from './src/translations/langStrings';
+const redirects = require('./redirects.json');
 
 type BasePath = {
   path: string;
@@ -191,4 +192,11 @@ export const createPages = async ({
       context,
     });
   });
+
+  redirects.forEach((redirect: { fromPath: string; toPath: string }) =>
+    actions.createRedirect({
+      fromPath: redirect.fromPath,
+      toPath: redirect.toPath,
+    })
+  );
 };
