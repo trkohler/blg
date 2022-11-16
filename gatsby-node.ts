@@ -193,10 +193,11 @@ export const createPages = async ({
     });
   });
 
-  redirects.forEach((redirect: { fromPath: string; toPath: string }) =>
-    actions.createRedirect({
-      fromPath: redirect.fromPath,
-      toPath: redirect.toPath,
-    })
+  redirects.forEach(
+    ({ fromPath, toPath }: { fromPath: string; toPath: string }) =>
+      actions.createRedirect({
+        fromPath,
+        toPath,
+      })
   );
 };
