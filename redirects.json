@@ -129,5 +129,17 @@
   {
     "fromPath": "/tags/zhivi-svobodno/",
     "toPath": "/tags/"
+  },
+  {
+    "fromPath": "/posts/chto-ia-uznal-o-tiekhnichieskikh-sobiesiedovaniiakh-na-back-end-software-engineer-v-ukrainie-dlia-junior-i-middle-razrabotchikov/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/15-printsipov-kotoryie-ia-vyrabotal-dlia-siebia-nauchivshis-uchitsia-onlain/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/alghoritm-dostizhieniia-soghlasiia-v-raspriedieliennykh-sistiemakh-raft/",
+    "toPath": "/posts/"
   }
 ]
