@@ -1,0 +1,94 @@
+[
+  {
+    "fromPath": "/15-printsipov-kotoryie-ia-vyrabotal-dlia-siebia-nauchivshis-uchitsia-onlain/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/alghoritm-dostizhieniia-soghlasiia-v-raspriedieliennykh-sistiemakh-raft/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/chto-ia-uznal-o-tiekhnichieskikh-sobiesiedovaniiakh-na-back-end-software-engineer-v-ukrainie-dlia-junior-i-middle-razrabotchikov/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/dobryi-tiekst-dlia-tiekh-kto-postoianno-nachinaiet-i-brosaiet-ia-byl-na-vashiem-miestie/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/fast-api-introduction-to-framework/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/grafy-iazyki-zaprosov-dlia-raboty-s-ghrafovymi-bazami-dannykh/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/ia-chitaiu-knighi-s-ghlupymi-nazvaniiami-i-riekomienduiu-vam-dielat-tak-zhie/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/ia-sdielal-bota-kotoryi-viediet-siemieinyi-biudzhiet-v-notion-vmiesto-mienia-pet-proiekt-dlia-proghrammista/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/ia-trieniruius-250-dniei-biez-pierieryvov-kak-nachat-trienirovatsia-doma-s-nulia/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/kak-nachat-bieghat-marafony-filosofskii-ghid-ot-iuriia-strofilova/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/kak-sdielana-cockroachdb/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/knighi-po-biologhii-kotoryie-navsieghda-pomieniaiut-vashi-priedstavlieniia-o-liudiakh-i-samom-siebie/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/nachni-proghrammirovat-na-rust-bystro-tsikly-usloviia-kolliektsii-mietody-i-pattern-matching/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/niebanalnyi-spisok-knigh-aziatskikh-avtorov-chtoby-sdielat-karantin-2021-ghoda-priiatnieie/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/onlain-kursy-posobiie-po-vyzhivaniiu/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/putieshiestvovat-praktichieski-biesplatno-mozhiet-kazhdyi-kak-na-primierie-moiegho-putieshiestviia-v-marokko/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/razvorachivaiem-prilozhieniie-na-fastapi-s-pomoshchiu-amazon-lambda-biesplatno/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/s-chiegho-nachat-samoobrazovaniie-tak-chtoby-nie-brosit-biesplatnyi-shablon-dlia-notion/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/shparghalka-po-bash-komandam-rabota-s-failami-i-pravami/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/siemieino-pieriezhivaiem-koronovirus/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/skolko-ia-potratil-vsiegho-na-sozdaniie-i-sodierzhaniie-svoiegho-blogha/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/posts/vstuplieniie-v-google-cloud-functions-google-pub-sub-na-primierie-moiegho-lichnogho-proiekta/",
+    "toPath": "/posts/"
+  },
+  {
+    "fromPath": "/ru/posts/*",
+    "toPath": "/ru/posts/"
+  },
+]
