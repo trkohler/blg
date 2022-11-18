@@ -38,7 +38,6 @@ const NewsletterBoxCondenced = ({ language }: { language: LanguageUnion }) => {
       });
 
       const json = await response.json();
-      console.log(json);
 
       if (json.status === 'success') {
         setStatus('SUCCESS');

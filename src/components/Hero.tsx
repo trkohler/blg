@@ -2,7 +2,7 @@ import { Container, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import { langStrings, LanguageUnion } from '../translations/langStrings';
 
-const Hero = ({language}: {language: LanguageUnion}) => {
+const Hero = ({ language }: { language: LanguageUnion }) => {
   const accentColor = useColorModeValue('gray.900', 'gray.200');
   const defaultColor = useColorModeValue('gray.300', 'gray.500');
   return (
@@ -15,7 +15,7 @@ const Hero = ({language}: {language: LanguageUnion}) => {
       >
         <Text as={'span'} color={accentColor}>
           {langStrings.hero_first_part[language]}
-        </Text>
+        </Text>&nbsp;
         {langStrings.hero_second_part[language]}
       </Heading>
     </Container>

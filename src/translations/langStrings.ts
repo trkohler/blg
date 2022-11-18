@@ -16,7 +16,7 @@ export const langStrings = {
         uk: `Доброго дня 👋🏻 мене звати Трой Келер 🇺🇦, і це мій блог.`,
     },
     hero_second_part: {
-        en: `I'm writing on Finances, Books, living abroad and my own life experiences.`,
+        en: `I'm writing on engineering, leadership, personal human existence, money and living abroad.`,
         ru: `Я пишу о деньгах, книгах, жизни за границей и моем личном опыте.`,
         uk: `Я пишу про гроші, книги, життя за кордоном та мій персональний досвід.`,
     },
@@ -61,7 +61,7 @@ export const langStrings = {
         uk: `Поштова адреса`,
     },
     newsletter_button: {
-        en: `Submit`,
+        en: `Subscribe`,
         ru: `Подписаться`,
         uk: `Підписатися`,
     },
@@ -77,12 +77,12 @@ export const langStrings = {
         uk: `Останнє оновлення:`,
     },
     newsletter_small_box_heading: {
-        en: `Subscribe on my newsletter`,
+        en: `You can subscribe on my newsletters`,
         ru: `Подписаться на мою рассылку`,
         uk: `Підписатися на мою розсилку`,
     },
     newsletter_small_box_text: {
-        en: `Get email from me about my ideas, frontend development resources and tips as well as exclusive previews of upcoming articles.`,
+        en: `I don't do emails now, but you can subscribe for the future.`,
         ru: ``,
         uk: ``,
     },
@@ -93,7 +93,7 @@ export const langStrings = {
     },
     // tag tail
     tag_generated_description: {
-        en: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur sagittis, nisl nunc egestas nisi, euismod aliquet nisi nisl eget`,
+        en: ``,
         ru: ``,
         uk: ``,
     },
@@ -144,22 +144,22 @@ export const langStrings = {
         uk: `Виникла помилка, але я не знаю яка сама. Попробуйте пізніше ще раз.`
     },
     listing_title: {
-        en: ``,
+        en: `Articles in English`,
         ru: `Все посты на русском`,
         uk: `Всі дописи українською`
     },
     listing_description: {
-        en: ``,
+        en: `Thoughtwork on different topics such as engineering, leadership, money and life abroad.`,
         ru: `Авторские посты на темы личных и семейных финансов, лидерства, разработки и жизни за границей.`,
         uk: `Авторські дописи на теми менеджменту персонального і сімейного бюджетів, лідерства, програмування і життя за кордоном.`
     },
     tags_listing_title: {
-        en: ``,
+        en: `Tags in English`,
         ru: `Все теги на русском`,
         uk: `Всі теги українською`
     },
     tags_listing_description: {
-        en: ``,
+        en: `Topics which had sparkled my interest and provoked me to think on them in depth.`,
         ru: `Темы, которые вызывают интерес: начиная с денег и программирования и заканчивая семейными и персональными вопросами`,
         uk: `Те, що визиває інтерес: починаючи з грошей і програмування і закінчуючи оглядом на персональні і сімейні питання`
     }
@@ -178,6 +178,7 @@ export const getLangPathes = (defaultLanguage: LanguageUnion) => {
     return new Map([
       [`/ru/`, `ru`],
       [`/uk/`, `uk`],
+      [`/en/`, `en`],
       [`/`, defaultLanguage],
     ]);
   };
@@ -186,6 +187,7 @@ export const getLangPathes = (defaultLanguage: LanguageUnion) => {
   export const langMap = new Map([
     [`ru`, `ru`],
     [`uk`, `uk`],
+    [`en`, `en`]
   ]);
 
 export type LanguageUnion = `uk` | `ru` | `en`;

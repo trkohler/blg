@@ -113,11 +113,17 @@ export const Tag = ({ data, location: { pathname, href } }: TagPageProps) => {
               );
             })}
           </Box>
-          <RelatedTags
-            currentTag={tag}
-            language={language}
-            relatedTags={relatedTags.nodes}
-          />
+          {/* 
+            because of query logic relatedTags would always 
+            contain current tag so we must compare to 1 
+            */}
+          {relatedTags.nodes.length > 1 && (
+            <RelatedTags
+              currentTag={tag}
+              language={language}
+              relatedTags={relatedTags.nodes}
+            />
+          )}
         </VStack>
       </Layout>
     </>

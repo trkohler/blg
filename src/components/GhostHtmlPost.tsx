@@ -11,7 +11,7 @@ async function copyCode(block) {
 export class GhostHtmlPost extends Component<{ content: string }, {}> {
   componentDidMount(): void {
     let blocks = document.querySelectorAll('pre');
-    console.log(blocks);
+    
     blocks.forEach((block) => {
       let button = document.createElement('button');
       button.innerText = 'Copy Code';

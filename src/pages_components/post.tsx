@@ -94,6 +94,7 @@ const Post = ({
   const lastTag = correctTags[correctTags.length - 1];
   const correctTagsWithoutLast = correctTags.slice(0, -1);
   const accentGray = useColorModeValue('gray.500', 'gray.400');
+  
   return (
     <>
       <Seo
@@ -146,11 +147,17 @@ const Post = ({
           </Box>
           <GhostHtmlPost content={content} />
           <NewsletterBoxCondenced language={language} />
-          <RelatedPosts
-            parentTitle={post.title}
-            relatedPosts={relatedPosts}
-            language={language}
-          />
+          {/* 
+            because of query logic relatedPost would always 
+            contain current post so we must compare to 1 
+            */}
+          {relatedPosts.nodes.length > 1 && (
+            <RelatedPosts
+              parentTitle={post.title}
+              relatedPosts={relatedPosts}
+              language={language}
+            />
+          )}
         </VStack>
       </Layout>
     </>

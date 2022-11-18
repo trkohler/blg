@@ -11,7 +11,8 @@
 - <del>fix styling of post... 
   - example: http://localhost:8000/ru/posts/razvorachivaiem-prilozhieniie-na-fastapi-s-pomoshchiu-amazon-lambda-biesplatno/
   - example 2: http://localhost:8000/ru/posts/vstuplieniie-v-google-cloud-functions-google-pub-sub-na-primierie-moiegho-lichnogho-proiekta/</del>
-- add fallback view in language translation in post view (example of error: http://localhost:8000/ru/posts/siemieino-pieriezhivaiem-koronovirus/ go to ukrainian language)
+- <del>add fallback view in language translation in post view (example of error: http://localhost:8000/ru/posts/siemieino-pieriezhivaiem-koronovirus/ go to ukrainian language)</del>
+  - i made redirects for now, but in future i guess -> i need to make routing smarter
 - <del>layout is not aligned on tag view. (see: http://localhost:8000/ru/tags/onlain-obrazovaniie/)</del>
 - <del>fix links on the main page to posts</del>
 - <del>fix links on tag page to related tags</del>
@@ -43,9 +44,14 @@ RELEASE 1 VERSION
   - track event - 'copied code'
   - track event - 'clicked subscription button'
   - 'social link clicked'
-- english version release <З
+- <del>english version release <З (should be my next top priority)</del>
 - <del>fix 404 mistakes across the site for better seo</del>
+- (maybe) use cloudinary (https://spacejelly.dev/posts/how-to-optimize-images-on-netlify-with-the-cloudinary-build-plugin/) to optimize all media
   
 
-Not related thoughts:
+## achievements:
+- have health score more than 90 in ahrefs
+  
+
+### Not related thoughts:
   - make something where I would be able to track my referrals

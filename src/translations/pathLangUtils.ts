@@ -25,3 +25,12 @@ export const getPathWithoutLang = (pathname?: string): string => {
 
   return withoutLang.length > 0 ? withoutLang.join('/') : '';
 };
+
+export const routeUniqueView = (path: string) => {
+  return path.split("/").reverse()[1] || '';
+}
+
+export const identifyUniqueView = (path: string, ...commonPathes: string[]): boolean => {
+  const lastPartOfPath = path.split("/").pop() || '';
+  return lastPartOfPath !== '' && !commonPathes.includes(lastPartOfPath)
+}

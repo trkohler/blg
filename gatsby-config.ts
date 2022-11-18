@@ -5,8 +5,8 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `Curated Collection of Ukrainian products`,
     siteUrl: `https://trkohler.com/`,
-    baseLanguage: `uk`,
-    otherLanguages: [`en`, `ru`],
+    baseLanguage: `en`,
+    otherLanguages: [`uk`, `ru`],
     postsPath: `posts`,
     tagsPath: `tags`
   },
