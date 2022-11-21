@@ -11,7 +11,7 @@ async function copyCode(block) {
 export class GhostHtmlPost extends Component<{ content: string }, {}> {
   componentDidMount(): void {
     let blocks = document.querySelectorAll('pre');
-    
+
     blocks.forEach((block) => {
       let button = document.createElement('button');
       button.innerText = 'Copy Code';
@@ -39,20 +39,39 @@ export class GhostHtmlPost extends Component<{ content: string }, {}> {
             fontSize: '2xl',
             py: 4,
           },
-          'h2': {
+          h2: {
             fontSize: '3xl',
-            py: 4
+            py: 4,
           },
           '.codeblock-gatsby': {
             fontSize: 'sm',
           },
-          'a': {
+          a: {
             textDecoration: 'underline',
-            color: 'blue.500'
+            color: 'blue.500',
           },
           'a:hover': {
-            color: 'blue.300'
-          }
+            color: 'blue.300',
+          },
+          figcaption: {
+            color: 'gray.400',
+            fontSize: 'xs',
+            paddingBottom: 10,
+          },
+          '.kg-code-card': {
+            textAlign: 'center',
+          },
+          'p > code': {
+            fontWeight: 'bold',
+            backgroundColor: 'yellow.100',
+            p: 1,
+          },
+          ul: {
+            mx: 6,
+          },
+          li: {
+            py: 1,
+          },
         }}
       ></Flex>
     );
