@@ -65,7 +65,7 @@ export const Blog = ({
       >
         <VStack spacing={20}>
           <Hero language={language} />
-          <NiceBlockOfNothing minH={'3xs'} />
+          {/* <NiceBlockOfNothing minH={'3xs'} /> */}
           {/* <NewsletterBox language={language} /> */}
           <Listing items={nodes} language={language} />
         </VStack>
