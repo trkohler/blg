@@ -26,6 +26,7 @@ import { useSiteMetadata } from '../hooks/use-site-medatadata';
 import { visit_and_fix_ghost_html } from '../rehype-visitors/fix-ghost-html';
 import { GhostHtmlPost } from '../components/GhostHtmlPost';
 import { OgType, Seo } from '../components/Seo';
+import { Comments } from '../components/Comments';
 
 type PostPageProps = {
   data: {
@@ -89,6 +90,7 @@ const Post = ({
     .use(stringify)
     .processSync(post.html)
     .toString();
+  
 
   const correctTags = post.tags.filter((tag) => tag.visibility !== `internal`);
   const lastTag = correctTags[correctTags.length - 1];
@@ -157,7 +159,9 @@ const Post = ({
               relatedPosts={relatedPosts}
               language={language}
             />
+            
           )}
+          <Comments />
         </VStack>
       </Layout>
     </>
