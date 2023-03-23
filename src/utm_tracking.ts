@@ -8,10 +8,13 @@ const TRACKING_MAP_POST = {
 };
 
 export function appendPostTrackingUtms(
-  originalHref: string,
   postTitle: string,
-  language: LanguageUnion
+  language: LanguageUnion,
+  originalHref?: string,
 ) {
+  if (!originalHref) {
+    return
+  }
   let tempHref = originalHref.concat(`?`);
   for (let [tracking_code, tracking_value] of Object.entries(
     TRACKING_MAP_POST
