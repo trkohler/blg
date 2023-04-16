@@ -93,6 +93,7 @@ const Post = ({
     .use(stringify)
     .processSync(post.html)
     .toString();
+  
 
   const correctTags = post.tags.filter((tag) => tag.visibility !== `internal`);
   const lastTag = correctTags[correctTags.length - 1];
@@ -183,6 +184,7 @@ const Post = ({
               relatedPosts={relatedPosts}
               language={language}
             />
+            
           )}
           <Comments />
         </VStack>
