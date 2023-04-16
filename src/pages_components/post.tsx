@@ -7,12 +7,14 @@ import {
   Flex,
   Icon,
   useColorModeValue,
+  Stack,
 } from '@chakra-ui/react';
 import React from 'react';
 import { unified } from 'unified';
 import rehypeParse from 'rehype-parse';
 import { Layout } from '../components/Layout';
 import rehypePrism from '@mapbox/rehype-prism';
+import { GrLinkedinOption } from 'react-icons/gr';
 import stringify from 'rehype-stringify';
 import { Link } from '../components/Link';
 import { visit_highlight_code } from '../rehype-visitors/highlight-code';
@@ -27,6 +29,7 @@ import { visit_and_fix_ghost_html } from '../rehype-visitors/fix-ghost-html';
 import { GhostHtmlPost } from '../components/GhostHtmlPost';
 import { OgType, Seo } from '../components/Seo';
 import { Comments } from '../components/Comments';
+import { AuthorBox } from '../components/AuthorBox';
 
 type PostPageProps = {
   data: {
@@ -96,7 +99,7 @@ const Post = ({
   const lastTag = correctTags[correctTags.length - 1];
   const correctTagsWithoutLast = correctTags.slice(0, -1);
   const accentGray = useColorModeValue('gray.500', 'gray.400');
-  
+
   return (
     <>
       <Seo
@@ -111,43 +114,65 @@ const Post = ({
         navigationPages={navigationPages}
         location={pathname}
       >
-        <VStack spacing={12} align={'stretch'} p={[6, 28]}>
-          <Box textAlign="center">
-            <Heading size={'xl'}>{post.title}</Heading>
-          </Box>
+        <Stack
+          alignItems={'start'}
+          mt={[6, 32]}
+          mx={4}
+          spacing={10}
+          direction={['column', 'row']}
+        >
+          <VStack
+            spacing={12}
+            align={'stretch'}
+            pr={[0, 0, 10]}
+            maxW={'4xl'}
+            // borderWidth={'1px'}
+            // borderColor={'gray.200'}
+          >
+            <Box textAlign="center">
+              <Heading size={['lg', '2xl']}>{post.title}</Heading>
+            </Box>
 
-          <HStack spacing={'8'} justifyContent={'center'}>
-            <Text>{post.published_at}</Text>
-            <Text>{post.reading_time} min read</Text>
-            <HStack spacing={'0'} fontWeight={'bold'} color={accentGray}>
-              {correctTagsWithoutLast.map((tag) => {
-                return (
-                  <>
-                    <Link
-                      to={constructPath(`${tagsPath}/${tag.slug}/`, language)}
-                    >
-                      {tag.name}
-                    </Link>
-                    <Icon as={BsDot} />
-                  </>
-                );
-              })}
-              {lastTag && (
-                <Link
-                  to={constructPath(`${tagsPath}/${lastTag.slug}/`, language)}
-                >
-                  {lastTag.name}
-                </Link>
-              )}
+            <HStack
+              spacing={'8'}
+              justifyContent={'center'}
+              fontSize={['xs', 'xs', 'md']}
+            >
+              <Text>{post.published_at}</Text>
+              <Text>{post.reading_time} min read</Text>
+              <HStack spacing={'0'} fontWeight={'bold'} color={accentGray}>
+                {correctTagsWithoutLast.map((tag) => {
+                  return (
+                    <>
+                      <Link
+                        to={constructPath(`${tagsPath}/${tag.slug}/`, language)}
+                      >
+                        {tag.name}
+                      </Link>
+                      <Icon as={BsDot} />
+                    </>
+                  );
+                })}
+                {lastTag && (
+                  <Link
+                    to={constructPath(`${tagsPath}/${lastTag.slug}/`, language)}
+                  >
+                    {lastTag.name}
+                  </Link>
+                )}
+              </HStack>
             </HStack>
-          </HStack>
 
-          <Box color={'gray.400'} textAlign="center">
-            <Text>
-              {langStrings.last_time_updated[language]} {post.updated_at}
-            </Text>
-          </Box>
-          <GhostHtmlPost content={content} />
+            <Box color={'gray.400'} textAlign="center">
+              <Text>
+                {langStrings.last_time_updated[language]} {post.updated_at}
+              </Text>
+            </Box>
+            <GhostHtmlPost content={content} />
+          </VStack>
+          <AuthorBox language={language} />
+        </Stack>
+        <VStack py={24} spacing={16}>
           <NewsletterBoxCondenced language={language} />
           {/* 
             because of query logic relatedPost would always 

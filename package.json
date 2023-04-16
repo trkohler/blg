@@ -42,7 +42,7 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-helmet": "^6.1.0",
-    "react-icons": "^4.4.0",
+    "react-icons": "^4.8.0",
     "rehype": "^12.0.1",
     "rehype-insert": "marekweb/rehype-insert",
     "slugify": "^1.6.5",
