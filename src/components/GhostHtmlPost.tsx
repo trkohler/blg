@@ -30,7 +30,7 @@ export class GhostHtmlPost extends Component<{ content: string }, {}> {
       <Flex
         px={[0, 16]}
         dangerouslySetInnerHTML={{ __html: this.props.content }}
-        fontSize={['xs', 'lg']}
+        fontSize={['xs', 'xl']}
         flexDirection={'column'}
         justifyContent={'center'}
         gap={4}

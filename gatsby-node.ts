@@ -1,7 +1,7 @@
-import { Actions, Reporter } from 'gatsby';
-import { resolve } from 'path';
-import { LanguageUnion } from './src/translations/langStrings';
-const redirects = require('./redirects.json');
+import { Actions, Reporter } from "gatsby";
+import { resolve } from "path";
+import { LanguageUnion } from "./src/translations/langStrings";
+const redirects = require("./redirects.json");
 
 type BasePath = {
   path: string;
@@ -104,7 +104,7 @@ export const createPages = async ({
   } = result.data;
 
   const correctTags = tags.nodes.filter(
-    (tag: TagNode) => tag.visibility === 'public'
+    (tag: TagNode) => tag.visibility === "public"
   );
   const languagesMap = new Map();
 
@@ -145,26 +145,26 @@ export const createPages = async ({
 
   posts.nodes.forEach((post: PostNode) => {
     const { slug, tags } = post;
-    const internalTag = tags.find((tag) => tag.visibility === 'internal');
+    const internalTag = tags.find((tag) => tag.visibility === "internal");
     if (internalTag) {
       const langSlug = getLangSlug(baseLanguage, internalTag.slug);
-      languagesMap.set(slug, [langSlug, 'post', 'posts']);
+      languagesMap.set(slug, [langSlug, "post", "posts"]);
     }
   });
 
-  // pages.nodes.forEach((page: PageNode) => {
-  //   const { slug, tags } = page;
-  //   const internalTag = tags.find((tag) => tag.visibility === 'internal');
-  //   if (internalTag) {
-  //     const langSlug = getLangSlug(baseLanguage, internalTag.slug);
-  //     languagesMap.set(slug, [langSlug, 'page']);
-  //   }
-  // });
+  pages.nodes.forEach((page: PageNode) => {
+    const { slug, tags } = page;
+    const internalTag = tags.find((tag) => tag.visibility === "internal");
+    if (internalTag) {
+      const langSlug = getLangSlug(baseLanguage, internalTag.slug);
+      languagesMap.set(slug, [langSlug, "page"]);
+    }
+  });
 
   correctTags.forEach((tag: TagNode) => {
     const { slug, description } = tag;
-    const langSlug = description.split('#')[1];
-    languagesMap.set(slug, [langSlug, 'tag', 'tags']);
+    const langSlug = description.split("#")[1];
+    languagesMap.set(slug, [langSlug, "tag", "tags"]);
   });
 
   languagesMap.forEach(([langSlug, type, pathPrefix], slug) => {
@@ -176,8 +176,12 @@ export const createPages = async ({
 
     const path =
       langSlug == baseLanguage
-        ? `/${pathPrefix}/${slug}/`
-        : `/${langSlug}/${pathPrefix}/${slug}/`;
+        ? pathPrefix
+          ? `/${pathPrefix}/${slug}/`
+          : `/${slug}/`
+        : pathPrefix
+        ? `/${langSlug}/${pathPrefix}/${slug}/`
+        : `/${langSlug}/${slug}/`; // TODO: this is awful, but it works
 
     const preparedGlob = `*${langSlug}*`;
 

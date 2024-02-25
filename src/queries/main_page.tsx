@@ -1,5 +1,5 @@
-import { graphql } from 'gatsby';
-import { Blog } from '../pages_components';
+import { graphql } from "gatsby";
+import { Blog } from "../pages_components";
 
 export const query = graphql`
   query ($langSlug: String!) {
@@ -23,11 +23,21 @@ export const query = graphql`
       }
     }
     navigationPages: allGhostPage(
-      filter: { tags: { elemMatch: { slug: { eq: $langSlug } } } }
+      filter: {
+        tags: {
+          elemMatch: { slug: { eq: $langSlug }, name: { eq: "#navigation" } }
+        }
+      }
     ) {
-      nodes {
-        slug
-        title
+      edges {
+        node {
+          title
+          slug
+          tags {
+            slug
+            name
+          }
+        }
       }
     }
   }
