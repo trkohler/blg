@@ -1,25 +1,22 @@
 import { graphql } from "gatsby";
-import { Tags } from "../pages_components/tags";
+import { Page } from "../pages_components/page";
 
 export const query = graphql`
-  query ($preparedGlob: String!, $langSlug: String!) {
-    tags: allGhostTag(
-      filter: {
-        visibility: { ne: "internal" }
-        description: { glob: $preparedGlob }
-      }
-    ) {
-      nodes {
-        name
-        visibility
-        ghostId
-        description
-        accent_color
+  query PageQuery($slug: String!, $langSlug: String!) {
+    page: ghostPage(slug: { eq: $slug }) {
+      slug
+      title
+      tags {
         slug
-        count {
-          posts
-        }
+        visibility
       }
+      html
+      og_description
+      og_image
+      og_title
+      reading_time
+      updated_at(formatString: "DD MMMM, YYYY")
+      published_at(formatString: "DD MMMM, YYYY")
     }
     navigationPages: allGhostPage(
       filter: {
@@ -41,4 +38,5 @@ export const query = graphql`
     }
   }
 `;
-export default Tags;
+
+export default Page;

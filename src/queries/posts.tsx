@@ -1,8 +1,8 @@
-import { graphql } from 'gatsby';
-import AllPosts from '../pages_components/all_posts';
+import { graphql } from "gatsby";
+import AllPosts from "../pages_components/all_posts";
 
 export const query = graphql`
-  query($langSlug: String!) {
+  query ($langSlug: String!) {
     posts: allGhostPost(
       sort: { fields: created_at, order: DESC }
       filter: { tags: { elemMatch: { slug: { eq: $langSlug } } } }
@@ -23,11 +23,21 @@ export const query = graphql`
       }
     }
     navigationPages: allGhostPage(
-      filter: { tags: { elemMatch: { slug: { eq: $langSlug } } } }
+      filter: {
+        tags: {
+          elemMatch: { slug: { eq: $langSlug }, name: { eq: "#navigation" } }
+        }
+      }
     ) {
-      nodes {
-        slug
-        title
+      edges {
+        node {
+          title
+          slug
+          tags {
+            slug
+            name
+          }
+        }
       }
     }
   }

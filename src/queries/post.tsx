@@ -36,11 +36,21 @@ export const query = graphql`
       }
     }
     navigationPages: allGhostPage(
-      filter: { tags: { elemMatch: { slug: { eq: $langSlug } } } }
+      filter: {
+        tags: {
+          elemMatch: { slug: { eq: $langSlug }, name: { eq: "#navigation" } }
+        }
+      }
     ) {
-      nodes {
-        slug
-        title
+      edges {
+        node {
+          title
+          slug
+          tags {
+            slug
+            name
+          }
+        }
       }
     }
   }

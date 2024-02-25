@@ -1,19 +1,21 @@
-import { Box, Container, Stack } from '@chakra-ui/react';
-import React from 'react';
-import { Link } from './Link';
-import { Logo } from './Logo';
-import SocialButton from './SocialButton';
-import { FaTwitter, FaYoutube, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { langStrings, LanguageUnion } from '../translations/langStrings';
-import { useSiteMetadata } from '../hooks/use-site-medatadata';
-import { constructPath } from '../translations/constructCommonPath';
+import { Box, Container, Stack } from "@chakra-ui/react";
+import React from "react";
+import { Link } from "./Link";
+import { Logo } from "./Logo";
+import SocialButton from "./SocialButton";
+import { FaTwitter, FaYoutube, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { langStrings, LanguageUnion } from "../translations/langStrings";
+import { useSiteMetadata } from "../hooks/use-site-medatadata";
+import { constructPath } from "../translations/constructCommonPath";
 
 type FooterProps = {
   language: LanguageUnion;
-  navigationPages: {
-    nodes: {
-      slug: string;
-      title: string;
+  navigationPages?: {
+    edges: {
+      node: {
+        slug: string;
+        title: string;
+      };
     }[];
   };
 };
@@ -21,9 +23,12 @@ type FooterProps = {
 const Footer = ({ language, navigationPages, ...props }: FooterProps) => {
   let lastPage;
   let remainingPages;
-  if (navigationPages.nodes) {
-    lastPage = navigationPages.nodes[navigationPages.nodes.length - 1];
-    remainingPages = navigationPages.nodes.slice(0, -1);
+  const length = navigationPages?.edges?.length || 0;
+  if (navigationPages && length > 0) {
+    lastPage = navigationPages?.edges.slice(-1)[0].node;
+    remainingPages = navigationPages?.edges
+      .slice(0, -1)
+      .map((edge) => edge.node);
   }
 
   const sitemetada = useSiteMetadata();
@@ -33,15 +38,18 @@ const Footer = ({ language, navigationPages, ...props }: FooterProps) => {
       <Box>
         <Container
           as={Stack}
-          maxW={'6xl'}
+          maxW={"6xl"}
           py={4}
           spacing={4}
-          justify={'center'}
-          align={'center'}
+          justify={"center"}
+          align={"center"}
         >
           <Logo />
-          <Stack direction={'row'} spacing={6}>
-            <Link to={constructPath('', language)}>
+          <Stack
+            direction={"row"}
+            spacing={6}
+          >
+            <Link to={constructPath("", language)}>
               {langStrings.home_link_header[language]}
             </Link>
             <Link to={constructPath(postsPath, language)}>
@@ -50,36 +58,54 @@ const Footer = ({ language, navigationPages, ...props }: FooterProps) => {
             <Link to={constructPath(tagsPath, language)}>
               {langStrings.all_tags_link[language]}
             </Link>
-            {/* {remainingPages &&
+            {remainingPages &&
               remainingPages.map((page) => (
                 <Link to={`/${page.slug}/`}>{page.title}</Link>
               ))}
             {lastPage && (
               <Link to={`/${lastPage.slug}/`}>{lastPage.title}</Link>
-            )} */}
+            )}
           </Stack>
         </Container>
-        <Box borderTopWidth={1} borderStyle={'solid'}>
+        <Box
+          borderTopWidth={1}
+          borderStyle={"solid"}
+        >
           <Container
             as={Stack}
-            maxW={'6xl'}
+            maxW={"6xl"}
             py={4}
-            direction={{ base: 'column', md: 'row' }}
+            direction={{ base: "column", md: "row" }}
             spacing={4}
-            justify={{ base: 'center' }}
-            align={{ base: 'center', md: 'center' }}
+            justify={{ base: "center" }}
+            align={{ base: "center", md: "center" }}
           >
-            <Stack direction={'row'} spacing={6}>
-              <SocialButton label={'Twitter'} to={'#'}>
+            <Stack
+              direction={"row"}
+              spacing={6}
+            >
+              <SocialButton
+                label={"Twitter"}
+                to={"#"}
+              >
                 <FaTwitter />
               </SocialButton>
-              <SocialButton label={'YouTube'} to={'#'}>
+              <SocialButton
+                label={"YouTube"}
+                to={"#"}
+              >
                 <FaYoutube />
               </SocialButton>
-              <SocialButton label={'Instagram'} to={'#'}>
+              <SocialButton
+                label={"Instagram"}
+                to={"#"}
+              >
                 <FaInstagram />
               </SocialButton>
-              <SocialButton label={'Linkedin'} to={'#'}>
+              <SocialButton
+                label={"Linkedin"}
+                to={"#"}
+              >
                 <FaLinkedin />
               </SocialButton>
             </Stack>
