@@ -1,7 +1,7 @@
 import { visit_and_fix_ghost_html } from "../rehype-visitors/fix-ghost-html";
 import { visit_highlight_code } from "../rehype-visitors/highlight-code";
 import { getLanguage } from "../translations/pathLangUtils";
-import rehypePrism from "@mapbox/rehype-prism";
+import rehypePrism from 'rehype-prism-plus'
 import rehypeParse from "rehype-parse";
 import { unified } from "unified";
 import stringify from "rehype-stringify";
@@ -24,7 +24,10 @@ export const Page = (data) => {
     })
     .use(visit_highlight_code)
     .use(visit_and_fix_ghost_html, { title, language })
+    // there is something with types I can't figure out
+    // @ts-expect-error
     .use(rehypePrism)
+    // @ts-expect-error
     .use(stringify)
     .processSync(html)
     .toString();
