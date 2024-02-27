@@ -4,7 +4,6 @@ import {
   HStack,
   VStack,
   Text,
-  Flex,
   Icon,
   useColorModeValue,
   Stack,
@@ -13,8 +12,7 @@ import React from 'react';
 import { unified } from 'unified';
 import rehypeParse from 'rehype-parse';
 import { Layout } from '../components/Layout';
-import rehypePrism from '@mapbox/rehype-prism';
-import { GrLinkedinOption } from 'react-icons/gr';
+import rehypePrism from 'rehype-prism-plus'
 import stringify from 'rehype-stringify';
 import { Link } from '../components/Link';
 import { visit_highlight_code } from '../rehype-visitors/highlight-code';
@@ -89,7 +87,10 @@ const Post = ({
     })
     .use(visit_highlight_code)
     .use(visit_and_fix_ghost_html, { title: post.title, language })
+    // there is something with types I can't figure out
+    // @ts-expect-error
     .use(rehypePrism)
+    // @ts-expect-error
     .use(stringify)
     .processSync(post.html)
     .toString();
