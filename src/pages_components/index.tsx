@@ -3,8 +3,6 @@ import React from 'react';
 import Hero from '../components/Hero';
 import { Layout } from '../components/Layout';
 import { Listing } from '../components/Listing';
-import NewsletterBox from '../components/NewsletterBox';
-import { NiceBlockOfNothing } from '../components/NiceBlockOfNothing';
 import { OgType, Seo } from '../components/Seo';
 import { langStrings } from '../translations/langStrings';
 import { getLanguage } from '../translations/pathLangUtils';
@@ -65,8 +63,6 @@ export const Blog = ({
       >
         <VStack spacing={20}>
           <Hero language={language} />
-          {/* <NiceBlockOfNothing minH={'3xs'} /> */}
-          {/* <NewsletterBox language={language} /> */}
           <Listing items={nodes} language={language} />
         </VStack>
       </Layout>
