@@ -82,9 +82,9 @@ export const langStrings = {
     uk: `Підписатися на мою розсилку`,
   },
   newsletter_small_box_text: {
-    en: `I don't do emails now, but you can subscribe for the future.`,
+    en: `Let's see if we can become internet friends.`,
     ru: ``,
-    uk: ``,
+    uk: `Давайте подивимось, чи можемо ми стати друзями.`,
   },
   related_posts_subheading: {
     en: `Check also related posts`,
