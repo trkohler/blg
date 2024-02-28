@@ -134,14 +134,14 @@ export const langStrings = {
     uk: `До головної`,
   },
   subscription_success: {
-    en: `Check you email and verify subscription!`,
-    ru: `Теперь проверь свой емэйл и подтверди свою подписку!`,
-    uk: `Дякую! Зараз потрібно перевірити твій інбокс і підтвердити підписку.`,
+    en: `Thank you! Now check your email and confirm your subscription!`,
+    ru: `Спасибо! Теперь нужно проверить твой почтовый ящик и подтвердить подписку.`,
+    uk: `Дякую! Тепер перевірте свою пошту і підтвердіть підписку!`,
   },
   subscription_error: {
-    en: `There was an unknown error, please try to subscribe later`,
-    ru: `Произошла ошибка, о которой я не знаю. Попробуй позже`,
-    uk: `Виникла помилка, але я не знаю яка сама. Попробуйте пізніше ще раз.`,
+    en: `Something went wrong. Try again later`,
+    ru: `Что-то пошло не так. Попробуйте позже`,
+    uk: `Щось пішло не так. Спробуйте пізніше`,
   },
   listing_title: {
     en: `Articles in English`,
@@ -215,7 +215,7 @@ export const langToEnding = {
 };
 
 export const languageToLocale = {
-  uk: 'uk_UA',
-  ru: 'ru_RU',
-  en: 'en_US',
+  uk: "uk_UA",
+  ru: "ru_RU",
+  en: "en_US",
 };
